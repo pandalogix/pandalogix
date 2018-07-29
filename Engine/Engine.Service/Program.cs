@@ -19,6 +19,16 @@ namespace Engine.Service
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+                .UseStartup<Startup>()
+                .UseContentRoot(Directory.GetCurrentDirectory())
+                .ConfigureLogging((hostingContext,builder)=>{
+                    builder.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
+                    builder.AddConsole();
+                    builder.AddDebug();
+                })
+                .ConfigureAppConfiguration((builderContext, config)=>{
+                    config.AddJsonFile("settings.json");
+                    config.AddEnvironmentVariables();
+                });
     }
 }
