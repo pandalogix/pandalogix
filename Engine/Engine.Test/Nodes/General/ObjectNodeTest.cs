@@ -34,7 +34,7 @@ namespace PandaDoctorTest.Nodes.General
       node.JsonString = JsonConvert.SerializeObject(account);
       node.Init(new PadExecutionContext() { Pad = new PandaDoctor.Pad(Engine.Enums.ExecutionMode.Normal) { Nodes = new List<INode>() } });
       node.Execute(node.Context);
-      Assert.NotEqual(null, node.ObjectValue);
+      Assert.Null( node.ObjectValue);
        
     }
 
