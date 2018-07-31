@@ -20,7 +20,7 @@ namespace PandaDoctor.Nodes.General
     }
 
 
-    protected async override Task InternalExcute(IContext context)
+    protected async override Task InternalExecute(IContext context)
     {
 
       if (this.Type == NodeType.Input)
@@ -48,6 +48,9 @@ namespace PandaDoctor.Nodes.General
           case ConstantType.DateTime:
             context.Result = Convert.ToDateTime(this.Value);
             break;
+          case ConstantType.TimeSpan:
+            context.Result = TimeSpan.Parse(this.Value.ToString());
+            break;
           case ConstantType.Boolean:
             context.Result = Convert.ToBoolean(this.Value);
             break;
@@ -57,7 +60,7 @@ namespace PandaDoctor.Nodes.General
         context.Result = this.GetFieldValue(nameof(Value));
       }
       this.Value = context.Result;
-      await base.InternalExcute(context);
+      await base.InternalExecute(context);
     }
   }
 }

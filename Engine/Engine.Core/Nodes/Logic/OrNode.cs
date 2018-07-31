@@ -10,7 +10,7 @@ namespace PandaDoctor.Nodes.Logic
   public class OrNode : NodeBase
   {
 
-    protected override async Task InternalExcute(IContext context)
+    protected override async Task InternalExecute(IContext context)
     {
       var result = false;
 
@@ -26,7 +26,7 @@ namespace PandaDoctor.Nodes.Logic
         }
       });
 
-     await base.InternalExcute(context);
+     await base.InternalExecute(context);
     }
   }
 }

@@ -10,7 +10,7 @@ namespace PandaDoctor.Nodes.Logic
   public class GreaterThanOrEqualNode : DualInputBaseNode
   {
 
-    protected override async Task InternalExcute(IContext context)
+    protected override async Task InternalExecute(IContext context)
     {
       if (Left is IComparable && Right is IComparable && Left.GetType() == Right.GetType())
       {
@@ -22,7 +22,7 @@ namespace PandaDoctor.Nodes.Logic
       {
         throw new Exception("Unmatch objects");
       }
-      await base.InternalExcute(context);
+      await base.InternalExecute(context);
     }
   }
 }

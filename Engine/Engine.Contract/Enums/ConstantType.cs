@@ -9,6 +9,7 @@
       Date,
       Time,
       DateTime,
-      Boolean
+      Boolean,
+      TimeSpan
     }
 }

@@ -9,7 +9,7 @@ namespace PandaDoctor.Nodes.Math
     [NodeMetaData(NodeClass = typeof(SubstractNode), Category = "Math", Name = nameof(SubstractNode))]
   public class SubstractNode : DualInputBaseNode
   {
-    protected override async Task InternalExcute(IContext context)
+    protected override async Task InternalExecute(IContext context)
     {
       var left = GetFieldValue(nameof(Left));
       var right = GetFieldValue(nameof(Right));
@@ -38,7 +38,7 @@ namespace PandaDoctor.Nodes.Math
       {
         throw new InvalidOperationException($"Type are not match");
       }
-      await base.InternalExcute(context);
+      await base.InternalExecute(context);
     }
   }
 }

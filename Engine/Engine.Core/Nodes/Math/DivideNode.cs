@@ -9,7 +9,7 @@ namespace PandaDoctor.Nodes.Math
     [NodeMetaData(NodeClass = typeof(DivideNode), Category = "Math", Name = nameof(DivideNode))]
   public class DivideNode : DualInputBaseNode
   {
-    protected override async Task InternalExcute(IContext context)
+    protected override async Task InternalExecute(IContext context)
     {
       var left = GetFieldValue(nameof(Left));
       var right = GetFieldValue(nameof(Right));
@@ -23,7 +23,7 @@ namespace PandaDoctor.Nodes.Math
       {
         throw new InvalidOperationException("Only numeric value supported");
       }
-      await base.InternalExcute(context);
+      await base.InternalExecute(context);
     }
   }
 }

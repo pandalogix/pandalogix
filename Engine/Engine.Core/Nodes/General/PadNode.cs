@@ -21,7 +21,7 @@ namespace PandaDoctor.Nodes.General
         public Instances Instance { get; set; }
 
 
-        protected override async Task InternalExcute(IContext context)
+        protected override async Task InternalExecute(IContext context)
         {
             var pad = PadFactory.CreateInstance(this.PadContract, this.PadMode, this.Instance);
             await pad.Init();

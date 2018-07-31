@@ -10,25 +10,25 @@ using Xunit;
 namespace PandaDoctorTest
 {
     public class DivideTest
-  {
-    [Fact]
-    public void DivideTestNodeConstantTest()
     {
-      var padContract = new Engine.Contracts.PadContract()
-      {
-        Id = 1,
-        Name = "test"
-      };
-
-      var constant1 = new Engine.Contracts.NodeBaseContract()
-      {
-        Id = 1,
-        OutNodes = new List<long>() { 3 },
-        Type = NodeType.Input,
-        MetaData = new NodeMetaData()
+        [Fact]
+        public async System.Threading.Tasks.Task DivideTestNodeConstantTestAsync()
         {
-          NodeData = new Engine.NodeMetaDataAttribute() { NodeClass = typeof(ConstantNode) },
-          FieldsMetaData = new List<FieldMetaDataAttribute>()
+            var padContract = new Engine.Contracts.PadContract()
+            {
+                Id = 1,
+                Name = "test"
+            };
+
+            var constant1 = new Engine.Contracts.NodeBaseContract()
+            {
+                Id = 1,
+                OutNodes = new List<long>() { 3 },
+                Type = NodeType.Input,
+                MetaData = new NodeMetaData()
+                {
+                    NodeData = new Engine.NodeMetaDataAttribute() { NodeClass = typeof(ConstantNode) },
+                    FieldsMetaData = new List<FieldMetaDataAttribute>()
               {
                 new FieldMetaDataAttribute()
                 {
@@ -41,18 +41,18 @@ namespace PandaDoctorTest
                   ValueType = typeof(ConstantType)
                 }
               }
-        }
-      };
+                }
+            };
 
-      var constant2 = new Engine.Contracts.NodeBaseContract()
-      {
-        Id = 2,
-        OutNodes = new List<long>() { 3 },
-        Type = NodeType.Input,
-        MetaData = new NodeMetaData()
-        {
-          NodeData = new Engine.NodeMetaDataAttribute() { NodeClass = typeof(ConstantNode) },
-          FieldsMetaData = new List<FieldMetaDataAttribute>()
+            var constant2 = new Engine.Contracts.NodeBaseContract()
+            {
+                Id = 2,
+                OutNodes = new List<long>() { 3 },
+                Type = NodeType.Input,
+                MetaData = new NodeMetaData()
+                {
+                    NodeData = new Engine.NodeMetaDataAttribute() { NodeClass = typeof(ConstantNode) },
+                    FieldsMetaData = new List<FieldMetaDataAttribute>()
               {
                 new FieldMetaDataAttribute()
                 {
@@ -65,18 +65,18 @@ namespace PandaDoctorTest
                   ValueType = typeof(ConstantType)
                 }
               }
-        }
-      };
+                }
+            };
 
-      var add = new Engine.Contracts.NodeBaseContract()
-      {
-        Id = 3,
-        InNodes = new List<long>() { 1, 2 },
-        Type = NodeType.Output,
-        MetaData = new NodeMetaData()
-        {
-          NodeData = new Engine.NodeMetaDataAttribute() { NodeClass = typeof(DivideNode) },
-          FieldsMetaData = new List<FieldMetaDataAttribute>()
+            var add = new Engine.Contracts.NodeBaseContract()
+            {
+                Id = 3,
+                InNodes = new List<long>() { 1, 2 },
+                Type = NodeType.Output,
+                MetaData = new NodeMetaData()
+                {
+                    NodeData = new Engine.NodeMetaDataAttribute() { NodeClass = typeof(DivideNode) },
+                    FieldsMetaData = new List<FieldMetaDataAttribute>()
           {
             new FieldMetaDataAttribute()
             {
@@ -92,15 +92,15 @@ namespace PandaDoctorTest
               Direction =  FieldDirection.Input,
             }
           }
-        }
-      };
+                }
+            };
 
-      padContract.Nodes = new List<Engine.Contracts.NodeBaseContract>()
+            padContract.Nodes = new List<Engine.Contracts.NodeBaseContract>()
       {
         constant1,constant2,add
       };
 
-      List<InstanceMapping> mappings = new List<InstanceMapping>()
+            List<InstanceMapping> mappings = new List<InstanceMapping>()
       {
         new InstanceMapping()
         {
@@ -121,15 +121,15 @@ namespace PandaDoctorTest
            }
         }
       };
-      var instance = new Instances(mappings);
+            var instance = new Instances(mappings);
 
 
-      var pad = PadFactory.CreateInstance(padContract, ExecutionMode.Normal, instance);
-      pad.Init();
-      pad.Execute(pad.Context, instance);
+            var pad = PadFactory.CreateInstance(padContract, ExecutionMode.Normal, instance);
+            await pad.Init();
+            await pad.Execute(pad.Context, instance);
 
-      Assert.Equal(ExecutionStatus.Success, pad.Context.Status);
-      Assert.Equal(10/1.1, pad.Context.Result);
+            Assert.Equal(ExecutionStatus.Success, pad.Context.Status);
+            Assert.Equal(10 / 1.1, pad.Context.Result);
+        }
     }
-  }
 }

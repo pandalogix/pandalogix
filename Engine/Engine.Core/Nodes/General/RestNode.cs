@@ -21,7 +21,7 @@ namespace PandaDoctor.Nodes.General
     public string Body { get; set; }
 
 
-    protected override async Task InternalExcute(IContext context)
+    protected override async Task InternalExecute(IContext context)
     {
 
       var _client = new HttpClient();
@@ -57,7 +57,7 @@ namespace PandaDoctor.Nodes.General
       }
 
 
-      await base.InternalExcute(context);
+      await base.InternalExecute(context);
     }
 
   }
