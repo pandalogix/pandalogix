@@ -12,12 +12,15 @@
     <PackageReference Include="MediatR" Version="5.0.1" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="5.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.1.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="3.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Engine.Contract\Engine.Contract.csproj" />
     <ProjectReference Include="..\Engine.Core\Engine.Core.csproj" />
+    <ProjectReference Include="..\..\Common\EventBus\EventBus.csproj" />
   </ItemGroup>
 
 </Project>

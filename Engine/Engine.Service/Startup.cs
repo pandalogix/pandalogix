@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EventBus;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -44,10 +45,14 @@ namespace Engine.Service
             });
 
             services.AddMediatR();
+
+            services.AddScoped(typeof(PadExecutionHandler),typeof(PadExecutionHandler));
+            services.AddSingleton<IEventBusSubscriptionsManager,InMemoryEventBusSubscriptionsManager>();
+            services.AddSingleton<IEventBus,InMemoryEventBus>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IEventBus evtBus)
         {
             if (env.IsDevelopment())
             {
@@ -60,6 +65,8 @@ namespace Engine.Service
 
             app.UseSwagger()
                .UseSwaggerUI();
+
+            evtBus.Subscribe<PadExecution,PadExecutionHandler>();
         }
     }
 }
