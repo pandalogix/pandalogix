@@ -10,11 +10,13 @@ namespace PandaDoctor.Nodes.Logic
   {
     protected override async Task InternalExecute(IContext context)
     {
-      if (Left is IComparable && Right is IComparable && Left.GetType() == Right.GetType())
+      var left = GetFieldValue(nameof(Left));
+      var right = GetFieldValue(nameof(Right));
+      if (left is IComparable && right is IComparable && left.GetType() == right.GetType())
       {
-        var left = Left as IComparable;
-        var right = Right as IComparable;
-        this.Context.Result = left.CompareTo(right) == 0;
+        var leftc = left as IComparable;
+        var rightc = right as IComparable;
+        this.Context.Result = leftc.CompareTo(rightc) == 0;
       }
       else
       {

@@ -65,7 +65,7 @@ namespace PandaDoctor.Nodes
                 {
                     if (node.Context != null)
                     {
-                        return d && (node.Context.Result is bool ? Convert.ToBoolean(node.Context.Result) : node.Context.Result != null);
+                        return d && (node.Context!=null && node.Context.Status == ExecutionStatus.Success);
                     }
                     else
                     {
