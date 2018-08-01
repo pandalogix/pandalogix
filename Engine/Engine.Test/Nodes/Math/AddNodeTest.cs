@@ -2,15 +2,15 @@ using Engine;
 using Engine.Contracts;
 using Engine.Enums;
 using Newtonsoft.Json;
-using PandaDoctor;
-using PandaDoctor.Nodes;
-using PandaDoctor.Nodes.General;
-using PandaDoctor.Nodes.Math;
+using Engine.Core;
+using Engine.Core.Nodes;
+using Engine.Core.Nodes.General;
+using Engine.Core.Nodes.Math;
 using System.Collections.Generic;
 using Xunit;
 using System;
 
-namespace PandaDoctorTest
+namespace Engine.CoreTest
 {
     public class AddNodeTest
     {

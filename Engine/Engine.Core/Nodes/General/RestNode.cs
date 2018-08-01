@@ -5,7 +5,7 @@ using System.Net.Http.Headers;
 using Engine;
 using Engine.Interfaces;
 
-namespace PandaDoctor.Nodes.General
+namespace Engine.Core.Nodes.General
 {
     [NodeMetaData(Category = "General", NodeClass = typeof(RestNode), Name = nameof(RestNode))]
 

@@ -3,9 +3,9 @@ using System.Threading.Tasks;
 using Engine.Contracts;
 using Engine.Enums;
 using Newtonsoft.Json;
-using PandaDoctor;
-using PandaDoctor.Nodes.General;
-using PandaDoctor.Nodes.Logic;
+using Engine.Core;
+using Engine.Core.Nodes.General;
+using Engine.Core.Nodes.Logic;
 using Xunit;
 
 namespace Engine.Test

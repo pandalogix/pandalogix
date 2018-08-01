@@ -7,7 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace PandaDoctor.Nodes
+namespace Engine.Core.Nodes
 {
     public abstract class NodeBase : INode, IIdentifiableEntity
     {

@@ -3,7 +3,7 @@ using Engine.Interfaces;
 using System;
 using System.Threading.Tasks;
 
-namespace PandaDoctor.Nodes.Logic
+namespace Engine.Core.Nodes.Logic
 {
     [NodeMetaData(NodeClass = typeof(LessThanOrEqualNode),Category ="Logic",Name = nameof(LessThanOrEqualNode))]
 

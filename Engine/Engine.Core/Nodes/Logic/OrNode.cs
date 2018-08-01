@@ -4,7 +4,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PandaDoctor.Nodes.Logic
+namespace Engine.Core.Nodes.Logic
 {
     [NodeMetaData(NodeClass = typeof(OrNode), Category = "Logic", Name = nameof(OrNode))]
   public class OrNode : NodeBase

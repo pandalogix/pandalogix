@@ -1,6 +1,6 @@
 ﻿using Engine;
 
-namespace PandaDoctor.Nodes
+namespace Engine.Core.Nodes
 {
   public abstract class DualInputBaseNode : NodeBase
   {

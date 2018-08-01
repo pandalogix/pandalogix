@@ -4,7 +4,7 @@ using Engine.Interfaces;
 using System;
 using System.Threading.Tasks;
 
-namespace PandaDoctor.Nodes.General
+namespace Engine.Core.Nodes.General
 {
     [NodeMetaData(NodeClass =typeof(ConstantNode), Category ="General",Name =nameof(ConstantNode))]
   public class ConstantNode : NodeBase

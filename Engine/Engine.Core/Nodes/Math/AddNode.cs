@@ -4,7 +4,7 @@ using Engine.Interfaces;
 using System;
 using System.Threading.Tasks;
 
-namespace PandaDoctor.Nodes.Math
+namespace Engine.Core.Nodes.Math
 {
     [NodeMetaData(NodeClass = typeof(AddNode), Category = "Math", Name = nameof(AddNode))]
     public class AddNode : DualInputBaseNode

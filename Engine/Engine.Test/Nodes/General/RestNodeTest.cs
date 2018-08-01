@@ -1,13 +1,13 @@
 ﻿
 using Engine.Enums;
 using Engine.Interfaces;
-using PandaDoctor;
-using PandaDoctor.Nodes.General;
+using Engine.Core;
+using Engine.Core.Nodes.General;
 using System.Collections.Generic;
 using System.Diagnostics;
 using Xunit;
 
-namespace PandaDoctorTest.Nodes.General
+namespace Engine.CoreTest.Nodes.General
 {
 
     public class RestNodeTest
@@ -19,7 +19,7 @@ namespace PandaDoctorTest.Nodes.General
             node.EndPoint = "http://httpbin.org/get";
             node.Method = "get";
 
-            await node.Init(new PadExecutionContext() { Pad = new PandaDoctor.Pad(ExecutionMode.Normal) { Nodes = new List<INode>() } });
+            await node.Init(new PadExecutionContext() { Pad = new Pad(ExecutionMode.Normal) { Nodes = new List<INode>() } });
             await node.Execute(node.Context);
             Assert.Equal(ExecutionStatus.Success, node.Context.Status);
         }
@@ -31,7 +31,7 @@ namespace PandaDoctorTest.Nodes.General
             node.EndPoint = "http://httpbin.org/post";
             node.Method = "post";
             node.Body = "Hello World";
-            await node.Init(new PadExecutionContext() { Pad = new PandaDoctor.Pad(ExecutionMode.Normal) { Nodes = new List<INode>() } });
+            await node.Init(new PadExecutionContext() { Pad = new Pad(ExecutionMode.Normal) { Nodes = new List<INode>() } });
             await node.Execute(node.Context);
             Debug.WriteLine(node.Context.Result);
             Assert.Equal(ExecutionStatus.Success, node.Context.Status);

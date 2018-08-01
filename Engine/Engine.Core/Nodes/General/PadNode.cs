@@ -4,7 +4,7 @@ using Engine.Enums;
 using Engine.Interfaces;
 using System.Threading.Tasks;
 
-namespace PandaDoctor.Nodes.General
+namespace Engine.Core.Nodes.General
 {
     [NodeMetaData(Category = "General", NodeClass = typeof(PadNode), Name = nameof(PadNode))]
     public class PadNode : NodeBase

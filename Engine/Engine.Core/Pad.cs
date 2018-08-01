@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PandaDoctor
+namespace Engine.Core
 {
     public class Pad : IPad
   {

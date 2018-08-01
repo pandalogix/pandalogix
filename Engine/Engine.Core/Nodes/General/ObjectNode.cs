@@ -7,7 +7,7 @@ using Engine.Interfaces;
 using Engine;
 using Engine.Enums;
 
-namespace PandaDoctor.Nodes.General
+namespace Engine.Core.Nodes.General
 {
     [NodeMetaData(NodeClass = typeof(ObjectNode), Category = "General", Name = nameof(ObjectNode))]
 

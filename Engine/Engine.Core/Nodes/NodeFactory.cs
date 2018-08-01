@@ -6,7 +6,7 @@ using Engine.Contracts;
 using Newtonsoft.Json;
 
 
-namespace PandaDoctor.Nodes
+namespace Engine.Core.Nodes
 {
     public class NodeFactory
     {

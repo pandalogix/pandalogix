@@ -3,7 +3,7 @@ using Engine.Interfaces;
 using System;
 using System.Threading.Tasks;
 
-namespace PandaDoctor.Nodes.Logic
+namespace Engine.Core.Nodes.Logic
 {
     [NodeMetaData(NodeClass = typeof(EqualNode), Category = "Logic", Name = nameof(EqualNode))]
   public class EqualNode : DualInputBaseNode

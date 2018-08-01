@@ -2,13 +2,13 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Schema;
 using Newtonsoft.Json.Schema.Generation;
-using PandaDoctor;
-using PandaDoctor.Nodes.General;
+using Engine.Core;
+using Engine.Core.Nodes.General;
 using System;
 using System.Collections.Generic;
 using Xunit;
 
-namespace PandaDoctorTest.Nodes.General
+namespace Engine.CoreTest.Nodes.General
 {
     public class ObjectNodeTest
     {
@@ -32,7 +32,7 @@ namespace PandaDoctorTest.Nodes.General
                 LastLogin = DateTime.Now
             };
             node.JsonString = JsonConvert.SerializeObject(account);
-            await node.Init(new PadExecutionContext() { Pad = new PandaDoctor.Pad(Engine.Enums.ExecutionMode.Normal) { Nodes = new List<INode>() } });
+            await node.Init(new PadExecutionContext() { Pad = new Pad(Engine.Enums.ExecutionMode.Normal) { Nodes = new List<INode>() } });
             await node.Execute(node.Context);
             Assert.NotNull(node.ObjectValue);
 
