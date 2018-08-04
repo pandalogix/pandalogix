@@ -25,5 +25,46 @@ namespace Engine.Contracts
             await node.Execute(context);
             Assert.False(node.Context.Result.ToString().Contains("{"));
         }
+
+
+        [Fact]
+        public async System.Threading.Tasks.Task StringFormatFromNodesTest()
+        {
+            var node = new StringFormatNode();
+            node.Pattern = @"Hello {{name_1}}, from {{name_3}} {{value_2}}";
+            node.FromOtherNodes = true;
+
+            node.MetaDate = new NodeMetaData()
+            {
+               NodeData = new NodeMetaDataAttribute(){ NodeClass = typeof(StringFormatNode)},
+               FieldsMetaData = new List<FieldMetaDataAttribute>()
+               {
+                 new FieldMetaDataAttribute()
+                 {
+                     MappedNodeId =1,
+                     MappedFieldName ="name"
+                 },
+                new FieldMetaDataAttribute()
+                 {
+                     MappedNodeId =2,
+                     MappedFieldName ="value"
+                 },
+                 new FieldMetaDataAttribute()
+                 {
+                     MappedNodeId =3,
+                     MappedFieldName ="name"
+                 },
+               }
+            };
+
+            var context = new NodeExecutionContext()
+            {
+                Pad = new Pad(ExecutionMode.Validation)
+                { Nodes = new List<INode>() }
+            };
+            await node.Init(context);
+            await node.Execute(context);
+            Assert.False(node.Context.Result.ToString().Contains("{"));
+        }
     }
 }

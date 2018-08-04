@@ -54,10 +54,19 @@ namespace Engine.Core.Nodes
                                 {
                                     if (fieldValue != null)
                                     {
-                                        if (fieldValue.Value.StartsWith("{") && fieldValue.Value.EndsWith("}"))
+                                        if ((fieldValue.Value.StartsWith("{") && fieldValue.Value.EndsWith("}")
+                                          || fieldValue.Value.StartsWith("[") && fieldValue.Value.EndsWith("]")))
                                         {
-                                            var value = JsonConvert.DeserializeObject(fieldValue.Value, prop.PropertyType);
-                                            prop.SetValue(node, Convert.ChangeType(value, prop.PropertyType, null));
+                                            try
+                                            {
+                                                var value = JsonConvert.DeserializeObject(fieldValue.Value, prop.PropertyType);
+                                                prop.SetValue(node, Convert.ChangeType(value, prop.PropertyType, null));
+                                            }
+                                            catch
+                                            {
+                                                prop.SetValue(node, Convert.ChangeType(fieldValue?.Value, prop.PropertyType, null));
+
+                                            }
                                         }
                                         else
                                         {

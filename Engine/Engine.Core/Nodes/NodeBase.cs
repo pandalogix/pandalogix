@@ -65,7 +65,7 @@ namespace Engine.Core.Nodes
                 {
                     if (node.Context != null)
                     {
-                        return d && (node.Context!=null && node.Context.Status == ExecutionStatus.Success);
+                        return d && (node.Context != null && node.Context.Status == ExecutionStatus.Success);
                     }
                     else
                     {
@@ -100,6 +100,33 @@ namespace Engine.Core.Nodes
             var nodes = context.Pad.Nodes;
 
 
+        }
+
+        public object GetFieldValue(string fieldName, long nodeId)
+        {
+            object value = null;
+            var fieldMetaData = (from m in this.MetaDate.FieldsMetaData where m.Name == fieldName && m.MappedNodeId == nodeId select m).FirstOrDefault();
+            if (fieldMetaData != null)
+            {
+                if (fieldMetaData.MappedNodeId > 0)
+                {
+                    var mappedNode = (from i in this.Context.Pad.Nodes where (i as NodeBase).Id == fieldMetaData.MappedNodeId select i).FirstOrDefault();
+                    if (mappedNode != null)
+                    {
+                        if (fieldMetaData.MappedFieldName == Engine.Constants.DEFAULT_MAPFIELDNAME)
+                        {
+                            value = mappedNode.Context.Result;
+                        }
+                        else
+                        {
+                            var mappedProp = mappedNode.GetType().GetRuntimeProperty(fieldMetaData.MappedFieldName);
+                            if (mappedProp != null)
+                                value = mappedProp.GetValue(mappedNode);
+                        }
+                    }
+                }
+            }
+            return value;
         }
 
         protected object GetFieldValue(string fieldName)
