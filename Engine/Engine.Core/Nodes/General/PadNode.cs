@@ -14,7 +14,7 @@ namespace Engine.Core.Nodes.General
         [FieldMetaData(Name = nameof(PadIdentifier), ValueType = typeof(string))]
         public string PadIdentifier { get; set; }
 
-        [FieldMetaData(Name = "PadMode",ValueType =typeof(ExecutionMode))]
+        [FieldMetaData(Name = "PadMode", ValueType = typeof(ExecutionMode))]
         public ExecutionMode PadMode { get; set; }
 
         [FieldMetaData(Name = nameof(Instance), ValueType = typeof(Instances))]

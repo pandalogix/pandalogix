@@ -34,9 +34,9 @@ namespace Engine.Core.Nodes.Math
                     _context.Result = Convert.ToDateTime(right).Add(TimeSpan.Parse(left.ToString()));
                 }
             }
-            else if(leftType==typeof(string) && rightType==typeof(string))
+            else if (leftType == typeof(string) && rightType == typeof(string))
             {
-              _context.Result = $"{left}{right}";
+                _context.Result = $"{left}{right}";
             }
             else
             {

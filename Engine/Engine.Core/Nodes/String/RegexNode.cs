@@ -7,6 +7,8 @@ using Engine.Interfaces;
 
 namespace Engine.Core
 {
+    [NodeMetaData(NodeClass = typeof(RegexNode), Category = "String", Name = nameof(RegexNode))]
+
     public class RegexNode : NodeBase
     {
         [FieldMetaData(Name = nameof(Pattern), ValueType = typeof(string))]
@@ -25,7 +27,7 @@ namespace Engine.Core
         {
             string pattern = Pattern ?? GetFieldValue(nameof(Pattern)).ToString();
             string value = Value ?? GetFieldValue(nameof(Value)).ToString();
-            this.Context.Result = Regex.Match(value, pattern)!=null;
+            this.Context.Result = Regex.Match(value, pattern) != null;
             if (EnableGroup)
             {
                 Matches = new List<List<string>>();

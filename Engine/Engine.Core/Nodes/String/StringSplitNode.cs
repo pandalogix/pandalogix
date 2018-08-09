@@ -8,6 +8,8 @@ using Engine.Interfaces;
 
 namespace Engine.Core
 {
+    [NodeMetaData(NodeClass = typeof(StringSplitNode), Category = "String", Name = nameof(StringSplitNode))]
+
     public class StringSplitNode : NodeBase
     {
         [FieldMetaData(Name = nameof(Seperator), ValueType = typeof(string))]

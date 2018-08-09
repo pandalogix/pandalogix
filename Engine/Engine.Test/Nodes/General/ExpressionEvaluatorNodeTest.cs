@@ -1,12 +1,13 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Engine.Contracts;
+using Engine.Core;
 using Engine.Core.Nodes.General;
 using Engine.Enums;
 using Newtonsoft.Json;
 using Xunit;
 
-namespace Engine.Core
+namespace Engine.Test
 {
     public class ExpressionEvaluatorNodeTest
     {

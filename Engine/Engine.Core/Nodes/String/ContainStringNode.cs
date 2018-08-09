@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 using Engine.Core.Nodes;
 using Engine.Interfaces;
 
-namespace Engine.Contracts
+namespace Engine.Core
 {
     [NodeMetaData(NodeClass = typeof(ContainStringNode), Category = "String", Name = nameof(ContainStringNode))]
 

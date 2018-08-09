@@ -7,6 +7,8 @@ using Newtonsoft.Json.Linq;
 
 namespace Engine.Core
 {
+    [NodeMetaData(NodeClass = typeof(ExpressionEvaluatorNode), Category = "General", Name = nameof(ExpressionEvaluatorNode))]
+
     public class ExpressionEvaluatorNode : NodeBase
     {
         [FieldMetaData(Name = nameof(Expression), ValueType = typeof(string))]
@@ -18,10 +20,10 @@ namespace Engine.Core
             {
                 if (f.MappedNodeId != this.Id || f.MappedNodeId != 0)
                 {
-                    d.Add($"{f.MappedFieldName}_{f.MappedNodeId}", new JValue(GetFieldValue(f.MappedFieldName,f.MappedNodeId)));
+                    d.Add($"{f.MappedFieldName}_{f.MappedNodeId}", new JValue(GetFieldValue(f.MappedFieldName, f.MappedNodeId)));
                 }
             }
-            var pattern =this.Expression??GetFieldValue(nameof(Expression)).ToString();
+            var pattern = this.Expression ?? GetFieldValue(nameof(Expression)).ToString();
             var template = Handlebars.Compile(pattern);
             var realexpression = template(d);
             var interpreter = new Interpreter();

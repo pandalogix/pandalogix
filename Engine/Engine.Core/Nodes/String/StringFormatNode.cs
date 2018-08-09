@@ -10,6 +10,8 @@ using Newtonsoft.Json.Linq;
 
 namespace Engine.Core
 {
+    [NodeMetaData(NodeClass = typeof(StringFormatNode), Category = "String", Name = nameof(StringFormatNode))]
+
     public class StringFormatNode : NodeBase
     {
         [FieldMetaData(Name = nameof(Pattern), ValueType = typeof(string))]
@@ -28,12 +30,14 @@ namespace Engine.Core
             if (this.FromOtherNodes)
             {
                 var d = new JObject();
-                foreach(var f in this.MetaDate.FieldsMetaData){
-                  if(f.MappedNodeId!=this.Id || f.MappedNodeId!=0){
-                    d.Add($"{f.MappedFieldName}_{f.MappedNodeId}",new JValue(GetFieldValue(f.MappedFieldName)));
-                  }
+                foreach (var f in this.MetaDate.FieldsMetaData)
+                {
+                    if (f.MappedNodeId != this.Id || f.MappedNodeId != 0)
+                    {
+                        d.Add($"{f.MappedFieldName}_{f.MappedNodeId}", new JValue(GetFieldValue(f.MappedFieldName)));
+                    }
                 }
-                data=d;
+                data = d;
             }
             else
             {
