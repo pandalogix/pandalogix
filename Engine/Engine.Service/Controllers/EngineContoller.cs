@@ -23,11 +23,6 @@ namespace Engine.Service
         [Route("")]
         public async Task<IActionResult> Execute([FromBody]PadExecution pad)
         {
-            // var result = await this.mediator.Send(new ExecutionCommand(pad.Pad,pad.Instances));
-            // if(result)
-            // return Ok();
-            // else
-            // return StatusCode(500);
             await this.eventBus.Publish(pad);
             return Ok();
         }

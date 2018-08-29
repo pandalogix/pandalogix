@@ -17,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{2CEEF5
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventBus", "Common\EventBus\EventBus.csproj", "{60FA515E-09F2-4F2C-A45A-654EAD22D719}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PadManager", "PadManager\PadManager.Core\PadManager.csproj", "{7E0B132C-471A-41F1-8A7F-647862B284ED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -90,6 +92,18 @@ Global
 		{60FA515E-09F2-4F2C-A45A-654EAD22D719}.Release|x64.Build.0 = Release|Any CPU
 		{60FA515E-09F2-4F2C-A45A-654EAD22D719}.Release|x86.ActiveCfg = Release|Any CPU
 		{60FA515E-09F2-4F2C-A45A-654EAD22D719}.Release|x86.Build.0 = Release|Any CPU
+		{7E0B132C-471A-41F1-8A7F-647862B284ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E0B132C-471A-41F1-8A7F-647862B284ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E0B132C-471A-41F1-8A7F-647862B284ED}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7E0B132C-471A-41F1-8A7F-647862B284ED}.Debug|x64.Build.0 = Debug|Any CPU
+		{7E0B132C-471A-41F1-8A7F-647862B284ED}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7E0B132C-471A-41F1-8A7F-647862B284ED}.Debug|x86.Build.0 = Debug|Any CPU
+		{7E0B132C-471A-41F1-8A7F-647862B284ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E0B132C-471A-41F1-8A7F-647862B284ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E0B132C-471A-41F1-8A7F-647862B284ED}.Release|x64.ActiveCfg = Release|Any CPU
+		{7E0B132C-471A-41F1-8A7F-647862B284ED}.Release|x64.Build.0 = Release|Any CPU
+		{7E0B132C-471A-41F1-8A7F-647862B284ED}.Release|x86.ActiveCfg = Release|Any CPU
+		{7E0B132C-471A-41F1-8A7F-647862B284ED}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{20F0B3DB-1757-4491-8A5A-5034F3194336} = {203AD46D-AB54-459B-A1E6-F1DFF637F4B4}
