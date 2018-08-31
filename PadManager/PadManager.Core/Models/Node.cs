@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace PadManager.Core.Models
 {
@@ -24,18 +25,21 @@ namespace PadManager.Core.Models
             }
         }
         [NotMapped]
-        public List<long> OutNodes { get
+        public List<long> OutNodes
+        {
+            get
             {
                 return System.Array.ConvertAll(OutNodesList.Split(';'), long.Parse).ToList();
             }
             set
             {
                 OutNodesList = String.Join(";", value.Select(p => p.ToString()).ToArray());
-            }}
-
+            }
+        }
+        [JsonIgnore]
         [Column("InNodes")]
         public string InNodeList { get; set; }
-
+        [JsonIgnore]
         [Column("OutNodes")]
         public string OutNodesList { get; set; }
         public string MetaData { get; set; }
