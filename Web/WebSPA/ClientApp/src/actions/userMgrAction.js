@@ -6,6 +6,7 @@ export function login() {
     return function (dispatch) {
         return applicationContext.login().then(user => {
             dispatch(userLogin(user));
+            
         }).catch(error => {
             throw (error);
         });

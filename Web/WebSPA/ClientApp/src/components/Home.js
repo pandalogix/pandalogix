@@ -9,25 +9,31 @@ class Home extends Component
   render(){
 
     const {user} = this.props;
-    if(user.name){
-      this.props.history.push('/profile/0');
-
-      return (
+    if(Object.keys(user).length === 0 && user.constructor === Object){
+      return(
         <div>
-          {user.name}
+          <h1>Welcome Pandalogix</h1>
+          <p>Your serverless logic app made easy!</p>
+          
+          <div>
+            <a className="btn btn-primary" onClick={this.login}>Login/SignUp</a>
+          </div>
         </div>
       );
     }
-    return(
+    if(user.isNew){
+      this.props.history.push('/profile/id');
+    
+      
+    }else{
+      this.props.history.push('/dashboard');
+    }
+    return (
       <div>
-        <h1>Welcome Pandalogix</h1>
-        <p>Your serverless logic app made easy!</p>
-        
-        <div>
-          <a className="btn btn-primary" onClick={this.login}>Login/SignUp</a>
-        </div>
+        {user.name}
       </div>
     );
+    
   } 
   
   login=()=>{
