@@ -5,23 +5,13 @@ import * as userManagementAction from '../actions/userMgrAction';
 import Layout from './Layout';
 
 
-class UserProfile extends Component {
+class Billing extends Component {
   render() {
-    const { match, user } = this.props;
-    if (match.params.userid === 0) {
-      return (
-        <div>
-          new User
-          {user.name}
-        </div>
-      );
-    }
+    
     return (
       <Layout>
-        <h1>User Profile</h1>
-        <div>
-          {user.firsName}  {user.lastName}
-        </div>
+        <h1>Billing</h1>
+ 
       </Layout>
 
     )
@@ -42,5 +32,5 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserProfile);
+export default connect(mapStateToProps, mapDispatchToProps)(Billing);
 

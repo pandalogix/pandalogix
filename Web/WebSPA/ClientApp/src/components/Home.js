@@ -2,14 +2,16 @@ import React,{Component} from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as userManagementAction from '../actions/userMgrAction';
-
+import {applicationContext} from '../services/securitymgr';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 class Home extends Component
 {
   render(){
 
     const {user} = this.props;
-    if(Object.keys(user).length === 0 && user.constructor === Object){
+    if((Object.keys(user).length === 0 && user.constructor === Object)
+      || !applicationContext.isAuthed(user,()=>{return true;})){
       return(
         <div>
           <h1>Welcome Pandalogix</h1>

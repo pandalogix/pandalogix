@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import Layout from './Layout';
 import { connect } from 'react-redux';
+import {applicationContext} from '../services/securitymgr';
 
 class Dashboard extends Component {
 
   render() {
     const { user, history } = this.props;
-    if (!user.id)
-      history.push('/');
+    if(!applicationContext.isAuthed(user)) history.push('/');
     return (
       <Layout>
         <p>Dashboard</p>

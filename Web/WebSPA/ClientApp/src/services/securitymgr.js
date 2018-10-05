@@ -135,11 +135,12 @@ class ApplicationContext {
         });
     }
 
-    // isAuth(user,history){
-    //     if(!user.name){
-    //         history.push('/');
-    //     }
-    // }
+    isAuthed(user){
+        if(user.id && Date.now()<user.expiration){
+            return true;
+        }
+        return false;
+    }
 }
 
 export let applicationContext = new ApplicationContext();
