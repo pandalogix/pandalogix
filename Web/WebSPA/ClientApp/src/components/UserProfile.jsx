@@ -9,23 +9,52 @@ class UserProfile extends Component {
   render() {
     const { match, user } = this.props;
     if (match.params.userid === 0) {
-      return (
-        <div>
-          new User
-          {user.name}
-        </div>
-      );
+      return this.newUserProfile(user);
     }
+    return this.existingUserProfile(user);
+  }
+
+  newUserProfile(user) {
+    return (
+      <div>
+        new User
+        {user.name}
+      </div>
+    );
+  }
+
+  existingUserProfile(user) {
+    const username = `${user.firtName} ${user.lastName}`;
     return (
       <Layout>
         <h1>User Profile</h1>
-        <div>
-          {user.firsName}  {user.lastName}
+        <div className='container-fluid'>
+          <div className='form-group'>
+            <label for='userName'>Name</label>
+            <input type='text' id='userName' value={username} className='form-control' />
+          </div>
+          
+          <div className='form-group'>
+            <label for='userEmail'>Email</label>
+            <input type='email' id='userEmail' value={user.email} className='form-control' />
+          </div>
+
+          <div className='form-group'>
+            <label for='apiKey'>Api Key</label>
+            <input type='text' id='apiKey' value={user.apiKey} className='form-control' />
+          </div>
+          <button className='btn btn-primary' onClick={this.regenerate} >ReGenerate</button>
+
         </div>
+
       </Layout>
 
     )
   }
+  regenerate(){
+
+  }
+
 }
 
 function mapStateToProps(state, ownProps) {

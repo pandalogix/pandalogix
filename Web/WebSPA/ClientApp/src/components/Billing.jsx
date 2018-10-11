@@ -10,7 +10,13 @@ class Billing extends Component {
     
     return (
       <Layout>
-        <h1>Billing</h1>
+        <h1>Billing Overview</h1>
+        <div className="container-fluid">
+          <div className="form-group">
+            <label for="plan">Plan</label>
+            <p id="plan" className="form-control">Free plan</p>
+          </div>
+        </div>
  
       </Layout>
 

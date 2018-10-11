@@ -10,7 +10,7 @@ const styles={
     left: 0,
     zIndex: 100,
     padding: '48px 0 0',
-    boxShadow: 'inset -1px 0 0 rgba(0, 0, 0, .1)',
+    // boxShadow: 'inset -1px 0 0 rgba(0, 0, 0, .1)',
     height:'100%'
     },
   content:{
@@ -21,7 +21,7 @@ const styles={
 
 export default props => (
   <div className={'container-fluid'}>
-    <nav className={'navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow'}>
+    <nav className={'navbar fixed-top flex-md-nowrap p-0 shadow'}>
       <a className={'navbar-brand col-sm-3 col-md-2 mr-0'} >Company name</a>
       {/* <input className={'form-control form-control-dark w-100'} /> */}
       <ul className={'navbar-nav px-3'}>
@@ -33,10 +33,10 @@ export default props => (
 
     <div className={'container-fluid'}>
       <div className={'row'}>
-        <div className={'col-sm-3'} style={{...styles.sidebar}}>
+        <div className={'col-sm-2'} style={{...styles.sidebar}}>
           <NavMenu />
         </div>
-        <div className={'col-sm-9'} style={{...styles.content}}>
+        <div className={'col-sm-10'} style={{...styles.content}}>
           {props.children}
         </div>
       </div>
