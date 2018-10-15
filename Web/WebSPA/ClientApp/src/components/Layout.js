@@ -3,6 +3,7 @@ import NavMenu from './NavMenu';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as userManagementAction from '../actions/userMgrAction';
+import { applicationContext } from '../services/securitymgr';
 
 const styles = {
   sidebar: {
@@ -22,7 +23,9 @@ const styles = {
 
 class Layout extends Component {
   render() {
-    const { user } = this.props;
+    const { user,history } = this.props;
+    if (!applicationContext.isAuthed(user)) window.location='/';
+
     return (
       <div className={'container-fluid'}>
         <nav className={'navbar fixed-top flex-md-nowrap p-0 shadow'}>

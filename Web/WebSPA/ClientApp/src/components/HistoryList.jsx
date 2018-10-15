@@ -12,10 +12,10 @@ class HistoryList extends Component {
     return (
       <Layout>
         <h1>History </h1>
-        <div class="">
-          <div class="table-responsive">
-            <table class="table table-striped">
-              <thead class="thead-inverse">
+        <div className="">
+          <div className="table-responsive">
+            <table className="table table-striped">
+              <thead className="thead-inverse">
                 <tr>
                   <th>#</th>
                   <th>Label</th>

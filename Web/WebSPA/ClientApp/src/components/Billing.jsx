@@ -13,7 +13,7 @@ class Billing extends Component {
         <h1>Billing Overview</h1>
         <div className="container-fluid">
           <div className="form-group">
-            <label for="plan">Plan</label>
+            <label htmlFor="plan">Plan</label>
             <p id="plan" className="form-control">Free plan</p>
           </div>
         </div>
