@@ -49,7 +49,7 @@ namespace WebSPA.Controllers
       using (var client = this._clientFactory.CreateClient("accountMgr"))
       {
         var response = await client.PutAsJsonAsync<User>("/api/account", user);
-        if (response.IsSuccessStatusCode)
+        if (!response.IsSuccessStatusCode)
         {
           return StatusCode((int)System.Net.HttpStatusCode.InternalServerError);
         }
@@ -67,7 +67,7 @@ namespace WebSPA.Controllers
       using (var client = this._clientFactory.CreateClient("accountMgr"))
       {
         var response = await client.DeleteAsync($"/api/account/{id}");
-        if (response.IsSuccessStatusCode)
+        if (!response.IsSuccessStatusCode)
         {
           return StatusCode((int)System.Net.HttpStatusCode.InternalServerError);
         }
@@ -113,6 +113,26 @@ namespace WebSPA.Controllers
           var user = await response.Content.ReadAsAsync<User>();
           // this.SetCookie(user);
           return Ok(user);
+        }
+      }
+    }
+
+    [HttpPost]
+    [Route("regenerateKey/{id}")]
+    public async Task<IActionResult> RegenKey(long id)
+    {
+      using (var client = this._clientFactory.CreateClient("accountMgr"))
+      {
+        var response = await client.PostAsJsonAsync<User>($"/api/account/regenerateKey/{id}", null);
+        if (!response.IsSuccessStatusCode)
+        {
+          return StatusCode((int)System.Net.HttpStatusCode.InternalServerError);
+        }
+        else
+        {
+          var updateuser = await response.Content.ReadAsAsync<User>();
+          // this.SetCookie(user);
+          return Ok(updateuser);
         }
       }
     }

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as userManagementAction from '../actions/userMgrAction';
 import Layout from './Layout';
-
+import AccountService from '../services/accountService';
 
 class UserProfile extends Component {
   render() {
@@ -24,7 +24,7 @@ class UserProfile extends Component {
   }
 
   existingUserProfile(user) {
-    const username = `${user.firtName} ${user.lastName}`;
+    const username = `${user.firstName} ${user.lastName}`;
     return (
       <Layout>
         <h1>User Profile</h1>
@@ -43,7 +43,7 @@ class UserProfile extends Component {
             <label for='apiKey'>Api Key</label>
             <input type='text' id='apiKey' value={user.apiKey} className='form-control' />
           </div>
-          <button className='btn btn-primary' onClick={this.regenerate} >ReGenerate</button>
+          <button className='btn btn-primary' onClick={this.regenerate.bind(this,user)} >ReGenerate</button>
 
         </div>
 
@@ -51,8 +51,9 @@ class UserProfile extends Component {
 
     )
   }
-  regenerate(){
-
+  regenerate(user){
+    //const {user} = this.props;
+    this.props.actions.regenerateKey(user);
   }
 
 }

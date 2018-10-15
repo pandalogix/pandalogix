@@ -74,5 +74,20 @@ namespace AccountManager
         return NotFound();
       return Ok(existing);
     }
+
+    [HttpPost]
+    [Route("regenerateKey/{id}")]
+    public async Task<IActionResult> RegenerateKey(long id)
+    {
+      var existing = this.context.Accounts.Where(p => p.Id == id).FirstOrDefault();
+
+      if (existing == null)
+        return NotFound();
+      existing.ApiKey = System.Guid.NewGuid();
+
+      this.context.Accounts.Update(existing);
+      await this.context.SaveChangesAsync();
+      return Ok(existing);
+    }
   }
 }

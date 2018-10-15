@@ -6,6 +6,8 @@ export function UserManager(state = {}, action) {
             return action.user;//Object.assign(...state, action.user);
         case types.USER_LOGOUT:
             return {};
+        case types.USER_APIKEY:
+            return action.user;
         default:
             return state;
     }
