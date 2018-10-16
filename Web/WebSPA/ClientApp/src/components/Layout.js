@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as userManagementAction from '../actions/userMgrAction';
 import { applicationContext } from '../services/securitymgr';
+import PadNav from './PadNav'
 
 const styles = {
   sidebar: {
@@ -23,13 +24,15 @@ const styles = {
 
 class Layout extends Component {
   render() {
-    const { user,history } = this.props;
-    if (!applicationContext.isAuthed(user)) window.location='/';
+    const { user, history } = this.props;
+    if (!applicationContext.isAuthed(user)) window.location = '/';
 
     return (
       <div className={'container-fluid'}>
         <nav className={'navbar fixed-top flex-md-nowrap p-0 shadow'}>
-          <a className={'navbar-brand col-sm-3 col-md-2 mr-0'} >PandaLogix</a>
+          <a className={'navbar-brand col-sm-3 col-md-2 mr-0'} >
+          <img src="http://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg" width="30" height="30" style={{'padding-right':'5px'} } className="d-inline-block align-top" alt=""/>
+            PandaLogix</a>
           {/* <input className={'form-control form-control-dark w-100'} /> */}
           {`${user.firstName} ${user.lastName}`}
           <ul className={'navbar-nav px-3'}>
@@ -41,10 +44,12 @@ class Layout extends Component {
 
         <div className={'container-fluid'}>
           <div className={'row'}>
-            <div className={'col-sm-2'} style={{ ...styles.sidebar }}>
-              <NavMenu />
+            <div className={!this.props.isPad ? 'col-sm-2' : 'col-sm-1'} style={{ ...styles.sidebar }}>
+              {!this.props.isPad ?
+                <NavMenu /> :
+                <PadNav />}
             </div>
-            <div className={'col-sm-10'} style={{ ...styles.content }}>
+            <div className={!this.props.isPad ? 'col-sm-10' : 'col-sm-11'} style={{ ...styles.content }}>
               {this.props.children}
             </div>
           </div>

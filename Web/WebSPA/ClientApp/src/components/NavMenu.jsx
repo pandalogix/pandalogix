@@ -10,31 +10,31 @@ class NavMenu extends Component {
       <ul className="nav flex-column">
         <li className="nav-item">
           <a className={this.isActive(location, '/dashboard')} href="/dashboard">
-            <i className="fal fa-tachometer"></i>
+            <i className="fal fa-tachometer fa-2x"></i>
             Dashboard <span className="sr-only">(current)</span>
           </a>
         </li>
         <li className="nav-item">
           <a className={this.isActive(location, '/profile')} href={'/profile/' + user.id}>
-            <i className="fal fa-user"></i>
+            <i className="fal fa-user fa-2x"></i>
             Profile
                 </a>
         </li>
         <li className="nav-item">
           <a className={this.isActive(location, '/pads')} href={'/pads'}>
-            <i className="fal fa-list"></i>
+            <i className="fal fa-list fa-2x"></i>
             Pads
                 </a>
         </li>
         <li className="nav-item">
           <a className={this.isActive(location, '/history')} href={'/history'}>
-            <i className="fal fa-history"></i>
+            <i className="fal fa-history fa-2x"></i>
             History
                 </a>
         </li>
         <li className="nav-item">
           <a className={this.isActive(location, '/billing')} href={'/billing'}>
-            <i className="fal fa-credit-card"></i>
+            <i className="fal fa-credit-card " ></i>
             Billing
                 </a>
         </li>

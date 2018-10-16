@@ -14,7 +14,7 @@ class Dashboard extends Component {
       <Layout>
         <h1>Dashboard</h1>
         <div className="row mb-3">
-          <button className="btn btn-primary pull-right">Create Pad</button>
+          <button className="btn btn-primary pull-right" onClick={this.createPad.bind(this)}>Create Pad</button>
         </div>
         <div className="row mb-3">
           <div className="col-xl-3 col-sm-6 py-2">
@@ -86,6 +86,10 @@ class Dashboard extends Component {
             </div>
       </Layout>
     );
+  }
+
+  createPad(){
+    this.props.history.push('/pad/0/summary');
   }
 }
 function mapStateToProps(state, ownProps) {
