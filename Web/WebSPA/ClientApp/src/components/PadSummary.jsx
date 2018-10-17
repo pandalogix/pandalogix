@@ -17,9 +17,18 @@ export default class PadSummary extends Component {
           </div>
 
           <div className='form-group'>
-            <label htmlFor='padId'>Api Key</label>
-            <input type='text' id='padId' value={'000000-000-0000'} className='form-control' />
+            <label htmlFor='padId'>Key</label>
+            <input type='text' id='padId' value={'000000-000-0000'} className='form-control' readOnly={true}/>
           </div>
+
+          
+          <div className='form-group'>
+            <label htmlFor='example'>Example</label>
+            <textarea type='text' id='example' value={'http request'} className='form-control' readOnly={true} rows={10}/>
+          </div>
+
+          <button className='btn btn-primary'>Save</button>
+  
         </div>
       </Layout>
     );
