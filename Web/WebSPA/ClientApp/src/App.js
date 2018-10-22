@@ -8,6 +8,7 @@ import HistoryList from './components/HistoryList';
 import Billing from './components/Billing';
 import PadSummary from './components/PadSummary';
 import PadDesign from './components/PadDesign';
+import PadModel from './components/PadModel';
 // import ProtectedRoute from './protectedRoute';
 
 
@@ -21,6 +22,7 @@ export default () => (
     <Route path='/billing' component={Billing}/>
     <Route path='/pad/:padid/summary' component={PadSummary}/>
     <Route path='/pad/:padid/design' component={PadDesign}/>
+    <Route path='/pad/:padid/model' component={PadModel}/>
 
     {/* <Route path='/counter' component={Counter} />
     <Route path='/fetchdata/:startDateIndex?' component={FetchData} /> */}

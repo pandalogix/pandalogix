@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as userManagementAction from '../actions/userMgrAction';
 import Layout from './Layout';
-import AccountService from '../services/accountService';
 
 class UserProfile extends Component {
   render() {

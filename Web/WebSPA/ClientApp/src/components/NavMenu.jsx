@@ -1,5 +1,4 @@
 ﻿import React, { Component } from 'react';
-import { LinkContainer } from 'react-router-bootstrap';
 import './NavMenu.css';
 import { connect } from 'react-redux';
 

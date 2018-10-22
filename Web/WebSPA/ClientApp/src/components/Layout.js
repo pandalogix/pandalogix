@@ -24,7 +24,7 @@ const styles = {
 
 class Layout extends Component {
   render() {
-    const { user, history } = this.props;
+    const { user } = this.props;
     if (!applicationContext.isAuthed(user)) window.location = '/';
 
     return (

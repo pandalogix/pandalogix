@@ -37,9 +37,15 @@ namespace WebSPA
         configureClient.DefaultRequestHeaders.Add("X-Request-Source", Environment.MachineName);
       });
 
+      services.AddHttpClient("padMgr", configureClient =>
+      {
+        configureClient.BaseAddress = new System.Uri(Configuration.GetValue<string>("ServiceEndPoints:PadManagerService"));
+        // configureClient.DefaultRequestHeaders.Add("Content-Type", "application/json");
+        configureClient.DefaultRequestHeaders.Add("X-Request-Source", Environment.MachineName);
+      });
       services.AddSwaggerGen(c =>
                 {
-                  c.SwaggerDoc("v1", new Info { Title = "Account Manager", Version = "v1" });
+                  c.SwaggerDoc("v1", new Info { Title = "PandaLogix Manager", Version = "v1" });
                 });
     }
 

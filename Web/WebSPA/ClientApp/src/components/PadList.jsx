@@ -7,7 +7,6 @@ import Layout from './Layout';
 
 class PadList extends Component {
   render() {
-    const { match, user } = this.props;
 
     return (
       <Layout>

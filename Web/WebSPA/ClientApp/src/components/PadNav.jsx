@@ -9,7 +9,12 @@ export default class PadNav extends Component {
         </li>
         <li className="nav-item">
           <a className='nav-link active' href="/pad/0/summary">
-            <i className="fal fa-clipboard fa-2x"></i>
+            <i className="fal fa-clipboard-prescription fa-2x"></i>
+          </a>
+        </li>
+        <li className="nav-item">
+          <a className='nav-link' href="/pad/0/model">
+            <i className="fal fa-cube fa-2x"></i>
           </a>
         </li>
         <li className="nav-item">

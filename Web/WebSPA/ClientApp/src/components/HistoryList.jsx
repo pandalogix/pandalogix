@@ -7,8 +7,6 @@ import Layout from './Layout';
 
 class HistoryList extends Component {
   render() {
-    const { match, user } = this.props;
-
     return (
       <Layout>
         <h1>History </h1>

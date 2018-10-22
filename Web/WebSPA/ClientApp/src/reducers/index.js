@@ -1,7 +1,9 @@
 import { UserManager } from './userMgr';
+import { PadManager, PadsManager } from './padMgr';
 
 const rootReducer = {
-
-  UserManager:UserManager
+  PadManager: PadManager,
+  UserManager: UserManager,
+  PadsManager: PadsManager
 };
 export default rootReducer;

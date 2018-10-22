@@ -18,7 +18,7 @@ class Home extends Component
           <p>Your serverless logic app made easy!</p>
           
           <div>
-            <a className="btn btn-primary" onClick={this.login}>Login/SignUp</a>
+            <button className="btn btn-primary" onClick={this.login}>Login/SignUp</button>
           </div>
         </div>
       );

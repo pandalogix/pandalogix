@@ -15,7 +15,7 @@ namespace WebSPA.Controllers
   public class AccountController : Controller
   {
     private IHttpClientFactory _clientFactory;
-
+    private const string clientName = "accountMgr";
     public AccountController(IHttpClientFactory clientFactory)
     {
       this._clientFactory = clientFactory;
@@ -25,7 +25,7 @@ namespace WebSPA.Controllers
     [Route("")]
     public async Task<IActionResult> Create([FromBody]User user)
     {
-      using (var client = this._clientFactory.CreateClient("accountMgr"))
+      using (var client = this._clientFactory.CreateClient(clientName))
       {
         var response = await client.PostAsJsonAsync<User>("/api/account", user);
         if (!response.IsSuccessStatusCode)
@@ -46,7 +46,7 @@ namespace WebSPA.Controllers
     [Route("")]
     public async Task<IActionResult> Update(User user)
     {
-      using (var client = this._clientFactory.CreateClient("accountMgr"))
+      using (var client = this._clientFactory.CreateClient(clientName))
       {
         var response = await client.PutAsJsonAsync<User>("/api/account", user);
         if (!response.IsSuccessStatusCode)
@@ -64,7 +64,7 @@ namespace WebSPA.Controllers
     [Route("")]
     public async Task<IActionResult> Delete(long id)
     {
-      using (var client = this._clientFactory.CreateClient("accountMgr"))
+      using (var client = this._clientFactory.CreateClient(clientName))
       {
         var response = await client.DeleteAsync($"/api/account/{id}");
         if (!response.IsSuccessStatusCode)
@@ -83,7 +83,7 @@ namespace WebSPA.Controllers
     public async Task<IActionResult> Get(long id)
     {
 
-      using (var client = this._clientFactory.CreateClient("accountMgr"))
+      using (var client = this._clientFactory.CreateClient(clientName))
       {
         var response = await client.GetAsync($"/api/account/{id}");
         if (!response.IsSuccessStatusCode)
@@ -101,7 +101,7 @@ namespace WebSPA.Controllers
     [Route("")]
     public async Task<IActionResult> GetByEmail([FromQuery]string email)
     {
-      using (var client = this._clientFactory.CreateClient("accountMgr"))
+      using (var client = this._clientFactory.CreateClient(clientName))
       {
         var response = await client.GetAsync($"/api/account?email={email}");
         if (!response.IsSuccessStatusCode)
@@ -121,7 +121,7 @@ namespace WebSPA.Controllers
     [Route("regenerateKey/{id}")]
     public async Task<IActionResult> RegenKey(long id)
     {
-      using (var client = this._clientFactory.CreateClient("accountMgr"))
+      using (var client = this._clientFactory.CreateClient(clientName))
       {
         var response = await client.PostAsJsonAsync<User>($"/api/account/regenerateKey/{id}", null);
         if (!response.IsSuccessStatusCode)
