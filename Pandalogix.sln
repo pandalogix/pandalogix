@@ -5,27 +5,29 @@ VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Engine", "Engine", "{203AD46D-AB54-459B-A1E6-F1DFF637F4B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Engine.Contract", "Engine\Engine.Contract\Engine.Contract.csproj", "{20F0B3DB-1757-4491-8A5A-5034F3194336}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Engine.Contract", "Engine\Engine.Contract\Engine.Contract.csproj", "{20F0B3DB-1757-4491-8A5A-5034F3194336}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Engine.Core", "Engine\Engine.Core\Engine.Core.csproj", "{AD70578B-9A61-442C-95CF-000B0BA15FA5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Engine.Core", "Engine\Engine.Core\Engine.Core.csproj", "{AD70578B-9A61-442C-95CF-000B0BA15FA5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Engine.Test", "Engine\Engine.Test\Engine.Test.csproj", "{CA11FC03-C741-48F2-903A-ED21BF8BEA54}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Engine.Test", "Engine\Engine.Test\Engine.Test.csproj", "{CA11FC03-C741-48F2-903A-ED21BF8BEA54}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Engine.Service", "Engine\Engine.Service\Engine.Service.csproj", "{7C377867-6382-4E9E-B5E4-8B4E896DEB75}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Engine.Service", "Engine\Engine.Service\Engine.Service.csproj", "{7C377867-6382-4E9E-B5E4-8B4E896DEB75}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{2CEEF5A1-4925-4A99-BD41-B6121507CADF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventBus", "Common\EventBus\EventBus.csproj", "{60FA515E-09F2-4F2C-A45A-654EAD22D719}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventBus", "Common\EventBus\EventBus.csproj", "{60FA515E-09F2-4F2C-A45A-654EAD22D719}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PadManager", "PadManager\PadManager.Core\PadManager.csproj", "{7E0B132C-471A-41F1-8A7F-647862B284ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PadManager", "PadManager\PadManager.Core\PadManager.csproj", "{7E0B132C-471A-41F1-8A7F-647862B284ED}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AccountManager", "AccountManager", "{6BCA5C97-680E-48BB-9BCF-249754147AB9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Account.Service", "AccountManager\Account.Service\Account.Service.csproj", "{3267004B-15E1-4440-B0EF-1C16330CAA1D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Account.Service", "AccountManager\Account.Service\Account.Service.csproj", "{3267004B-15E1-4440-B0EF-1C16330CAA1D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{D02E642B-FFB9-4E88-B887-E757FD30D943}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebSPA", "Web\WebSPA\WebSPA.csproj", "{DEE240DA-3E29-4EA9-AEC1-847A53F7E580}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebSPA", "Web\WebSPA\WebSPA.csproj", "{DEE240DA-3E29-4EA9-AEC1-847A53F7E580}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{F032E054-3D56-4677-81F4-C19992FA801B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,9 +37,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{20F0B3DB-1757-4491-8A5A-5034F3194336}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -136,6 +135,21 @@ Global
 		{DEE240DA-3E29-4EA9-AEC1-847A53F7E580}.Release|x64.Build.0 = Release|Any CPU
 		{DEE240DA-3E29-4EA9-AEC1-847A53F7E580}.Release|x86.ActiveCfg = Release|Any CPU
 		{DEE240DA-3E29-4EA9-AEC1-847A53F7E580}.Release|x86.Build.0 = Release|Any CPU
+		{F032E054-3D56-4677-81F4-C19992FA801B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F032E054-3D56-4677-81F4-C19992FA801B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F032E054-3D56-4677-81F4-C19992FA801B}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F032E054-3D56-4677-81F4-C19992FA801B}.Debug|x64.Build.0 = Debug|Any CPU
+		{F032E054-3D56-4677-81F4-C19992FA801B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F032E054-3D56-4677-81F4-C19992FA801B}.Debug|x86.Build.0 = Debug|Any CPU
+		{F032E054-3D56-4677-81F4-C19992FA801B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F032E054-3D56-4677-81F4-C19992FA801B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F032E054-3D56-4677-81F4-C19992FA801B}.Release|x64.ActiveCfg = Release|Any CPU
+		{F032E054-3D56-4677-81F4-C19992FA801B}.Release|x64.Build.0 = Release|Any CPU
+		{F032E054-3D56-4677-81F4-C19992FA801B}.Release|x86.ActiveCfg = Release|Any CPU
+		{F032E054-3D56-4677-81F4-C19992FA801B}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{20F0B3DB-1757-4491-8A5A-5034F3194336} = {203AD46D-AB54-459B-A1E6-F1DFF637F4B4}
@@ -145,5 +159,8 @@ Global
 		{60FA515E-09F2-4F2C-A45A-654EAD22D719} = {2CEEF5A1-4925-4A99-BD41-B6121507CADF}
 		{3267004B-15E1-4440-B0EF-1C16330CAA1D} = {6BCA5C97-680E-48BB-9BCF-249754147AB9}
 		{DEE240DA-3E29-4EA9-AEC1-847A53F7E580} = {D02E642B-FFB9-4E88-B887-E757FD30D943}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5DBAF710-9050-4787-83F5-46895D7F468A}
 	EndGlobalSection
 EndGlobal

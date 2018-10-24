@@ -1,0 +1,61 @@
+version: '3.4'
+
+services:
+  account.service:
+    image: accountservice:dev
+    build:
+      target: base
+    environment:
+      - DOTNET_USE_POLLING_FILE_WATCHER=1
+      - NUGET_FALLBACK_PACKAGES=/root/.nuget/fallbackpackages
+    volumes:
+      - C:\Users\zhangxd6\Source\Repos\Pandalogix\AccountManager\Account.Service:/app
+      - C:\Users\zhangxd6\vsdbg\vs2017u5:/remote_debugger:ro
+      - C:\Users\zhangxd6\.nuget\packages\:/root/.nuget/packages:ro
+      - C:\Program Files\dotnet\sdk\NuGetFallbackFolder:/root/.nuget/fallbackpackages:ro
+    entrypoint: tail -f /dev/null
+    labels:
+      com.microsoft.visualstudio.debuggee.program: "dotnet"
+      com.microsoft.visualstudio.debuggee.arguments: " --additionalProbingPath /root/.nuget/packages --additionalProbingPath /root/.nuget/fallbackpackages  bin/Debug/netcoreapp2.1/Account.Service.dll"
+      com.microsoft.visualstudio.debuggee.workingdirectory: "/app"
+      com.microsoft.visualstudio.debuggee.killprogram: "/bin/bash -c \"if PID=$$(pidof -x dotnet); then kill $$PID; fi\""
+
+  engine.service:
+    image: engineservice:dev
+    build:
+      target: base
+    environment:
+      - DOTNET_USE_POLLING_FILE_WATCHER=1
+      - NUGET_FALLBACK_PACKAGES=/root/.nuget/fallbackpackages
+    volumes:
+      - C:\Users\zhangxd6\Source\Repos\Pandalogix\Engine\Engine.Service:/app
+      - C:\Users\zhangxd6\vsdbg\vs2017u5:/remote_debugger:ro
+      - C:\Users\zhangxd6\.nuget\packages\:/root/.nuget/packages:ro
+      - C:\Program Files\dotnet\sdk\NuGetFallbackFolder:/root/.nuget/fallbackpackages:ro
+    entrypoint: tail -f /dev/null
+    labels:
+      com.microsoft.visualstudio.debuggee.program: "dotnet"
+      com.microsoft.visualstudio.debuggee.arguments: " --additionalProbingPath /root/.nuget/packages --additionalProbingPath /root/.nuget/fallbackpackages  bin/Debug/netcoreapp2.1/Engine.Service.dll"
+      com.microsoft.visualstudio.debuggee.workingdirectory: "/app"
+      com.microsoft.visualstudio.debuggee.killprogram: "/bin/bash -c \"if PID=$$(pidof -x dotnet); then kill $$PID; fi\""
+
+
+  webspa:
+    image: webspa:dev
+    build:
+      target: base
+    environment:
+      - DOTNET_USE_POLLING_FILE_WATCHER=1
+      - NUGET_FALLBACK_PACKAGES=/root/.nuget/fallbackpackages
+    volumes:
+      - C:\Users\zhangxd6\Source\Repos\Pandalogix\Web\WebSPA:/app
+      - C:\Users\zhangxd6\vsdbg\vs2017u5:/remote_debugger:ro
+      - C:\Users\zhangxd6\.nuget\packages\:/root/.nuget/packages:ro
+      - C:\Program Files\dotnet\sdk\NuGetFallbackFolder:/root/.nuget/fallbackpackages:ro
+    entrypoint: tail -f /dev/null
+    labels:
+      com.microsoft.visualstudio.debuggee.program: "dotnet"
+      com.microsoft.visualstudio.debuggee.arguments: " --additionalProbingPath /root/.nuget/packages --additionalProbingPath /root/.nuget/fallbackpackages  bin/Debug/netcoreapp2.1/WebSPA.dll"
+      com.microsoft.visualstudio.debuggee.workingdirectory: "/app"
+      com.microsoft.visualstudio.debuggee.killprogram: "/bin/bash -c \"if PID=$$(pidof -x dotnet); then kill $$PID; fi\""
+

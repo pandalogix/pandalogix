@@ -1,0 +1,22 @@
+version: '3.4'
+
+services:
+  account.service:
+    image: ${DOCKER_REGISTRY}accountservice
+    build:
+      context: .
+      dockerfile: AccountManager/Account.Service/Dockerfile
+
+  engine.service:
+    image: ${DOCKER_REGISTRY}engineservice
+    build:
+      context: .
+      dockerfile: Engine/Engine.Service/Dockerfile
+
+
+  webspa:
+    image: ${DOCKER_REGISTRY}webspa
+    build:
+      context: .
+      dockerfile: Web/WebSPA/Dockerfile
+

@@ -2,6 +2,9 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <DockerTargetOS>Linux</DockerTargetOS>
+    <UserSecretsId>0017fa80-10ea-4373-8e50-5d56bd240cbc</UserSecretsId>
+    <DockerComposeProjectPath>..\..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -11,7 +14,8 @@
   <ItemGroup>
     <PackageReference Include="MediatR" Version="5.0.1" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="5.0.2" />
-    <PackageReference Include="Microsoft.AspNetCore.App"  Version="2.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.0.1916590" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="3.0.0" />
   </ItemGroup>
 
