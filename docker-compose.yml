@@ -6,17 +6,27 @@ services:
     build:
       context: .
       dockerfile: AccountManager/Account.Service/Dockerfile
-
+    depends_on:
+      - db
   engine.service:
     image: ${DOCKER_REGISTRY}engineservice
     build:
       context: .
       dockerfile: Engine/Engine.Service/Dockerfile
-
+    depends_on:
+      - db
 
   webspa:
     image: ${DOCKER_REGISTRY}webspa
     build:
       context: .
       dockerfile: Web/WebSPA/Dockerfile
+    depends_on:
+      - account.service
+      - engine.service
 
+  db:
+    image: ${DOCKER_REGISTRY}datbase
+    build:
+      context: ./Database
+      dockerfile: Dockerfile

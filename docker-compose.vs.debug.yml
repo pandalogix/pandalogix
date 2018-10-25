@@ -4,15 +4,16 @@ services:
   account.service:
     image: accountservice:dev
     build:
-      target: base
+      target: build
     environment:
+      - ASPNETCORE_ENVIRONMENT=Docker
       - DOTNET_USE_POLLING_FILE_WATCHER=1
       - NUGET_FALLBACK_PACKAGES=/root/.nuget/fallbackpackages
     volumes:
-      - C:\Users\zhangxd6\Source\Repos\Pandalogix\AccountManager\Account.Service:/app
-      - C:\Users\zhangxd6\vsdbg\vs2017u5:/remote_debugger:ro
-      - C:\Users\zhangxd6\.nuget\packages\:/root/.nuget/packages:ro
-      - C:\Program Files\dotnet\sdk\NuGetFallbackFolder:/root/.nuget/fallbackpackages:ro
+      - ./AccountManager/Account.Service:/app
+      - ./vsdbg/vs2017u5:/remote_debugger:ro
+      - ${HOME}/.nuget/packages\:/root/.nuget/packages:ro
+      - ${DOTNET_PATH}/sdk/NuGetFallbackFolder:/root/.nuget/fallbackpackages:ro
     entrypoint: tail -f /dev/null
     labels:
       com.microsoft.visualstudio.debuggee.program: "dotnet"
@@ -23,15 +24,16 @@ services:
   engine.service:
     image: engineservice:dev
     build:
-      target: base
+      target: build
     environment:
+      - ASPNETCORE_ENVIRONMENT=Docker
       - DOTNET_USE_POLLING_FILE_WATCHER=1
       - NUGET_FALLBACK_PACKAGES=/root/.nuget/fallbackpackages
     volumes:
-      - C:\Users\zhangxd6\Source\Repos\Pandalogix\Engine\Engine.Service:/app
-      - C:\Users\zhangxd6\vsdbg\vs2017u5:/remote_debugger:ro
-      - C:\Users\zhangxd6\.nuget\packages\:/root/.nuget/packages:ro
-      - C:\Program Files\dotnet\sdk\NuGetFallbackFolder:/root/.nuget/fallbackpackages:ro
+      - ./Engine/Engine.Service:/app
+      - ./vsdbg/vs2017u5:/remote_debugger:ro
+      - ${HOME}/.nuget/packages\:/root/.nuget/packages:ro
+      - ${DOTNET_PATH}/sdk/NuGetFallbackFolder:/root/.nuget/fallbackpackages:ro
     entrypoint: tail -f /dev/null
     labels:
       com.microsoft.visualstudio.debuggee.program: "dotnet"
@@ -43,15 +45,15 @@ services:
   webspa:
     image: webspa:dev
     build:
-      target: base
+      target: build
     environment:
       - DOTNET_USE_POLLING_FILE_WATCHER=1
       - NUGET_FALLBACK_PACKAGES=/root/.nuget/fallbackpackages
     volumes:
-      - C:\Users\zhangxd6\Source\Repos\Pandalogix\Web\WebSPA:/app
-      - C:\Users\zhangxd6\vsdbg\vs2017u5:/remote_debugger:ro
-      - C:\Users\zhangxd6\.nuget\packages\:/root/.nuget/packages:ro
-      - C:\Program Files\dotnet\sdk\NuGetFallbackFolder:/root/.nuget/fallbackpackages:ro
+      - ./Web/WebSPA:/app
+      - ./vsdbg/vs2017u5:/remote_debugger:ro
+      - ${HOME}/.nuget/packages\:/root/.nuget/packages:ro
+      - ${DOTNET_PATH}/sdk/NuGetFallbackFolder:/root/.nuget/fallbackpackages:ro
     entrypoint: tail -f /dev/null
     labels:
       com.microsoft.visualstudio.debuggee.program: "dotnet"

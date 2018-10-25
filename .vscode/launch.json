@@ -1,15 +1,33 @@
 {
-   // Use IntelliSense to find out which attributes exist for C# debugging
-   // Use hover for the description of the existing attributes
-   // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
-   "version": "0.2.0",
-   "configurations": [
-       {
-           "name": ".NET Core Attach 2",
-           "type": "coreclr",
-           "request": "attach",
-           "processId": "${command:pickProcess}"
-       },
+    // Use IntelliSense to find out which attributes exist for C# debugging
+    // Use hover for the description of the existing attributes
+    // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Attach to Web (Docker)",
+            "type": "coreclr",
+            "request": "attach",
+            "sourceFileMap": {
+                "/app": "${workspaceRoot}"
+            },
+            "processId": "${command:pickRemoteProcess}",
+            "pipeTransport": {
+                "debuggerPath": "/vsdbg/vsdbg",
+                "pipeProgram": "docker",
+                "pipeCwd": "${workspaceRoot}",
+                "quoteArgs": false,
+                "pipeArgs": [
+                    "exec -i MySite_web_1"
+                ]
+            }
+        },
+        {
+            "name": ".NET Core Attach 2",
+            "type": "coreclr",
+            "request": "attach",
+            "processId": "${command:pickProcess}"
+        },
         {
             "name": ".NET Core Launch (web)",
             "type": "coreclr",
@@ -47,6 +65,6 @@
             "type": "coreclr",
             "request": "attach",
             "processId": "${command:pickProcess}"
-        }
-    ,]
+        },
+    ]
 }
