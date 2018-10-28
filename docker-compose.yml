@@ -15,6 +15,13 @@ services:
       dockerfile: Engine/Engine.Service/Dockerfile
     depends_on:
       - db
+  padmanager.service:
+    image: ${DOCKER_REGISTRY}padservice
+    build:
+      context: .
+      dockerfile: PadManager/PadManager.Service/Dockerfile
+    depends_on:
+      - db
 
   webspa:
     image: ${DOCKER_REGISTRY}webspa

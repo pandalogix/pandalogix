@@ -3,19 +3,27 @@ version: '3.4'
 services:
   account.service:
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_ENVIRONMENT=Production
       - ASPNETCORE_URLS=http://+:80
-    ports:
-      - "7794:80"
+    # ports:
+    #   - "7794:80"
   engine.service:
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_ENVIRONMENT=Production
       - ASPNETCORE_URLS=http://+:80
-    ports:
-      - "29308:80"
+    # ports:
+    #   - "29308:80"
+
+  padmanager.service:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:80
   webspa:
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ServiceEndPoints__AccountService=http://pandalogix_account.service_1/api/account/
+      - ServiceEndPoints__PadManagerService=http://pandalogix_padmanager.service_1/api/pad/
+      - ServiceEndPoints__EngineService=http://pandalogix_engine.service_1/api/engine/
     ports:
-      - "80"
+      - "3000:80"
 

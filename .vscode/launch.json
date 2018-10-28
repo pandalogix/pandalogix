@@ -18,7 +18,7 @@
                 "pipeCwd": "${workspaceRoot}",
                 "quoteArgs": false,
                 "pipeArgs": [
-                    "exec -i MySite_web_1"
+                    "exec -i pandalogix_account.service_1"
                 ]
             }
         },
