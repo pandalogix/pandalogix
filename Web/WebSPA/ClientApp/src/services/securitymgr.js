@@ -2,8 +2,8 @@ import config from '../constants/authorizationConstants'
 import jwt_decode from 'jwt-decode'
 import axios from 'axios'
 //TODO handle local token expiration, logout..
+import AccountService from './accountService';
 
-const accountApi = 'api/account';
 function authCallback(errorDesc, token, error, tokenType) {
     //This function is called after loginRedirect and acquireTokenRedirect. Not called with loginPopup
     // msal object is bound to the window object after the constructor is called.
@@ -36,19 +36,19 @@ class ApplicationContext {
                     firstName: decoded.given_name,
                     lastName: decoded.family_name
                 }
-                const reqconf = { headers: { 'X-Expire': decoded.exp * 1000 } };
+                // const reqconf = { headers: { 'X-Expire': decoded.exp * 1000 } };
                 if (decoded.newUser) {
                     user.id = 0;
-                    axios.post(accountApi, JSON.stringify(user), reqconf).then(u => {
-                        u.data.sNew = true;
-                        u.data.expiration = decoded.exp*1000;
-                        resolve(u.data);
+                    var accountService = new AccountService();
+                    accountService.createUser(user).then(u => {
+                        u.expiration = decoded.exp * 1000; resolve(u);
                     }, err => reject(err));
                 } else {
-                    axios.get(`${accountApi}?email=${user.email}`, reqconf).then(u => {
-                        u.data.expiration = decoded.exp*1000;
-                        resolve(u.data);
+                    var accountService = new AccountService();
+                    accountService.getuser(user).then(u => {
+                        u.expiration = decoded.exp * 1000; resolve(u);
                     }, err => reject(err));
+
                 }
             }, err => {
                 reject(err);
@@ -135,8 +135,8 @@ class ApplicationContext {
         });
     }
 
-    isAuthed(user){
-        if(user.id && Date.now()<user.expiration){
+    isAuthed(user) {
+        if (user.id && Date.now() < user.expiration) {
             return true;
         }
         return false;

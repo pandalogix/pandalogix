@@ -37,7 +37,7 @@ namespace PadManager.Core
                 }
                 if (entry.State == EntityState.Added)
                 {
-                    entry.Property("CreatedBy").CurrentValue = Thread.CurrentPrincipal.Identity.Name;
+                    entry.Property("CreatedBy").CurrentValue = Thread.CurrentPrincipal?.Identity?.Name??"PadManager";
                     entry.Property("CreatedDate").CurrentValue = DateTimeOffset.Now;
                     entry.Property("Identifier").CurrentValue = Guid.NewGuid();
                 }
