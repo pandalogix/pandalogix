@@ -54,7 +54,7 @@ namespace PadManager.Service.Controllers
 
       this.context.Pads.Update(pad);
       this.context.SaveChanges();
-      return await Task.FromResult(NoContent());
+      return await Task.FromResult(pad);
     }
 
     [HttpGet]

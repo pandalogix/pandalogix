@@ -34,9 +34,9 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/Engine/Engine.Service/bin/Debug/netcoreapp2.1/Engine.Service.dll",
+            "program": "${workspaceFolder}/Web/WebSPA/bin/Debug/netcoreapp2.1/WebSPA.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/Engine/Engine.Service",
+            "cwd": "${workspaceFolder}/Web/WebSPA",
             "stopAtEntry": false,
             "internalConsoleOptions": "openOnSessionStart",
             "launchBrowser": {

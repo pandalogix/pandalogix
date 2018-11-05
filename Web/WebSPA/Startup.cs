@@ -1,6 +1,8 @@
 using System;
+using System.Net.Http;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
@@ -43,6 +45,11 @@ namespace WebSPA
         // configureClient.DefaultRequestHeaders.Add("Content-Type", "application/json");
         configureClient.DefaultRequestHeaders.Add("X-Request-Source", Environment.MachineName);
       });
+      // .ConfigurePrimaryHttpMessageHandler(()=>
+      //   new HttpClientHandler(){
+
+      //   }
+      // );
       services.AddSwaggerGen(c =>
                 {
                   c.SwaggerDoc("v1", new Info { Title = "PandaLogix Manager", Version = "v1" });
@@ -65,7 +72,13 @@ namespace WebSPA
       // app.UseHttpsRedirection();
       app.UseStaticFiles();
       app.UseSpaStaticFiles();
-
+      app.UseProxy(new Middleware.ProxyOptions()
+      {
+        Mappings = new System.Collections.Generic.Dictionary<Microsoft.AspNetCore.Http.PathString, string> {
+          { new PathString("/api/account"), "accountMgr"},
+          {new PathString("/api/pad"),"padMgr"}
+        }
+      });
       app.UseMvc(routes =>
       {
         routes.MapRoute(
