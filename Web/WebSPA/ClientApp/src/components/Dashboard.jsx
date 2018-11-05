@@ -63,32 +63,32 @@ class Dashboard extends Component {
           </div>
         </div>
         <div className="row placeholders mb-3">
-                <div className="col-6 col-sm-3 placeholder text-center">
-                    <img src="//placehold.it/200/dddddd/fff?text=1" className="mx-auto img-fluid rounded-circle" alt="Generic placeholder thumbnail"/>
-                    <h4>Responsive</h4>
-                    <span className="text-muted">Device agnostic</span>
-                </div>
-                <div className="col-6 col-sm-3 placeholder text-center">
-                    <img src="//placehold.it/200/e4e4e4/fff?text=2" className="mx-auto img-fluid rounded-circle" alt="Generic placeholder thumbnail"/>
-                    <h4>Frontend</h4>
-                    <span className="text-muted">UI / UX oriented</span>
-                </div>
-                <div className="col-6 col-sm-3 placeholder text-center">
-                    <img src="//placehold.it/200/d6d6d6/fff?text=3" className="mx-auto img-fluid rounded-circle" alt="Generic placeholder thumbnail"/>
-                    <h4>HTML5</h4>
-                    <span className="text-muted">Standards-based</span>
-                </div>
-                <div className="col-6 col-sm-3 placeholder text-center">
-                    <img src="//placehold.it/200/e0e0e0/fff?text=4" className="center-block img-fluid rounded-circle" alt="Generic placeholder thumbnail"/>
-                    <h4>Framework</h4>
-                    <span className="text-muted">CSS and JavaScript</span>
-                </div>
-            </div>
+          <div className="col-6 col-sm-3 placeholder text-center">
+            <img src="//placehold.it/200/dddddd/fff?text=1" className="mx-auto img-fluid rounded-circle" alt="Generic placeholder thumbnail" />
+            <h4>Responsive</h4>
+            <span className="text-muted">Device agnostic</span>
+          </div>
+          <div className="col-6 col-sm-3 placeholder text-center">
+            <img src="//placehold.it/200/e4e4e4/fff?text=2" className="mx-auto img-fluid rounded-circle" alt="Generic placeholder thumbnail" />
+            <h4>Frontend</h4>
+            <span className="text-muted">UI / UX oriented</span>
+          </div>
+          <div className="col-6 col-sm-3 placeholder text-center">
+            <img src="//placehold.it/200/d6d6d6/fff?text=3" className="mx-auto img-fluid rounded-circle" alt="Generic placeholder thumbnail" />
+            <h4>HTML5</h4>
+            <span className="text-muted">Standards-based</span>
+          </div>
+          <div className="col-6 col-sm-3 placeholder text-center">
+            <img src="//placehold.it/200/e0e0e0/fff?text=4" className="center-block img-fluid rounded-circle" alt="Generic placeholder thumbnail" />
+            <h4>Framework</h4>
+            <span className="text-muted">CSS and JavaScript</span>
+          </div>
+        </div>
       </Layout>
     );
   }
 
-  createPad(){
+  createPad() {
     this.props.history.push('/pad/0/summary');
   }
 }

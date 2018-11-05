@@ -26,7 +26,7 @@ namespace PadManager.Service.Controllers
     {
       this.context.Add(pad);
       this.context.SaveChanges();
-      return await Task.FromResult(StatusCode(201));
+      return await Task.FromResult(Ok(pad));
     }
 
     [HttpDelete]
@@ -54,7 +54,7 @@ namespace PadManager.Service.Controllers
 
       this.context.Pads.Update(pad);
       this.context.SaveChanges();
-      return await Task.FromResult(pad);
+      return await Task.FromResult(Ok(pad));
     }
 
     [HttpGet]
