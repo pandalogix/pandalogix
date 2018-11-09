@@ -45,6 +45,13 @@ namespace WebSPA
         // configureClient.DefaultRequestHeaders.Add("Content-Type", "application/json");
         configureClient.DefaultRequestHeaders.Add("X-Request-Source", Environment.MachineName);
       });
+
+      services.AddHttpClient("engineMgr", configureClient =>
+      {
+        configureClient.BaseAddress = new System.Uri(Configuration.GetValue<string>("ServiceEndPoints:EngineService"));
+        // configureClient.DefaultRequestHeaders.Add("Content-Type", "application/json");
+        configureClient.DefaultRequestHeaders.Add("X-Request-Source", Environment.MachineName);
+      });
       // .ConfigurePrimaryHttpMessageHandler(()=>
       //   new HttpClientHandler(){
 

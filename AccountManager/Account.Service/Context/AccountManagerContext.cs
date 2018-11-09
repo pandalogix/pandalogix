@@ -8,7 +8,7 @@ namespace AccountManager.Context
   public class AccountManagerContext:DbContext
   {
     public virtual DbSet<Models.Account> Accounts{get;set;}
-
+    public virtual DbSet<Models.AccountPad> AccountPads {get;set;}
     public AccountManagerContext(DbContextOptions<AccountManagerContext> options)
     :base(options)
     {

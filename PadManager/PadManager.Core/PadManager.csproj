@@ -11,4 +11,8 @@
 
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Engine\Engine.Contract\Engine.Contract.csproj" />
+  </ItemGroup>
+
 </Project>

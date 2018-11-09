@@ -68,6 +68,18 @@ namespace PadManager.Service.Controllers
       return Ok(existingpad);
     }
 
+
+    [HttpGet]
+    [Route("")]
+    public async Task<IActionResult> GetPad([FromQuery]Guid identifier)
+    {
+      var existingpad = await this.context.Pads.Where(p => p.Identifier == identifier).FirstOrDefaultAsync();
+
+      if (existingpad == null)
+        return NotFound();
+      return Ok(existingpad);
+    }
+
     [HttpGet]
     [Route("")]
     public async Task<IActionResult> GetPads(int page, int pageSize)

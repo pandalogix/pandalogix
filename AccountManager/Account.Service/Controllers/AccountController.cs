@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System;
 
 namespace AccountManager
 {
@@ -88,6 +89,20 @@ namespace AccountManager
       this.context.Accounts.Update(existing);
       await this.context.SaveChangesAsync();
       return Ok(existing);
+    }
+
+    [HttpGet("pad")]
+    public async Task<IActionResult> VerifyPad([FromQuery]Guid identifier, [FromQuery]Guid apikey)
+    {
+      var sql = from a in this.context.Accounts
+                join p in this.context.AccountPads on a.Identifier equals p.UserId
+                where p.PadId == identifier && a.ApiKey == apikey
+                select a.Id;
+      if (sql.ToArray().Length > 0)
+
+        return await Task.FromResult(Ok());
+      else
+        return NotFound();
     }
   }
 }

@@ -6,7 +6,7 @@ using System.Runtime.Serialization;
 namespace Engine.Contracts
 {
   [DataContract]
-  public class PadContract: IIdentifiableEntity
+  public class PadContract : IIdentifiableEntity
   {
     [DataMember]
     public string Name { get; set; }
@@ -17,6 +17,9 @@ namespace Engine.Contracts
 
     [DataMember]
     public long Id { get; set; }
+
+    [DataMember]
+    public string TriggerData { get; set; }
 
 
   }

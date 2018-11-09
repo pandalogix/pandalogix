@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Linq;
+using Engine.Contracts;
 
 namespace PadManager.Core.Models
 {
@@ -14,5 +16,19 @@ namespace PadManager.Core.Models
 
         //the trigger data load schema
         public string TriggerData { get; set; }
+    }
+
+    public static class PadExtension
+    {
+        public static PadContract ToContract(this Pad pad){
+            var contract = new PadContract(){
+                Id = pad.Id,
+                Name = pad.Name,
+                Description = pad.Description,
+                TriggerData = pad.TriggerData,
+                Nodes = pad.Nodes.Select(n=>n.ToContract())
+            };
+            return contract;
+        }
     }
 }
