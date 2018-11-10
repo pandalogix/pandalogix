@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PadManager.Core\PadManager.csproj" />
+    <ProjectReference Include="..\..\Engine\Engine.Contract\Engine.Contract.csproj" />
   </ItemGroup>
 
 </Project>

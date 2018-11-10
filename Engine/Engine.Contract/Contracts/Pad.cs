@@ -21,6 +21,7 @@ namespace Engine.Contracts
     [DataMember]
     public string TriggerData { get; set; }
 
-
+    [DataMember]
+    public int CurrentMaxSequenceId { get; set; }
   }
 }

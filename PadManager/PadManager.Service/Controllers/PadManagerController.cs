@@ -4,6 +4,7 @@ using PadManager.Core.Models;
 using PadManager.Core;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System;
 
 namespace PadManager.Service.Controllers
 {
@@ -22,11 +23,18 @@ namespace PadManager.Service.Controllers
     [HttpPost]
     [Route("")]
     [ProducesResponseType(201)]
-    public async Task<IActionResult> Create([FromBody] Pad pad)
+    public async Task<IActionResult> Create([FromBody] Engine.Contracts.PadContract pad, [FromQuery]Guid user)
     {
-      this.context.Add(pad);
+      var model = pad.ToModel();
+      this.context.Add(model);
+
       this.context.SaveChanges();
-      return await Task.FromResult(Ok(pad));
+      this.context.Add(new PadManager.Core.Models.AccountPad()
+      {
+        UserId = user,
+        PadId = model.Identifier
+      });
+      return await Task.FromResult(Ok(model.ToContract()));
     }
 
     [HttpDelete]
@@ -45,16 +53,16 @@ namespace PadManager.Service.Controllers
     }
 
     [HttpPut]
-    public async Task<IActionResult> Update([FromBody]  Pad pad)
+    public async Task<IActionResult> Update([FromBody]  Engine.Contracts.PadContract pad)
     {
       var existingpad = this.context.Pads.Where(p => p.Id == pad.Id).FirstOrDefault();
 
       if (existingpad == null)
         return NotFound();
-
-      this.context.Pads.Update(pad);
+      var model = pad.ToModel();
+      this.context.Pads.Update(model);
       this.context.SaveChanges();
-      return await Task.FromResult(Ok(pad));
+      return await Task.FromResult(Ok(model.ToContract()));
     }
 
     [HttpGet]
@@ -77,7 +85,7 @@ namespace PadManager.Service.Controllers
 
       if (existingpad == null)
         return NotFound();
-      return Ok(existingpad);
+      return Ok(existingpad.ToContract());
     }
 
     [HttpGet]
@@ -91,7 +99,7 @@ namespace PadManager.Service.Controllers
                      .ToListAsync();
       var count = await this.context.Pads.LongCountAsync();
 
-      return Ok(new { count = count, data = pads });
+      return Ok(new { count = count, data = pads.Select(p => p.ToContract()) });
 
     }
   }
