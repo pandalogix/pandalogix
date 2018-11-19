@@ -30,17 +30,17 @@ class UserProfile extends Component {
         <div className='container-fluid'>
           <div className='form-group'>
             <label htmlFor='userName'>Name</label>
-            <input type='text' id='userName' value={username} className='form-control' />
+            <input type='text' id='userName' value={username} className='form-control' disabled />
           </div>
-          
+
           <div className='form-group'>
             <label htmlFor='userEmail'>Email</label>
-            <input type='email' id='userEmail' value={user.email} className='form-control' />
+            <input type='email' id='userEmail' value={user.email} className='form-control' disabled/>
           </div>
 
           <div className='form-group'>
             <label htmlFor='apiKey'>Api Key</label>
-            <input type='text' id='apiKey' value={user.apiKey} className='form-control' />
+            <input type='text' id='apiKey' value={user.apiKey} className='form-control' disabled/>
           </div>
           <button className='btn btn-primary' onClick={this.regenerate.bind(this,user)} >ReGenerate</button>
 

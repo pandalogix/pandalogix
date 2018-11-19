@@ -26,6 +26,8 @@ const store = configureStore(history, initialState);
 const rootElement = document.getElementById('root');
 const persistor = createPersistStore(store);
 
+console.log(React.version);
+
 ReactDOM.render(
   <Provider store={store}>
 
