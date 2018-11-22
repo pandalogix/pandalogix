@@ -19,6 +19,9 @@ namespace Engine.Contracts
     public long Id { get; set; }
 
     [DataMember]
+    public Guid Identifier { get; set; }
+
+    [DataMember]
     public string TriggerData { get; set; }
 
     [DataMember]

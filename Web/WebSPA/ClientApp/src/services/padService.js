@@ -6,10 +6,14 @@ import { PAD_CREATED } from '../actions/actionType';
 const padApi = 'api/pad';
 
 export default class PadService {
+
+  constructor(userId){
+    this.userId = userId;
+  }
   save(pad) {
     return new Promise((resolve, reject) => {
       if (pad.id === 0) {
-        axios.post(`${padApi}`, JSON.stringify(pad), { headers: { 'Content-Type': 'application/json' } }).then(u => {
+        axios.post(`${padApi}?user=${this.userId}`, JSON.stringify(pad), { headers: { 'Content-Type': 'application/json' } }).then(u => {
           resolve(u.data);
         }, err => reject(err));
       }else{

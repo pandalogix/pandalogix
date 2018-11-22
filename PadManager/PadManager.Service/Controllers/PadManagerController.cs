@@ -34,6 +34,8 @@ namespace PadManager.Service.Controllers
         UserId = user,
         PadId = model.Identifier
       });
+      this.context.SaveChanges();
+
       return await Task.FromResult(Ok(model.ToContract()));
     }
 

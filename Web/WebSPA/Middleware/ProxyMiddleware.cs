@@ -36,8 +36,6 @@ public class ProxyMiddleware
       throw new ArgumentNullException(nameof(context));
     }
 
-
-
     var request = context.Request;
     var clientName = GetClient(request);
     if (string.IsNullOrEmpty(clientName))
@@ -99,7 +97,7 @@ public class ProxyMiddleware
 
     foreach (var kv in this.options.Mappings)
     {
-      if (kv.Key.StartsWithSegments(request.Path, StringComparison.InvariantCultureIgnoreCase))
+      if (request.Path.StartsWithSegments(kv.Key, StringComparison.InvariantCultureIgnoreCase))
       {
         return kv.Value;
       }

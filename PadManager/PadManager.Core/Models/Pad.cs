@@ -25,10 +25,11 @@ namespace PadManager.Core.Models
       var contract = new PadContract()
       {
         Id = pad.Id,
+        Identifier = pad.Identifier,
         Name = pad.Name,
         Description = pad.Description,
         TriggerData = pad.TriggerData,
-        Nodes = pad.Nodes.Select(n => n.ToContract())
+        Nodes = pad.Nodes?.Select(n => n.ToContract())
       };
       return contract;
     }
@@ -39,8 +40,9 @@ namespace PadManager.Core.Models
       model.Id = pad.Id;
       model.Description = pad.Description;
       model.Name = pad.Name;
+      model.Identifier = pad.Identifier;
       model.TriggerData = pad.TriggerData;
-      model.Nodes = pad.Nodes.Select(n => n.ToModel()).ToList();
+      model.Nodes = pad.Nodes?.Select(n => n.ToModel()).ToList();
       model.CurrentMaxSequenceId = pad.CurrentMaxSequenceId;
       return model;
     }
