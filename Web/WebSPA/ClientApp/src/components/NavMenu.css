@@ -1,9 +1,9 @@
-﻿.nav-item i{
-    padding:10px;
+﻿.nav-item i {
+  padding: 10px;
 }
 
-.nav-item .active{
-    border-left-color: coral;
-    border-left-width: 3px;
-    border-left-style: solid;
+.nav-item .active {
+  border-left-color: coral;
+  border-left-width: 3px;
+  border-left-style: solid;
 }

@@ -6,38 +6,38 @@ using Xunit;
 
 namespace Engine.Contracts
 {
-    public class StringFormatNodeTest
+  public class StringFormatNodeTest
+  {
+    [Fact]
+    public async System.Threading.Tasks.Task StringFormatTest()
     {
-        [Fact]
-        public async System.Threading.Tasks.Task StringFormatTest()
-        {
-            var node = new StringFormatNode();
-            node.Pattern = @"Hello {{name}}, from {{name}} {{value}}";
-            node.Data = @"{'name':'James', 'value':'ddddd'}";
+      var node = new StringFormatNode();
+      node.Pattern = @"Hello {{name}}, from {{name}} {{value}}";
+      node.Data = @"{'name':'James', 'value':'ddddd'}";
 
 
-            var context = new NodeExecutionContext()
-            {
-                Pad = new Pad(ExecutionMode.Validation)
-                { Nodes = new List<INode>() }
-            };
-            await node.Init(context);
-            await node.Execute(context);
-            Assert.False(node.Context.Result.ToString().Contains("{"));
-        }
+      var context = new NodeExecutionContext()
+      {
+        Pad = new Pad(ExecutionMode.Validation)
+        { Nodes = new List<INode>() }
+      };
+      await node.Init(context);
+      await node.Execute(context);
+      Assert.False(node.Context.Result.ToString().Contains("{"));
+    }
 
 
-        [Fact]
-        public async System.Threading.Tasks.Task StringFormatFromNodesTest()
-        {
-            var node = new StringFormatNode();
-            node.Pattern = @"Hello {{name_1}}, from {{name_3}} {{value_2}}";
-            node.FromOtherNodes = true;
+    [Fact]
+    public async System.Threading.Tasks.Task StringFormatFromNodesTest()
+    {
+      var node = new StringFormatNode();
+      node.Pattern = @"Hello {{name_1}}, from {{name_3}} {{value_2}}";
+      node.FromOtherNodes = true;
 
-            node.MetaDate = new NodeMetaData()
-            {
-               NodeData = new NodeMetaDataAttribute(){ NodeClass = typeof(StringFormatNode)},
-               FieldsMetaData = new List<FieldMetaDataAttribute>()
+      node.MetaDate = new NodeMetaData()
+      {
+        NodeData = new NodeMetaDataAttribute() { NodeClass = typeof(StringFormatNode) },
+        FieldsMetaData = new List<FieldMetaDataAttribute>()
                {
                  new FieldMetaDataAttribute()
                  {
@@ -55,16 +55,16 @@ namespace Engine.Contracts
                      MappedFieldName ="name"
                  },
                }
-            };
+      };
 
-            var context = new NodeExecutionContext()
-            {
-                Pad = new Pad(ExecutionMode.Validation)
-                { Nodes = new List<INode>() }
-            };
-            await node.Init(context);
-            await node.Execute(context);
-            Assert.False(node.Context.Result.ToString().Contains("{"));
-        }
+      var context = new NodeExecutionContext()
+      {
+        Pad = new Pad(ExecutionMode.Validation)
+        { Nodes = new List<INode>() }
+      };
+      await node.Init(context);
+      await node.Execute(context);
+      Assert.False(node.Context.Result.ToString().Contains("{"));
     }
+  }
 }

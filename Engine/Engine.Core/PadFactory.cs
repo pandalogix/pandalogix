@@ -9,15 +9,15 @@ using System.Linq;
 
 namespace Engine.Core
 {
-    public static class PadFactory
+  public static class PadFactory
   {
-    public static Pad CreateInstance(PadContract contract,ExecutionMode mode, IInstance instance)
-        {
+    public static Pad CreateInstance(PadContract contract, ExecutionMode mode, IInstance instance)
+    {
 
       Pad pad = new Pad(mode);
 
       var nodes = new List<Nodes.NodeBase>();
-      foreach(var nodecontract in contract.Nodes)
+      foreach (var nodecontract in contract.Nodes)
       {
         nodes.Add(NodeFactory.CreateNode(nodecontract, instance.GetMappings()));
       }
@@ -45,5 +45,5 @@ namespace Engine.Core
     }
 
 
-    }
+  }
 }

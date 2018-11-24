@@ -11,26 +11,26 @@ using Xunit;
 
 namespace Engine.CoreTest.Nodes.General
 {
-    public class PadNodeTest
+  public class PadNodeTest
+  {
+    [Fact]
+    public async System.Threading.Tasks.Task PadNodeExeTestAsync()
     {
-        [Fact]
-        public async System.Threading.Tasks.Task PadNodeExeTestAsync()
-        {
-            var padContract = new Engine.Contracts.PadContract()
-            {
-                Id = 1,
-                Name = "test"
-            };
+      var padContract = new Engine.Contracts.PadContract()
+      {
+        Id = 1,
+        Name = "test"
+      };
 
-            var constant1 = new Engine.Contracts.NodeBaseContract()
-            {
-                Id = 1,
-                OutNodes = new List<long>() { 3 },
-                Type = NodeType.Input,
-                MetaData = new NodeMetaData()
-                {
-                    NodeData = new NodeMetaDataAttribute() { NodeClass = typeof(ConstantNode) },
-                    FieldsMetaData = new List<FieldMetaDataAttribute>()
+      var constant1 = new Engine.Contracts.NodeBaseContract()
+      {
+        Id = 1,
+        OutNodes = new List<long>() { 3 },
+        Type = NodeType.Input,
+        MetaData = new NodeMetaData()
+        {
+          NodeData = new NodeMetaDataAttribute() { NodeClass = typeof(ConstantNode) },
+          FieldsMetaData = new List<FieldMetaDataAttribute>()
                     {
                       new FieldMetaDataAttribute()
                       {
@@ -43,18 +43,18 @@ namespace Engine.CoreTest.Nodes.General
                         ValueType = typeof(ConstantType)
                       }
                     }
-                }
-            };
+        }
+      };
 
-            var constant2 = new NodeBaseContract()
-            {
-                Id = 2,
-                OutNodes = new List<long>() { 3 },
-                Type = NodeType.Input,
-                MetaData = new NodeMetaData()
-                {
-                    NodeData = new NodeMetaDataAttribute() { NodeClass = typeof(ConstantNode) },
-                    FieldsMetaData = new List<FieldMetaDataAttribute>()
+      var constant2 = new NodeBaseContract()
+      {
+        Id = 2,
+        OutNodes = new List<long>() { 3 },
+        Type = NodeType.Input,
+        MetaData = new NodeMetaData()
+        {
+          NodeData = new NodeMetaDataAttribute() { NodeClass = typeof(ConstantNode) },
+          FieldsMetaData = new List<FieldMetaDataAttribute>()
                     {
                       new FieldMetaDataAttribute()
                       {
@@ -67,18 +67,18 @@ namespace Engine.CoreTest.Nodes.General
                         ValueType = typeof(ConstantType)
                       }
                     }
-                }
-            };
+        }
+      };
 
-            var add = new NodeBaseContract()
-            {
-                Id = 3,
-                InNodes = new List<long>() { 1, 2 },
-                Type = NodeType.Output,
-                MetaData = new NodeMetaData()
-                {
-                    NodeData = new NodeMetaDataAttribute() { NodeClass = typeof(AddNode) },
-                    FieldsMetaData = new List<FieldMetaDataAttribute>()
+      var add = new NodeBaseContract()
+      {
+        Id = 3,
+        InNodes = new List<long>() { 1, 2 },
+        Type = NodeType.Output,
+        MetaData = new NodeMetaData()
+        {
+          NodeData = new NodeMetaDataAttribute() { NodeClass = typeof(AddNode) },
+          FieldsMetaData = new List<FieldMetaDataAttribute>()
                     {
                       new FieldMetaDataAttribute()
                       {
@@ -94,15 +94,15 @@ namespace Engine.CoreTest.Nodes.General
                         Direction =  FieldDirection.Input,
                       }
                     }
-                }
-            };
+        }
+      };
 
-            padContract.Nodes = new List<NodeBaseContract>()
+      padContract.Nodes = new List<NodeBaseContract>()
             {
               constant1,constant2,add
             };
 
-            List<InstanceMapping> mappings = new List<InstanceMapping>()
+      List<InstanceMapping> mappings = new List<InstanceMapping>()
             {
               new InstanceMapping()
               {
@@ -123,24 +123,24 @@ namespace Engine.CoreTest.Nodes.General
                 }
               }
             };
-            var instance = new Instances(mappings);
+      var instance = new Instances(mappings);
 
 
-            var padnodeContract = new Engine.Contracts.PadContract()
-            {
-                Id = 1,
-                Name = "test"
-            };
+      var padnodeContract = new Engine.Contracts.PadContract()
+      {
+        Id = 1,
+        Name = "test"
+      };
 
-            var padNode = new NodeBaseContract()
-            {
-                Id = 1,
-                Type = NodeType.Input,
-                OutNodes = new List<long>() { 2 },
-                MetaData = new NodeMetaData()
-                {
-                    NodeData = new NodeMetaDataAttribute() { NodeClass = typeof(PadNode) },
-                    FieldsMetaData = new List<FieldMetaDataAttribute>()
+      var padNode = new NodeBaseContract()
+      {
+        Id = 1,
+        Type = NodeType.Input,
+        OutNodes = new List<long>() { 2 },
+        MetaData = new NodeMetaData()
+        {
+          NodeData = new NodeMetaDataAttribute() { NodeClass = typeof(PadNode) },
+          FieldsMetaData = new List<FieldMetaDataAttribute>()
                     {
                       new FieldMetaDataAttribute()
                       {
@@ -158,16 +158,16 @@ namespace Engine.CoreTest.Nodes.General
                         ValueType = typeof(Instances)
                       }
                     }
-                }
-            };
-            var constantOutput = new NodeBaseContract()
-            {
-                Id = 2,
-                Type = NodeType.Output,
-                MetaData = new NodeMetaData()
-                {
-                    NodeData = new NodeMetaDataAttribute() { NodeClass = typeof(ConstantNode) },
-                    FieldsMetaData = new List<FieldMetaDataAttribute>()
+        }
+      };
+      var constantOutput = new NodeBaseContract()
+      {
+        Id = 2,
+        Type = NodeType.Output,
+        MetaData = new NodeMetaData()
+        {
+          NodeData = new NodeMetaDataAttribute() { NodeClass = typeof(ConstantNode) },
+          FieldsMetaData = new List<FieldMetaDataAttribute>()
                     {
                       new FieldMetaDataAttribute()
                       {
@@ -181,16 +181,16 @@ namespace Engine.CoreTest.Nodes.General
                         ValueType = typeof(ConstantType)
                       }
                     }
-                }
-            };
-            padnodeContract.Nodes = new List<NodeBaseContract>()
+        }
+      };
+      padnodeContract.Nodes = new List<NodeBaseContract>()
             {
               padNode,constantOutput
             };
 
-            var padInstance = new Instances(
-              new List<InstanceMapping>()
-              {
+      var padInstance = new Instances(
+        new List<InstanceMapping>()
+        {
                   new InstanceMapping()
                   {
                     NodeId=1,
@@ -201,14 +201,14 @@ namespace Engine.CoreTest.Nodes.General
                       new FieldMapping(){ FieldName = "Instance", Value=JsonConvert.SerializeObject(instance)},
                     }
                   }
-              });
+        });
 
-            var pad = PadFactory.CreateInstance(padnodeContract, ExecutionMode.Normal, padInstance);
-            await pad.Init();
-            await pad.Execute(pad.Context, instance);
+      var pad = PadFactory.CreateInstance(padnodeContract, ExecutionMode.Normal, padInstance);
+      await pad.Init();
+      await pad.Execute(pad.Context, instance);
 
-            Assert.Equal(ExecutionStatus.Success, pad.Context.Status);
-            Assert.Equal(2.0, pad.Context.Result);
-        }
+      Assert.Equal(ExecutionStatus.Success, pad.Context.Status);
+      Assert.Equal(2.0, pad.Context.Result);
     }
+  }
 }

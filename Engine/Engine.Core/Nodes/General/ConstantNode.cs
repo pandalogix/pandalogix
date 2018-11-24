@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Engine.Core.Nodes.General
 {
-    [NodeMetaData(NodeClass =typeof(ConstantNode), Category ="General",Name =nameof(ConstantNode))]
+  [NodeMetaData(NodeClass = typeof(ConstantNode), Category = "General", Name = nameof(ConstantNode))]
   public class ConstantNode : NodeBase
   {
-    [FieldMetaData(Name =nameof(Value),ValueType =typeof(object))]
+    [FieldMetaData(Name = nameof(Value), ValueType = typeof(object))]
     public object Value { get; set; }
     [FieldMetaData(Name = nameof(ConstantType), ValueType = typeof(ConstantType))]
-    public  ConstantType ConstantType { get; set; }
+    public ConstantType ConstantType { get; set; }
 
     public ConstantNode()
     {
@@ -55,7 +55,8 @@ namespace Engine.Core.Nodes.General
             context.Result = Convert.ToBoolean(this.Value);
             break;
         }
-      }else if(this.Type == NodeType.Output)
+      }
+      else if (this.Type == NodeType.Output)
       {
         context.Result = this.GetFieldValue(nameof(Value));
       }

@@ -3,7 +3,7 @@ using Engine.Interfaces;
 
 namespace Engine.Core
 {
-    public class NodeExecutionContext : IContext
+  public class NodeExecutionContext : IContext
   {
     public IPad Pad { get; set; }
     public IInstance Instance { get; set; }

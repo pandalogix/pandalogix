@@ -4,23 +4,23 @@ using Engine.Interfaces;
 
 namespace Engine.Core
 {
-    [NodeMetaData(NodeClass = typeof(ContainStringNode), Category = "String", Name = nameof(ContainStringNode))]
+  [NodeMetaData(NodeClass = typeof(ContainStringNode), Category = "String", Name = nameof(ContainStringNode))]
 
-    public class ContainStringNode : NodeBase
+  public class ContainStringNode : NodeBase
+  {
+    [FieldMetaData(Name = nameof(SubString), ValueType = typeof(string))]
+    public string SubString { get; set; } = null;
+
+    [FieldMetaData(Name = nameof(Value), ValueType = typeof(string))]
+    public string Value { get; set; } = null;
+
+    protected async override Task InternalExecute(IContext context)
     {
-        [FieldMetaData(Name = nameof(SubString), ValueType = typeof(string))]
-        public string SubString { get; set; } = null;
-
-        [FieldMetaData(Name = nameof(Value), ValueType = typeof(string))]
-        public string Value { get; set; } = null;
-
-        protected async override Task InternalExecute(IContext context)
-        {
-            string substring = SubString ?? GetFieldValue(nameof(SubString)).ToString();
-            string value = Value ?? GetFieldValue(nameof(Value)).ToString();
-            this.Context.Result = value.Contains(substring);
-            await base.InternalExecute(context);
-        }
+      string substring = SubString ?? GetFieldValue(nameof(SubString)).ToString();
+      string value = Value ?? GetFieldValue(nameof(Value)).ToString();
+      this.Context.Result = value.Contains(substring);
+      await base.InternalExecute(context);
     }
+  }
 
 }

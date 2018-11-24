@@ -1,12 +1,22 @@
-﻿import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
+﻿import {
+  applyMiddleware,
+  combineReducers,
+  compose,
+  createStore
+} from 'redux';
 import thunk from 'redux-thunk';
-import { routerReducer, routerMiddleware } from 'react-router-redux';
+import {
+  routerReducer,
+  routerMiddleware
+} from 'react-router-redux';
 
 import reducers from '../reducers';
-import {createPersistReducer} from './storePresist';
+import {
+  createPersistReducer
+} from './storePresist';
 
-export default function configureStore(history, initialState ) {
-  
+export default function configureStore(history, initialState) {
+
 
   const middleware = [
     thunk,
@@ -25,7 +35,7 @@ export default function configureStore(history, initialState ) {
     routing: routerReducer
   });
 
-  
+
 
   return createStore(
     createPersistReducer(rootReducer),

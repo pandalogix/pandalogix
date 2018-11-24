@@ -12,7 +12,7 @@ class PadSummary extends Component {
         name: 'test name',
         description: 'test description',
         identifier: '00000000-0000-0000-0000-000000000001',
-        triggerData:'{}'
+        triggerData: '{}'
       }
     };
 
@@ -66,8 +66,8 @@ class PadSummary extends Component {
           <div className='form-group'>
             <label htmlFor='triggerData'>Trigger</label>
             <textarea type='text' id='triggerData'
-            onChange={(event) => this.onValueChanged.apply(this, [event, 'triggerData'])}
-            value={pad.triggerData} className='form-control'  />
+              onChange={(event) => this.onValueChanged.apply(this, [event, 'triggerData'])}
+              value={pad.triggerData} className='form-control' />
           </div>
           <div className='form-group'>
             <label htmlFor='HowTo'>How To</label>

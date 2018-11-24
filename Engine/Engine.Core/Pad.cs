@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Engine.Core
 {
-    public class Pad : IPad
+  public class Pad : IPad
   {
     private PadExecutionContext _context;
     private ExecutionMode _mode;
@@ -53,7 +53,7 @@ namespace Engine.Core
     private async Task NodeExecute(INode node)
     {
       if (node.Context == null)
-       await node.Init(this.Context);
+        await node.Init(this.Context);
 
       if (node.Context.Status == ExecutionStatus.Pending)
         await node.Execute(node.Context);

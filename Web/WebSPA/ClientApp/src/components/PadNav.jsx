@@ -4,7 +4,7 @@ import './NavMenu.css';
 
 class PadNav extends Component {
   render() {
-    const {location} = this.props;
+    const { location } = this.props;
     return (
       <ul className="nav flex-column">
         <li className="nav-item">

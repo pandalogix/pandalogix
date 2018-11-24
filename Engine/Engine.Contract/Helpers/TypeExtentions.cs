@@ -6,7 +6,7 @@ namespace Engine.Helpers
   {
     public static bool IsNumericType(this Type type)
     {
-      if(type == typeof(int)
+      if (type == typeof(int)
         || type == typeof(Int16)
         || type == typeof(Int32)
         || type == typeof(Int64)

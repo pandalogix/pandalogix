@@ -35,14 +35,14 @@ class UserProfile extends Component {
 
           <div className='form-group'>
             <label htmlFor='userEmail'>Email</label>
-            <input type='email' id='userEmail' value={user.email} className='form-control' disabled/>
+            <input type='email' id='userEmail' value={user.email} className='form-control' disabled />
           </div>
 
           <div className='form-group'>
             <label htmlFor='apiKey'>Api Key</label>
-            <input type='text' id='apiKey' value={user.apiKey} className='form-control' disabled/>
+            <input type='text' id='apiKey' value={user.apiKey} className='form-control' disabled />
           </div>
-          <button className='btn btn-primary' onClick={this.regenerate.bind(this,user)} >ReGenerate</button>
+          <button className='btn btn-primary' onClick={this.regenerate.bind(this, user)} >ReGenerate</button>
 
         </div>
 
@@ -50,7 +50,7 @@ class UserProfile extends Component {
 
     )
   }
-  regenerate(user){
+  regenerate(user) {
     //const {user} = this.props;
     this.props.actions.regenerateKey(user);
   }

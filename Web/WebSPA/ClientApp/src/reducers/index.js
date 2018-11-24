@@ -1,5 +1,10 @@
-import { UserManager } from './userMgr';
-import { PadManager, PadsManager } from './padMgr';
+import {
+  UserManager
+} from './userMgr';
+import {
+  PadManager,
+  PadsManager
+} from './padMgr';
 
 const rootReducer = {
   PadManager: PadManager,

@@ -2,7 +2,7 @@
 
 namespace Engine.Contracts
 {
-  [DataContract(Name ="FieldMapping")]
+  [DataContract(Name = "FieldMapping")]
   public class FieldMapping
   {
     [DataMember]

@@ -10,27 +10,27 @@ using Xunit;
 
 namespace Engine.Test
 {
-    public class OrNodeTest
+  public class OrNodeTest
+  {
+    [Fact]
+    public async Task OrNode()
     {
-        [Fact]
-        public async Task OrNode()
+
+      var padContract = new Engine.Contracts.PadContract()
+      {
+        Id = 1,
+        Name = "test"
+      };
+
+      var constant1 = new Engine.Contracts.NodeBaseContract()
+      {
+        Id = 1,
+        OutNodes = new List<long>() { 3 },
+        Type = NodeType.Input,
+        MetaData = new NodeMetaData()
         {
-
-            var padContract = new Engine.Contracts.PadContract()
-            {
-                Id = 1,
-                Name = "test"
-            };
-
-            var constant1 = new Engine.Contracts.NodeBaseContract()
-            {
-                Id = 1,
-                OutNodes = new List<long>() { 3 },
-                Type = NodeType.Input,
-                MetaData = new NodeMetaData()
-                {
-                    NodeData = new NodeMetaDataAttribute() { NodeClass = typeof(ConstantNode) },
-                    FieldsMetaData = new List<FieldMetaDataAttribute>()
+          NodeData = new NodeMetaDataAttribute() { NodeClass = typeof(ConstantNode) },
+          FieldsMetaData = new List<FieldMetaDataAttribute>()
               {
                 new FieldMetaDataAttribute()
                 {
@@ -43,18 +43,18 @@ namespace Engine.Test
                   ValueType = typeof(ConstantType)
                 }
               }
-                }
-            };
+        }
+      };
 
-            var constant2 = new Engine.Contracts.NodeBaseContract()
-            {
-                Id = 2,
-                OutNodes = new List<long>() { 3 },
-                Type = NodeType.Input,
-                MetaData = new NodeMetaData()
-                {
-                    NodeData = new Engine.NodeMetaDataAttribute() { NodeClass = typeof(ConstantNode) },
-                    FieldsMetaData = new List<FieldMetaDataAttribute>()
+      var constant2 = new Engine.Contracts.NodeBaseContract()
+      {
+        Id = 2,
+        OutNodes = new List<long>() { 3 },
+        Type = NodeType.Input,
+        MetaData = new NodeMetaData()
+        {
+          NodeData = new Engine.NodeMetaDataAttribute() { NodeClass = typeof(ConstantNode) },
+          FieldsMetaData = new List<FieldMetaDataAttribute>()
               {
                 new FieldMetaDataAttribute()
                 {
@@ -67,18 +67,18 @@ namespace Engine.Test
                   ValueType = typeof(ConstantType)
                 }
               }
-                }
-            };
+        }
+      };
 
-            var add = new Engine.Contracts.NodeBaseContract()
-            {
-                Id = 3,
-                InNodes = new List<long>() { 1, 2 },
-                Type = NodeType.Output,
-                MetaData = new NodeMetaData()
-                {
-                    NodeData = new Engine.NodeMetaDataAttribute() { NodeClass = typeof(OrNode) },
-                    FieldsMetaData = new List<FieldMetaDataAttribute>()
+      var add = new Engine.Contracts.NodeBaseContract()
+      {
+        Id = 3,
+        InNodes = new List<long>() { 1, 2 },
+        Type = NodeType.Output,
+        MetaData = new NodeMetaData()
+        {
+          NodeData = new Engine.NodeMetaDataAttribute() { NodeClass = typeof(OrNode) },
+          FieldsMetaData = new List<FieldMetaDataAttribute>()
           {
             new FieldMetaDataAttribute()
             {
@@ -94,15 +94,15 @@ namespace Engine.Test
               Direction =  FieldDirection.Input,
             }
           }
-                }
-            };
+        }
+      };
 
-            padContract.Nodes = new List<Engine.Contracts.NodeBaseContract>()
+      padContract.Nodes = new List<Engine.Contracts.NodeBaseContract>()
       {
         constant1,constant2,add
       };
 
-            List<InstanceMapping> mappings = new List<InstanceMapping>()
+      List<InstanceMapping> mappings = new List<InstanceMapping>()
       {
         new InstanceMapping()
         {
@@ -123,16 +123,16 @@ namespace Engine.Test
            }
         }
       };
-            var instance = new Instances(mappings);
+      var instance = new Instances(mappings);
 
-            var json = JsonConvert.SerializeObject(instance);
+      var json = JsonConvert.SerializeObject(instance);
 
-            var pad = PadFactory.CreateInstance(padContract, ExecutionMode.Normal, instance);
-            await pad.Init();
-            await pad.Execute(pad.Context, instance);
+      var pad = PadFactory.CreateInstance(padContract, ExecutionMode.Normal, instance);
+      await pad.Init();
+      await pad.Execute(pad.Context, instance);
 
-            Assert.Equal(ExecutionStatus.Success, pad.Context.Status);
-            Assert.Equal(true, pad.Context.Result);
-        }
+      Assert.Equal(ExecutionStatus.Success, pad.Context.Status);
+      Assert.Equal(true, pad.Context.Result);
     }
+  }
 }

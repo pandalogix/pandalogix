@@ -1,15 +1,15 @@
 using System;
 namespace EventBus
 {
-    public class Event
+  public class Event
+  {
+    public Event()
     {
-        public Event()
-        {
-            Id= Guid.NewGuid();
-            CreateDate = DateTime.UtcNow;
-        }
-        public Guid Id { get; set; } 
-        public DateTime CreateDate { get; set; }
+      Id = Guid.NewGuid();
+      CreateDate = DateTime.UtcNow;
     }
-    
+    public Guid Id { get; set; }
+    public DateTime CreateDate { get; set; }
+  }
+
 }

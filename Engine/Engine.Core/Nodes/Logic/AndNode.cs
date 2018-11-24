@@ -6,27 +6,27 @@ using System.Threading.Tasks;
 
 namespace Engine.Core.Nodes.Logic
 {
-    [NodeMetaData(NodeClass = typeof(AndNode), Category = "Logic", Name = nameof(AndNode))]
-    public class AndNode : NodeBase
+  [NodeMetaData(NodeClass = typeof(AndNode), Category = "Logic", Name = nameof(AndNode))]
+  public class AndNode : NodeBase
+  {
+    protected override async Task InternalExecute(IContext context)
     {
-        protected override async Task InternalExecute(IContext context)
-        {
 
-            var result = true;
+      var result = true;
 
-            this._context.Result = this.InPorts.Aggregate(result, (d, node) =>
-             {
-                 if (node.Context != null)
-                 {
-                     return d && (node.Context.Result is bool ? Convert.ToBoolean(node.Context.Result) : node.Context.Result != null);
-                 }
-                 else
-                 {
-                     return d && false;
-                 }
-             });
+      this._context.Result = this.InPorts.Aggregate(result, (d, node) =>
+       {
+         if (node.Context != null)
+         {
+           return d && (node.Context.Result is bool ? Convert.ToBoolean(node.Context.Result) : node.Context.Result != null);
+         }
+         else
+         {
+           return d && false;
+         }
+       });
 
-            await base.InternalExecute(context);
-        }
+      await base.InternalExecute(context);
     }
+  }
 }

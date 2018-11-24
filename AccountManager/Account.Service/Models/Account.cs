@@ -1,9 +1,9 @@
 using System;
 namespace AccountManager.Models
 {
-  public class Account:BaseEntity
+  public class Account : BaseEntity
   {
-    public string  Email { get; set; }
+    public string Email { get; set; }
     public string Tier { get; set; }
 
     public string FirstName { get; set; }

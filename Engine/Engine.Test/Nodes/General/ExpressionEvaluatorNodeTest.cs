@@ -9,26 +9,26 @@ using Xunit;
 
 namespace Engine.Test
 {
-    public class ExpressionEvaluatorNodeTest
+  public class ExpressionEvaluatorNodeTest
+  {
+    [Fact]
+    public async Task ExpressionEvNode()
     {
-        [Fact]
-        public async Task ExpressionEvNode()
-        {
-            var padContract = new Engine.Contracts.PadContract()
-            {
-                Id = 1,
-                Name = "test"
-            };
+      var padContract = new Engine.Contracts.PadContract()
+      {
+        Id = 1,
+        Name = "test"
+      };
 
-            var constant1 = new Engine.Contracts.NodeBaseContract()
-            {
-                Id = 1,
-                OutNodes = new List<long>() { 4 },
-                Type = NodeType.Input,
-                MetaData = new NodeMetaData()
-                {
-                    NodeData = new NodeMetaDataAttribute() { NodeClass = typeof(ConstantNode) },
-                    FieldsMetaData = new List<FieldMetaDataAttribute>()
+      var constant1 = new Engine.Contracts.NodeBaseContract()
+      {
+        Id = 1,
+        OutNodes = new List<long>() { 4 },
+        Type = NodeType.Input,
+        MetaData = new NodeMetaData()
+        {
+          NodeData = new NodeMetaDataAttribute() { NodeClass = typeof(ConstantNode) },
+          FieldsMetaData = new List<FieldMetaDataAttribute>()
                     {
                       new FieldMetaDataAttribute()
                       {
@@ -41,18 +41,18 @@ namespace Engine.Test
                         ValueType = typeof(ConstantType)
                       }
                     }
-                }
-            };
+        }
+      };
 
-            var constant2 = new Engine.Contracts.NodeBaseContract()
-            {
-                Id = 2,
-                OutNodes = new List<long>() { 4 },
-                Type = NodeType.Input,
-                MetaData = new NodeMetaData()
-                {
-                    NodeData = new Engine.NodeMetaDataAttribute() { NodeClass = typeof(ConstantNode) },
-                    FieldsMetaData = new List<FieldMetaDataAttribute>()
+      var constant2 = new Engine.Contracts.NodeBaseContract()
+      {
+        Id = 2,
+        OutNodes = new List<long>() { 4 },
+        Type = NodeType.Input,
+        MetaData = new NodeMetaData()
+        {
+          NodeData = new Engine.NodeMetaDataAttribute() { NodeClass = typeof(ConstantNode) },
+          FieldsMetaData = new List<FieldMetaDataAttribute>()
                     {
                       new FieldMetaDataAttribute()
                       {
@@ -65,19 +65,19 @@ namespace Engine.Test
                         ValueType = typeof(ConstantType)
                       }
                     }
-                }
-            };
+        }
+      };
 
 
-            var constant3 = new Engine.Contracts.NodeBaseContract()
-            {
-                Id = 3,
-                OutNodes = new List<long>() { 4 },
-                Type = NodeType.Input,
-                MetaData = new NodeMetaData()
-                {
-                    NodeData = new Engine.NodeMetaDataAttribute() { NodeClass = typeof(ConstantNode) },
-                    FieldsMetaData = new List<FieldMetaDataAttribute>()
+      var constant3 = new Engine.Contracts.NodeBaseContract()
+      {
+        Id = 3,
+        OutNodes = new List<long>() { 4 },
+        Type = NodeType.Input,
+        MetaData = new NodeMetaData()
+        {
+          NodeData = new Engine.NodeMetaDataAttribute() { NodeClass = typeof(ConstantNode) },
+          FieldsMetaData = new List<FieldMetaDataAttribute>()
                     {
                       new FieldMetaDataAttribute()
                       {
@@ -90,18 +90,18 @@ namespace Engine.Test
                         ValueType = typeof(ConstantType)
                       }
                     }
-                }
-            };
+        }
+      };
 
-            var expressionNode = new Engine.Contracts.NodeBaseContract()
-            {
-                Id = 4,
-                InNodes = new List<long>() { 1, 2, 3 },
-                Type = NodeType.Output,
-                MetaData = new NodeMetaData()
-                {
-                    NodeData = new NodeMetaDataAttribute() { NodeClass = typeof(ExpressionEvaluatorNode) },
-                    FieldsMetaData = new List<FieldMetaDataAttribute>()
+      var expressionNode = new Engine.Contracts.NodeBaseContract()
+      {
+        Id = 4,
+        InNodes = new List<long>() { 1, 2, 3 },
+        Type = NodeType.Output,
+        MetaData = new NodeMetaData()
+        {
+          NodeData = new NodeMetaDataAttribute() { NodeClass = typeof(ExpressionEvaluatorNode) },
+          FieldsMetaData = new List<FieldMetaDataAttribute>()
                     {
                       new FieldMetaDataAttribute()
                       {
@@ -127,15 +127,15 @@ namespace Engine.Test
                         ValueType = typeof(string)
                       }
                     }
-                }
-            };
+        }
+      };
 
-            padContract.Nodes = new List<Engine.Contracts.NodeBaseContract>()
+      padContract.Nodes = new List<Engine.Contracts.NodeBaseContract>()
             {
               constant1,constant2,constant3,expressionNode
             };
 
-            List<InstanceMapping> mappings = new List<InstanceMapping>()
+      List<InstanceMapping> mappings = new List<InstanceMapping>()
             {
               new InstanceMapping()
               {
@@ -173,16 +173,16 @@ namespace Engine.Test
                 }
               }
             };
-            var instance = new Instances(mappings);
+      var instance = new Instances(mappings);
 
-            var json = JsonConvert.SerializeObject(instance);
+      var json = JsonConvert.SerializeObject(instance);
 
-            var pad = PadFactory.CreateInstance(padContract, ExecutionMode.Normal, instance);
-            await pad.Init();
-            await pad.Execute(pad.Context, instance);
+      var pad = PadFactory.CreateInstance(padContract, ExecutionMode.Normal, instance);
+      await pad.Init();
+      await pad.Execute(pad.Context, instance);
 
-            Assert.Equal(ExecutionStatus.Success, pad.Context.Status);
-            Assert.Equal(21, pad.Context.Result);
-        }
+      Assert.Equal(ExecutionStatus.Success, pad.Context.Status);
+      Assert.Equal(21, pad.Context.Result);
     }
+  }
 }

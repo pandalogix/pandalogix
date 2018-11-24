@@ -7,7 +7,7 @@ import Layout from './Layout';
 
 class Billing extends Component {
   render() {
-    
+
     return (
       <Layout>
         <h1>Billing Overview</h1>
@@ -17,7 +17,7 @@ class Billing extends Component {
             <p id="plan" className="form-control">Free plan</p>
           </div>
         </div>
- 
+
       </Layout>
 
     )

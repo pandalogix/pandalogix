@@ -1,10 +1,10 @@
 ﻿namespace Engine.Enums
 {
   public enum ExecutionStatus
-    {
-      Pending,
-      Executing,
-      Success,
-      Failed
-    }
+  {
+    Pending,
+    Executing,
+    Success,
+    Failed
+  }
 }

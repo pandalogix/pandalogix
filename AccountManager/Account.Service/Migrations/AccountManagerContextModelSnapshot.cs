@@ -8,86 +8,86 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Account.Service.Migrations
 {
-    [DbContext(typeof(AccountManagerContext))]
-    partial class AccountManagerContextModelSnapshot : ModelSnapshot
+  [DbContext(typeof(AccountManagerContext))]
+  partial class AccountManagerContextModelSnapshot : ModelSnapshot
+  {
+    protected override void BuildModel(ModelBuilder modelBuilder)
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
-        {
 #pragma warning disable 612, 618
-            modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.2-rtm-30932")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+      modelBuilder
+          .HasAnnotation("ProductVersion", "2.1.2-rtm-30932")
+          .HasAnnotation("Relational:MaxIdentifierLength", 128)
+          .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("AccountManager.Models.Account", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+      modelBuilder.Entity("AccountManager.Models.Account", b =>
+          {
+            b.Property<long>("Id")
+                      .ValueGeneratedOnAdd()
+                      .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<bool>("Active");
+            b.Property<bool>("Active");
 
-                    b.Property<DateTimeOffset>("ActiveUntil");
+            b.Property<DateTimeOffset>("ActiveUntil");
 
-                    b.Property<DateTimeOffset>("ActviatedDate");
+            b.Property<DateTimeOffset>("ActviatedDate");
 
-                    b.Property<Guid>("ApiKey");
+            b.Property<Guid>("ApiKey");
 
-                    b.Property<string>("CreatedBy")
-                        .HasMaxLength(255);
+            b.Property<string>("CreatedBy")
+                      .HasMaxLength(255);
 
-                    b.Property<DateTimeOffset>("CreatedDate");
+            b.Property<DateTimeOffset>("CreatedDate");
 
-                    b.Property<string>("Email");
+            b.Property<string>("Email");
 
-                    b.Property<string>("FirstName");
+            b.Property<string>("FirstName");
 
-                    b.Property<Guid>("Identifier");
+            b.Property<Guid>("Identifier");
 
-                    b.Property<string>("LastName");
+            b.Property<string>("LastName");
 
-                    b.Property<DateTimeOffset>("LastUpdatedDate");
+            b.Property<DateTimeOffset>("LastUpdatedDate");
 
-                    b.Property<long>("Quota");
+            b.Property<long>("Quota");
 
-                    b.Property<bool>("ReachQuota");
+            b.Property<bool>("ReachQuota");
 
-                    b.Property<string>("StripeCustomerId");
+            b.Property<string>("StripeCustomerId");
 
-                    b.Property<string>("Tier");
+            b.Property<string>("Tier");
 
-                    b.Property<string>("UpdatedBy")
-                        .HasMaxLength(255);
+            b.Property<string>("UpdatedBy")
+                      .HasMaxLength(255);
 
-                    b.HasKey("Id");
+            b.HasKey("Id");
 
-                    b.HasIndex("Identifier")
-                        .IsUnique();
+            b.HasIndex("Identifier")
+                      .IsUnique();
 
-                    b.ToTable("Accounts");
-                });
+            b.ToTable("Accounts");
+          });
 
-            modelBuilder.Entity("AccountManager.Models.AccountPad", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+      modelBuilder.Entity("AccountManager.Models.AccountPad", b =>
+          {
+            b.Property<long>("Id")
+                      .ValueGeneratedOnAdd()
+                      .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<Guid>("PadId");
+            b.Property<Guid>("PadId");
 
-                    b.Property<Guid>("UserId");
+            b.Property<Guid>("UserId");
 
-                    b.HasKey("Id");
+            b.HasKey("Id");
 
-                    b.HasIndex("PadId")
-                        .IsUnique();
+            b.HasIndex("PadId")
+                      .IsUnique();
 
-                    b.HasIndex("UserId")
-                        .IsUnique();
+            b.HasIndex("UserId")
+                      .IsUnique();
 
-                    b.ToTable("AccountPad");
-                });
+            b.ToTable("AccountPad");
+          });
 #pragma warning restore 612, 618
-        }
     }
+  }
 }

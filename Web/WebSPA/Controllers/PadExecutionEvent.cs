@@ -4,8 +4,8 @@ namespace WebSPA.Controllers
 {
   internal class PadExecutionEvent
   {
-        public PadContract Pad { get; set; }
-        public Instances Instances { get; set; }
-    }
-  
+    public PadContract Pad { get; set; }
+    public Instances Instances { get; set; }
+  }
+
 }

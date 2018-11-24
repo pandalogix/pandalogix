@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 
 namespace Engine.Contracts
 {
-    [DataContract]
+  [DataContract]
   public class NodeMetaData
   {
     [DataMember]

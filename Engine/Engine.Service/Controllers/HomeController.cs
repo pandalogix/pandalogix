@@ -2,12 +2,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Engine.Service
 {
-    public class HomeController : Controller
+  public class HomeController : Controller
+  {
+    public IActionResult Index()
     {
-        public IActionResult Index()
-        {
-            return new RedirectResult("~/sawgger");
-        }
+      return new RedirectResult("~/sawgger");
     }
+  }
 
 }

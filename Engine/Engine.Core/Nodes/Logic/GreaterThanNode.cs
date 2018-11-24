@@ -5,27 +5,27 @@ using System.Threading.Tasks;
 
 namespace Engine.Core.Nodes.Logic
 {
-    [NodeMetaData(NodeClass = typeof(GreaterThanNode), Category = "Logic", Name = nameof(GreaterThanNode))]
+  [NodeMetaData(NodeClass = typeof(GreaterThanNode), Category = "Logic", Name = nameof(GreaterThanNode))]
 
-    public class GreaterThanNode : DualInputBaseNode
+  public class GreaterThanNode : DualInputBaseNode
+  {
+
+    protected override async Task InternalExecute(IContext context)
     {
+      var left = GetFieldValue(nameof(Left));
+      var right = GetFieldValue(nameof(Right));
+      if (left is IComparable && right is IComparable && left.GetType() == right.GetType())
+      {
+        var leftc = Left as IComparable;
+        var rightc = Right as IComparable;
+        this.Context.Result = leftc.CompareTo(rightc) > 0;
+      }
+      else
+      {
+        throw new Exception("Unmatch objects");
+      }
 
-        protected override async Task InternalExecute(IContext context)
-        {
-            var left = GetFieldValue(nameof(Left));
-            var right = GetFieldValue(nameof(Right));
-            if (left is IComparable && right is IComparable && left.GetType() == right.GetType())
-            {
-                var leftc = Left as IComparable;
-                var rightc = Right as IComparable;
-                this.Context.Result = leftc.CompareTo(rightc) > 0;
-            }
-            else
-            {
-                throw new Exception("Unmatch objects");
-            }
-
-            await base.InternalExecute(context);
-        }
+      await base.InternalExecute(context);
     }
+  }
 }

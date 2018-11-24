@@ -18,7 +18,7 @@ export class PadContextProvider extends Component {
     // const { match } = this.props;
     // const id = match.params.padid;
     const id = this.props.padid;
-    if(id!==0){
+    if (id !== 0) {
       // get pad from server.
     }
   }
