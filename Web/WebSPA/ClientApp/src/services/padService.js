@@ -1,11 +1,4 @@
 import axios from 'axios'
-import {
-  Pad
-} from '../contracts/Pad';
-import {
-  PAD_CREATED
-} from '../actions/actionType';
-//TODO handle local token expiration, logout..
 
 const padApi = 'api/pad';
 

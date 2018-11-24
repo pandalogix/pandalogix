@@ -1,6 +1,5 @@
 import config from '../constants/authorizationConstants'
 import jwt_decode from 'jwt-decode'
-import axios from 'axios'
 //TODO handle local token expiration, logout..
 import AccountService from './accountService';
 
@@ -35,16 +34,16 @@ class ApplicationContext {
           firstName: decoded.given_name,
           lastName: decoded.family_name
         }
+        var accountService = new AccountService();
+
         // const reqconf = { headers: { 'X-Expire': decoded.exp * 1000 } };
         if (decoded.newUser) {
           user.id = 0;
-          var accountService = new AccountService();
           accountService.createUser(user).then(u => {
             u.expiration = decoded.exp * 1000;
             resolve(u);
           }, err => reject(err));
         } else {
-          var accountService = new AccountService();
           accountService.getuser(user).then(u => {
             u.expiration = decoded.exp * 1000;
             resolve(u);

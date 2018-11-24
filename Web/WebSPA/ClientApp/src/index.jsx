@@ -40,30 +40,20 @@ const persistor = createPersistStore(store);
 
 console.log(React.version);
 
-ReactDOM.render( <
-  Provider store = {
-    store
-  } >
+ReactDOM.render(
+  <Provider store={store} >
 
-  <
-  PersistGate loading = {
-    null
-  }
-  persistor = {
-    persistor
-  } >
-  <
-  ConnectedRouter history = {
-    history
-  } >
-  <
-  App / >
-  <
-  /ConnectedRouter> <
-  /PersistGate>
+    <PersistGate loading={
+      null
+    }
+      persistor={
+        persistor
+      } >
+      <ConnectedRouter history={history} >
+        <App />
+      </ConnectedRouter>
+    </PersistGate>
 
-  <
-  /Provider>,
-  rootElement);
+  </Provider>, rootElement);
 
 registerServiceWorker();
