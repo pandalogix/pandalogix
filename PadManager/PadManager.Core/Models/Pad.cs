@@ -29,8 +29,16 @@ namespace PadManager.Core.Models
         Name = pad.Name,
         Description = pad.Description,
         TriggerData = pad.TriggerData,
-        Nodes = pad.Nodes?.Select(n => n.ToContract())
       };
+      var nodes = new List<NodeBaseContract>();
+      if (pad.Nodes != null)
+      {
+        foreach (var node in pad.Nodes)
+        {
+          nodes.Add(node.ToContract());
+        }
+      }
+      contract.Nodes = nodes;
       return contract;
     }
 

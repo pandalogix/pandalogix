@@ -18,6 +18,7 @@ namespace AccountManager.Context
     protected override void OnModelCreating(ModelBuilder builder)
     {
       builder.Entity<Models.Account>().HasIndex(e => e.Identifier).IsUnique();
+      builder.Entity<Models.AccountPad>().ToTable("AccountPad");
       builder.Entity<Models.AccountPad>().HasIndex(e => e.UserId).IsUnique();
       builder.Entity<Models.AccountPad>().HasIndex(e => e.PadId).IsUnique();
     }
@@ -29,10 +30,13 @@ namespace AccountManager.Context
        .Where(e => e.State == EntityState.Added ||
          e.State == EntityState.Modified))
       {
+        if (entry.Entity is Models.AccountPad)
+          continue;
         if (entry.State == EntityState.Modified)
         {
           entry.Property("UpdatedBy").CurrentValue = Thread.CurrentPrincipal.Identity.Name;
           entry.Property("LastUpdatedDate").CurrentValue = DateTimeOffset.Now;
+
         }
         if (entry.State == EntityState.Added)
         {
@@ -40,6 +44,7 @@ namespace AccountManager.Context
           entry.Property("CreatedDate").CurrentValue = DateTimeOffset.Now;
           entry.Property("Identifier").CurrentValue = Guid.NewGuid();
         }
+
       }
       return base.SaveChanges();
     }

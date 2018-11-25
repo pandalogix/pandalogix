@@ -75,7 +75,7 @@ namespace PadManager.Service.Controllers
 
       if (existingpad == null)
         return NotFound();
-      return Ok(existingpad);
+      return Ok(existingpad.ToContract());
     }
 
 
@@ -83,7 +83,10 @@ namespace PadManager.Service.Controllers
     [Route("")]
     public async Task<IActionResult> GetPad([FromQuery]Guid identifier)
     {
-      var existingpad = await this.context.Pads.Where(p => p.Identifier == identifier).FirstOrDefaultAsync();
+      var existingpad = await this.context.Pads.
+          Where(p => p.Identifier == identifier)
+          .Include(p => p.Nodes)
+          .FirstOrDefaultAsync();
 
       if (existingpad == null)
         return NotFound();

@@ -21,6 +21,9 @@ namespace Engine.Contracts
     public bool LogicPath { get; set; } = true;
     [DataMember]
     public long Id { get; set; }
+    [DataMember]
+    public int NodeId { get; set; }
+    [DataMember]
     public string Location { get; set; }
   }
 }

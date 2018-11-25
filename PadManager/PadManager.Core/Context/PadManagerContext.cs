@@ -25,6 +25,7 @@ namespace PadManager.Core
       builder.Entity<InstanceMapping>().HasIndex(e => e.Identifier).IsUnique();
       builder.Entity<Node>().HasIndex(e => e.Identifier).IsUnique();
 
+      builder.Entity<Models.AccountPad>().ToTable("AccountPad");
       builder.Entity<Models.AccountPad>().HasIndex(e => e.UserId).IsUnique();
       builder.Entity<Models.AccountPad>().HasIndex(e => e.PadId).IsUnique();
 
@@ -35,9 +36,10 @@ namespace PadManager.Core
        .Where(e => e.State == EntityState.Added ||
          e.State == EntityState.Modified))
       {
+        if (entry.Entity is Models.AccountPad)
+          continue;
         if (entry.State == EntityState.Modified)
         {
-
           entry.Property("Identifier").IsModified = false;
           entry.Property("UpdatedBy").CurrentValue = Thread.CurrentPrincipal?.Identity?.Name ?? "PadManager";
           entry.Property("LastUpdatedDate").CurrentValue = DateTimeOffset.Now;

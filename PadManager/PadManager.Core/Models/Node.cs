@@ -55,13 +55,21 @@ namespace PadManager.Core.Models
   {
     public static NodeBaseContract ToContract(this Node node)
     {
-      var contract = new NodeBaseContract();
-      contract.Type = (NodeType)Enum.Parse(typeof(NodeType), node.NodeType);
-      contract.Id = node.Id;
-      contract.InNodes = node.InNodes;
-      contract.OutNodes = node.OutNodes;
-      contract.MetaData = Newtonsoft.Json.JsonConvert.DeserializeObject<NodeMetaData>(node.MetaData);
-      return contract;
+      try
+      {
+        var contract = new NodeBaseContract();
+        contract.Type = (NodeType)Enum.Parse(typeof(NodeType), node.NodeType);
+        contract.Id = node.Id;
+        contract.InNodes = node.InNodes == null ? new List<long>() : node.InNodes;
+        contract.OutNodes = node.OutNodes == null ? new List<long>() : node.OutNodes;
+        contract.NodeId = node.NodeId;
+        contract.MetaData = Newtonsoft.Json.JsonConvert.DeserializeObject<NodeMetaData>(node.MetaData);
+        return contract;
+      }
+      catch (Exception e)
+      {
+        return null;
+      }
     }
 
     public static Node ToModel(this NodeBaseContract node)
@@ -69,11 +77,12 @@ namespace PadManager.Core.Models
       var model = new Node();
       model.Id = node.Id;
       // model.NodeId = node.NodeId;
-      model.InNodes = node.InNodes.ToList();
-      model.OutNodes = node.OutNodes.ToList();
+      model.InNodes = node.InNodes == null ? new List<long>() : node.InNodes.ToList();
+      model.OutNodes = node.OutNodes == null ? new List<long>() : node.OutNodes.ToList();
       model.MetaData = JsonConvert.SerializeObject(node.MetaData);
       model.Location = node.Location;
       model.NodeType = node.Type.ToString();
+      model.NodeId = node.NodeId;
       return model;
     }
   }

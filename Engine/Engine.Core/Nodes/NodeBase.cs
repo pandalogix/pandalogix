@@ -169,9 +169,11 @@ namespace Engine.Core.Nodes
                 {
                   prop.SetValue(this, value);
                 }
-                else
+                else if(value.GetType()==prop.PropertyType)
                 {
                   prop.SetValue(this, Convert.ChangeType(value, prop.PropertyType, null));
+                }else{
+                  prop.SetValue(this,value);
                 }
               }
             }

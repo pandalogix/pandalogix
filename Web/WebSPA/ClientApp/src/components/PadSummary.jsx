@@ -7,24 +7,90 @@ class PadSummary extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      pad: {
-        id: 0,
-        name: 'test name',
-        description: 'test description',
-        identifier: '00000000-0000-0000-0000-000000000001',
-        triggerData: '{}'
+      pad:
+      {
+        "name": "test",
+        "description": "",
+        "nodes": [{
+          "type": "Input",
+          "inNodes": [],
+          "outNodes": [2],
+          "metaData": {
+            "nodeData": {
+              "nodeClassString": "Engine.Core.Nodes.General.ObjectNode, Engine.Core",
+              "category": null,
+              "name": null
+            },
+            "fieldsMetaData": [{
+              "name": "Schema",
+              "defaultValue": null,
+              "constantValue": null,
+              "valueTypeString": "System.String, System.Private.CoreLib",
+              "direction": 0,
+              "mappedNodeId": -1,
+              "mappedFieldName": "__Result__"
+            }, {
+              "name": "JsonString",
+              "defaultValue": null,
+              "constantValue": null,
+              "valueTypeString": "System.String, System.Private.CoreLib",
+              "direction": 0,
+              "mappedNodeId": -1,
+              "mappedFieldName": "__Result__"
+            }]
+          },
+          "logicPath": true,
+          "nodeId": 1
+        }, {
+          "type": "Output",
+          "inNodes": [1],
+          "outNodes": [],
+          "metaData": {
+            "nodeData": {
+              "nodeClassString": "Engine.Core.Nodes.General.ConstantNode, Engine.Core",
+              "category": null,
+              "name": null
+            },
+            "fieldsMetaData": [{
+              "name": "Value",
+              "defaultValue": null,
+              "constantValue": null,
+              "valueTypeString": "System.Object, System.Private.CoreLib",
+              "direction": 0,
+              "mappedNodeId": 1,
+              "mappedFieldName": "__Result__"
+            }, {
+              "name": "ConstantType",
+              "defaultValue": null,
+              "constantValue": null,
+              "valueTypeString": "Engine.Enums.ConstantType, Engine.Contract",
+              "direction": 0,
+              "mappedNodeId": -1,
+              "mappedFieldName": "__Result__"
+            }]
+          },
+          "logicPath": true,
+          "nodeId": 2
+        }],
+        "id": 0,
+        "identifier": "00000000-0000-0000-0000-000000000000",
+        "triggerData": "",
+        "currentMaxSequenceId": 2
       }
-    };
+    }
+  };
 
-  }
+
 
   componentDidMount() {
     const { match } = this.props;
     const id = match.params.padid;
     let padService = new PadService(this.props.user.identifier);
-    padService.get(id).then(pad => {
-      this.setState({ pad: pad });
-    })
+    if (parseInt(id, 10) !== 0) {
+      padService.get(id).then(pad => {
+        this.setState({ pad: pad });
+      });
+    }
     // this.setState({ padid: id });
   }
   onPadChanged() {
