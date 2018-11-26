@@ -27,7 +27,7 @@ namespace Engine.Core
 
       foreach (var nodecontract in contract.Nodes)
       {
-        Nodes.NodeBase node = (from o in nodes where o.Id == nodecontract.Id select o).FirstOrDefault();
+        Nodes.NodeBase node = (from o in nodes where o.Id == nodecontract.NodeId select o).FirstOrDefault();
         if (node != null)
         {
           if (nodecontract.InNodes != null)

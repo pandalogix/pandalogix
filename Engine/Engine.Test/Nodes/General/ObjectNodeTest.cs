@@ -27,6 +27,7 @@ namespace Engine.CoreTest.Nodes.General
       var objectNode = new Engine.Contracts.NodeBaseContract()
       {
         Id = 1,
+        NodeId = 1,
         OutNodes = new List<long>() { 2 },
         Type = NodeType.Input,
         MetaData = new NodeMetaData()
@@ -51,6 +52,7 @@ namespace Engine.CoreTest.Nodes.General
       var constant1 = new Engine.Contracts.NodeBaseContract()
       {
         Id = 2,
+        NodeId = 2,
         // OutNodes = new List<long>() { 3 },
         Type = NodeType.Output,
         MetaData = new NodeMetaData()

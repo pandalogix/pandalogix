@@ -23,6 +23,7 @@ namespace Engine.Test
       var constant1 = new Engine.Contracts.NodeBaseContract()
       {
         Id = 1,
+        NodeId = 1,
         OutNodes = new List<long>() { 4 },
         Type = NodeType.Input,
         MetaData = new NodeMetaData()
@@ -47,6 +48,7 @@ namespace Engine.Test
       var constant2 = new Engine.Contracts.NodeBaseContract()
       {
         Id = 2,
+        NodeId = 2,
         OutNodes = new List<long>() { 4 },
         Type = NodeType.Input,
         MetaData = new NodeMetaData()
@@ -72,6 +74,7 @@ namespace Engine.Test
       var constant3 = new Engine.Contracts.NodeBaseContract()
       {
         Id = 3,
+        NodeId = 3,
         OutNodes = new List<long>() { 4 },
         Type = NodeType.Input,
         MetaData = new NodeMetaData()
@@ -96,6 +99,7 @@ namespace Engine.Test
       var expressionNode = new Engine.Contracts.NodeBaseContract()
       {
         Id = 4,
+        NodeId = 4,
         InNodes = new List<long>() { 1, 2, 3 },
         Type = NodeType.Output,
         MetaData = new NodeMetaData()

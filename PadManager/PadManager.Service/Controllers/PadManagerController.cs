@@ -80,8 +80,8 @@ namespace PadManager.Service.Controllers
 
 
     [HttpGet]
-    [Route("")]
-    public async Task<IActionResult> GetPad([FromQuery]Guid identifier)
+    [Route("identifier/{identifier}")]
+    public async Task<IActionResult> GetPad(Guid identifier)
     {
       var existingpad = await this.context.Pads.
           Where(p => p.Identifier == identifier)

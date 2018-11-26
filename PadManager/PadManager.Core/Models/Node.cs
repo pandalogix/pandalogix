@@ -19,6 +19,8 @@ namespace PadManager.Core.Models
     {
       get
       {
+        if (string.IsNullOrEmpty(InNodeList))
+          return null;
         return System.Array.ConvertAll(InNodeList.Split(';'), long.Parse).ToList();
       }
       set
@@ -31,6 +33,8 @@ namespace PadManager.Core.Models
     {
       get
       {
+        if (string.IsNullOrEmpty(OutNodesList))
+          return null;
         return System.Array.ConvertAll(OutNodesList.Split(';'), long.Parse).ToList();
       }
       set
@@ -66,7 +70,7 @@ namespace PadManager.Core.Models
         contract.MetaData = Newtonsoft.Json.JsonConvert.DeserializeObject<NodeMetaData>(node.MetaData);
         return contract;
       }
-      catch (Exception e)
+      catch (Exception)
       {
         return null;
       }

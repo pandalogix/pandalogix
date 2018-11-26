@@ -26,6 +26,7 @@ namespace Engine.CoreTest
       var constant1 = new Engine.Contracts.NodeBaseContract()
       {
         Id = 1,
+        NodeId = 1,
         OutNodes = new List<long>() { 3 },
         Type = NodeType.Input,
         MetaData = new NodeMetaData()
@@ -50,6 +51,7 @@ namespace Engine.CoreTest
       var constant2 = new Engine.Contracts.NodeBaseContract()
       {
         Id = 2,
+        NodeId = 2,
         OutNodes = new List<long>() { 3 },
         Type = NodeType.Input,
         MetaData = new NodeMetaData()
@@ -74,6 +76,7 @@ namespace Engine.CoreTest
       var add = new Engine.Contracts.NodeBaseContract()
       {
         Id = 3,
+        NodeId = 3,
         InNodes = new List<long>() { 1, 2 },
         Type = NodeType.Output,
         MetaData = new NodeMetaData()
@@ -148,6 +151,7 @@ namespace Engine.CoreTest
       var constant1 = new Engine.Contracts.NodeBaseContract()
       {
         Id = 1,
+        NodeId = 1,
         OutNodes = new List<long>() { 3 },
         Type = NodeType.Input,
         MetaData = new NodeMetaData()
@@ -172,6 +176,7 @@ namespace Engine.CoreTest
       var constant2 = new Engine.Contracts.NodeBaseContract()
       {
         Id = 2,
+        NodeId = 2,
         OutNodes = new List<long>() { 3 },
         Type = NodeType.Input,
         MetaData = new NodeMetaData()
@@ -196,6 +201,7 @@ namespace Engine.CoreTest
       var add = new Engine.Contracts.NodeBaseContract()
       {
         Id = 3,
+        NodeId = 3,
         InNodes = new List<long>() { 1, 2 },
         Type = NodeType.Output,
         MetaData = new NodeMetaData()
@@ -271,6 +277,7 @@ namespace Engine.CoreTest
       var constant1 = new Engine.Contracts.NodeBaseContract()
       {
         Id = 1,
+        NodeId = 1,
         OutNodes = new List<long>() { 3 },
         Type = NodeType.Input,
         MetaData = new NodeMetaData()
@@ -295,6 +302,7 @@ namespace Engine.CoreTest
       var constant2 = new Engine.Contracts.NodeBaseContract()
       {
         Id = 2,
+        NodeId = 2,
         OutNodes = new List<long>() { 3 },
         Type = NodeType.Input,
         MetaData = new NodeMetaData()
@@ -319,6 +327,7 @@ namespace Engine.CoreTest
       var add = new Engine.Contracts.NodeBaseContract()
       {
         Id = 3,
+        NodeId = 3,
         InNodes = new List<long>() { 1, 2 },
         Type = NodeType.Output,
         MetaData = new NodeMetaData()

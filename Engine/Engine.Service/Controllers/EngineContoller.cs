@@ -1,5 +1,7 @@
 using System.Threading.Tasks;
 using Engine.Contracts;
+using Engine.Core;
+using Engine.Enums;
 using EventBus;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -20,11 +22,27 @@ namespace Engine.Service
     }
 
     [HttpPost]
-    [Route("")]
+    [Route("event")]
     public async Task<IActionResult> Execute([FromBody]PadExecution pad)
     {
       await this.eventBus.Publish(pad);
       return Ok();
+    }
+
+    [HttpPost]
+    [Route("")]
+    public async Task<IActionResult> ExecuteSync([FromBody] PadExecution request)
+    {
+      var pad = PadFactory.CreateInstance(request.Pad, ExecutionMode.Normal, request.Instances);
+      await pad.Init();
+      await pad.Execute(pad.Context, request.Instances);
+      return Ok(new
+      {
+        Status = pad.Context.Status.ToString(),
+        Summary = pad.Context.ExecutionSummary,
+        Result = pad.Context.Result
+      });
+
     }
   }
 

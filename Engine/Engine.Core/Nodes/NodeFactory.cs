@@ -16,10 +16,10 @@ namespace Engine.Core.Nodes
 
       NodeBase node = Activator.CreateInstance(contract.MetaData.NodeData.NodeClass) as NodeBase;
       node.Type = contract.Type;
-      node.Id = contract.Id;
+      node.Id = contract.NodeId;
       node.LogicPath = contract.LogicPath;
       node.MetaDate = contract.MetaData;
-      var nodeMapping = (from o in mappings where o.NodeId == contract.Id select o).FirstOrDefault();
+      var nodeMapping = (from o in mappings where o.NodeId == contract.NodeId select o).FirstOrDefault();
       node.NodeMapping = nodeMapping;
       if (nodeMapping != null)
       {
