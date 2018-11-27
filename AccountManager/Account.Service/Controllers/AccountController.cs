@@ -97,10 +97,11 @@ namespace AccountManager
       var sql = from a in this.context.Accounts
                 join p in this.context.AccountPads on a.Identifier equals p.UserId
                 where p.PadId == identifier && a.ApiKey == apikey
-                select a.Id;
-      if (sql.ToArray().Length > 0)
+                select a.Identifier;
+      var result = sql.ToArray();
+      if (result.Length > 0)
 
-        return await Task.FromResult(Ok());
+        return await Task.FromResult(Ok(result[0]));
       else
         return NotFound();
     }

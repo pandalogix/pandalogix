@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Threading;
+using Engine.Enums;
 using Microsoft.EntityFrameworkCore;
 using PadManager.Core.Models;
 
@@ -11,6 +12,8 @@ namespace PadManager.Core
     public virtual DbSet<Models.AccountPad> AccountPads { get; set; }
 
     public virtual DbSet<Pad> Pads { get; set; }
+
+    public virtual DbSet<PadExecutionHistory> PadExecutionHistory { get; set; }
     public PandaManagerContext(DbContextOptions<PandaManagerContext> options) : base(options)
     {
 
@@ -29,6 +32,12 @@ namespace PadManager.Core
       builder.Entity<Models.AccountPad>().HasIndex(e => e.UserId).IsUnique();
       builder.Entity<Models.AccountPad>().HasIndex(e => e.PadId).IsUnique();
 
+      builder.Entity<Models.PadExecutionHistory>().HasIndex(e => e.PadIdentifier);
+      builder.Entity<Models.PadExecutionHistory>().HasIndex(e => e.UserId);
+      builder.Entity<Models.PadExecutionHistory>().Property(e => e.Status).HasConversion(
+        v => v.ToString(),
+        v => (ExecutionStatus)Enum.Parse(typeof(ExecutionStatus), v)
+      );
     }
     public override int SaveChanges()
     {

@@ -5,6 +5,9 @@ using PadManager.Core;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System;
+using Engine.Contract.Contracts;
+ using Newtonsoft.Json;
+
 
 namespace PadManager.Service.Controllers
 {
@@ -20,6 +23,25 @@ namespace PadManager.Service.Controllers
       ((DbContext)context).ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
 
     }
+
+    [HttpPost("history")]
+    [ProducesResponseType(201)]
+    public  async Task<IActionResult> CreateHistory([FromQuery]Guid userId, [FromBody]ExecutionResult result)
+    {
+      var model = new PadExecutionHistory()
+      {
+        UserId= userId,
+        PadIdentifier = result.PadIdentifier,
+        ExecutionSummary = result.Summary,
+        Status = result.Status,
+        Result = JsonConvert.SerializeObject(result.Result)
+
+      };
+      this.context.Add(model);
+      this.context.SaveChanges();
+      return await Task.FromResult(Ok());
+    }
+
     [HttpPost]
     [Route("")]
     [ProducesResponseType(201)]

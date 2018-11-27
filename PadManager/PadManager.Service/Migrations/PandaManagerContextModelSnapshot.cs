@@ -19,6 +19,27 @@ namespace PadManager.Service.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("PadManager.Core.Models.AccountPad", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<Guid>("PadId");
+
+                    b.Property<Guid>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PadId")
+                        .IsUnique();
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("AccountPad");
+                });
+
             modelBuilder.Entity("PadManager.Core.Models.InstanceMapping", b =>
                 {
                     b.Property<long>("Id")
@@ -40,6 +61,8 @@ namespace PadManager.Service.Migrations
 
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(255);
+
+                    b.Property<Guid>("UserId");
 
                     b.HasKey("Id");
 
@@ -85,6 +108,8 @@ namespace PadManager.Service.Migrations
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(255);
 
+                    b.Property<Guid>("UserId");
+
                     b.HasKey("Id");
 
                     b.HasIndex("Identifier")
@@ -121,12 +146,52 @@ namespace PadManager.Service.Migrations
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(255);
 
+                    b.Property<Guid>("UserId");
+
                     b.HasKey("Id");
 
                     b.HasIndex("Identifier")
                         .IsUnique();
 
                     b.ToTable("Pads");
+                });
+
+            modelBuilder.Entity("PadManager.Core.Models.PadExecutionHistory", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CreatedBy")
+                        .HasMaxLength(255);
+
+                    b.Property<DateTimeOffset>("CreatedDate");
+
+                    b.Property<string>("ExecutionSummary");
+
+                    b.Property<Guid>("Identifier");
+
+                    b.Property<DateTimeOffset>("LastUpdatedDate");
+
+                    b.Property<Guid>("PadIdentifer");
+
+                    b.Property<string>("Result");
+
+                    b.Property<string>("Status")
+                        .IsRequired();
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(255);
+
+                    b.Property<Guid>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PadIdentifer");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("PadExecutionHistory");
                 });
 
             modelBuilder.Entity("PadManager.Core.Models.InstanceMapping", b =>

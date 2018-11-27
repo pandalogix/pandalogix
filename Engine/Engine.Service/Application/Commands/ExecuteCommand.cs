@@ -1,3 +1,4 @@
+using System;
 using System.Runtime.Serialization;
 using Engine.Contracts;
 using MediatR;
@@ -10,8 +11,12 @@ namespace Engine.Service
     public Instances Instances { get; set; }
     [DataMember]
     public PadContract Pad { get; set; }
-    public ExecutionCommand(PadContract contract, Instances instances)
+    [DataMember]
+    public Guid UserId { get; set; }
+
+    public ExecutionCommand(PadContract contract, Instances instances,Guid userId)
     {
+      this.UserId = userId;
       this.Pad = contract;
       this.Instances = instances;
     }

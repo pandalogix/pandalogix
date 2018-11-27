@@ -18,6 +18,6 @@ namespace PadManager.Core.Models
     [StringLength(255)]
     public string UpdatedBy { get; set; }
 
-    Guid UserId { get; set; }
+    public Guid UserId { get; set; }
   }
 }

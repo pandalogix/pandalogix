@@ -1,4 +1,7 @@
+using System;
+using System.Net.Http;
 using System.Threading.Tasks;
+using Engine.Contract.Contracts;
 using Engine.Contracts;
 using Engine.Core;
 using Engine.Enums;
@@ -14,11 +17,13 @@ namespace Engine.Service
   {
     private readonly IMediator mediator;
     private readonly IEventBus eventBus;
+    private readonly IHttpClientFactory clientFactory;
 
-    public EngineController(IMediator mediator, IEventBus evtBus)
+    public EngineController(IMediator mediator, IEventBus evtBus, IHttpClientFactory clientFactory)
     {
       this.mediator = mediator;
       this.eventBus = evtBus;
+      this.clientFactory = clientFactory;
     }
 
     [HttpPost]
@@ -36,18 +41,27 @@ namespace Engine.Service
       var pad = PadFactory.CreateInstance(request.Pad, ExecutionMode.Normal, request.Instances);
       await pad.Init();
       await pad.Execute(pad.Context, request.Instances);
-      return Ok(new
+
+      var result = new ExecutionResult
       {
-        Status = pad.Context.Status.ToString(),
+        PadIdentifier = request.Pad.Identifier,
+        Status = pad.Context.Status,
         Summary = pad.Context.ExecutionSummary,
         Result = pad.Context.Result
-      });
+      };
+
+      using (var padmgr = this.clientFactory.CreateClient("padMgr"))
+      {
+        var histResponse = await padmgr.PostAsJsonAsync<ExecutionResult>($"/api/pad/history?userId={request.UserId}", result);
+      }
+      return Ok(result);
 
     }
   }
 
   public class PadExecution : Event
   {
+    public Guid UserId { get; set; }
     public PadContract Pad { get; set; }
     public Instances Instances { get; set; }
   }
@@ -62,7 +76,7 @@ namespace Engine.Service
     }
     public async Task Handle(PadExecution pad)
     {
-      var result = await this.mediator.Send(new ExecutionCommand(pad.Pad, pad.Instances));
+      var result = await this.mediator.Send(new ExecutionCommand(pad.Pad, pad.Instances,pad.UserId));
     }
   }
 }

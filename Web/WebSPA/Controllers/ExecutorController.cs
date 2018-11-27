@@ -24,20 +24,20 @@ namespace WebSPA.Controllers
         if (header.Count == 0) return new StatusCodeResult(401);
         var apikey = header[0];
         return await this.ExecuteCore(padIdentifier, triggerObject, apikey, async (executionEvent) =>
-                {
-                  using (var engineMgr = this._clientFactory.CreateClient("engineMgr"))
-                  {
-                    var engineRespone = await engineMgr.PostAsJsonAsync<PadExecutionEvent>("/api/engine/event", executionEvent);
-                    if (engineRespone.IsSuccessStatusCode)
-                    {
-                      return new OkResult();
-                    }
-                    else
-                    {
-                      return StatusCode(500);
-                    }
-                  }
-                });
+               {
+                 using (var engineMgr = this._clientFactory.CreateClient("engineMgr"))
+                 {
+                   var engineRespone = await engineMgr.PostAsJsonAsync<PadExecutionEvent>("/api/engine/event", executionEvent);
+                   if (engineRespone.IsSuccessStatusCode)
+                   {
+                     return new OkResult();
+                   }
+                   else
+                   {
+                     return StatusCode(500);
+                   }
+                 }
+               });
       }
       return new StatusCodeResult(401);
     }
@@ -56,7 +56,7 @@ namespace WebSPA.Controllers
                   {
                     var engineRespone = await engineMgr.PostAsJsonAsync<PadExecutionEvent>("/api/engine", executionEvent);
                     var responsestring = await engineRespone.Content.ReadAsStringAsync();
-                    if(!string.IsNullOrEmpty(responsestring))
+                    if (!string.IsNullOrEmpty(responsestring))
                     {
                       return Ok(responsestring);
                     }
@@ -76,6 +76,8 @@ namespace WebSPA.Controllers
         var acctRespone = await accountMgr.GetAsync($"/api/account/pad?identifier={padIdentifier}&apikey={apikey}");
         if (acctRespone.IsSuccessStatusCode)
         {
+          var userId = await acctRespone.Content.ReadAsStringAsync();
+          userId = userId.Replace('"', ' ').Trim();
           using (var padmgr = this._clientFactory.CreateClient("padMgr"))
           {
             var padstring = await padmgr.GetStringAsync($"/api/pad/identifier/{padIdentifier}");
@@ -95,6 +97,7 @@ namespace WebSPA.Controllers
               //create execution instance
               PadExecutionEvent executionEvent = new PadExecutionEvent
               {
+                UserId = new Guid(userId),
                 Pad = pad,
                 Instances = instance
               };

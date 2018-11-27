@@ -48,6 +48,9 @@ namespace Engine.Core
         this._context.Status = ExecutionStatus.Failed;
         this._context.ExecutionSummary = $"Failed with error:{e}";
       }
+      finally{
+        //saving history
+      }
     }
 
     private async Task NodeExecute(INode node)
