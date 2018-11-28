@@ -53,9 +53,21 @@ export default class PadService {
     });
   }
 
-  getpads(page) {
+  getPads(page, pageSize, userId) {
     return new Promise((resolve, reject) => {
-      axios.get(`${padApi}?page=${page}`, {
+      axios.get(`${padApi}?page=${page}&pageSize=${pageSize}&userid=${userId}`, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(u => {
+        resolve(u.data);
+      }, err => reject(err));
+    });
+  }
+
+  getExecutionHistory(page, pageSize, userId) {
+    return new Promise((resolve, reject) => {
+      axios.get(`${padApi}/history?page=${page}&pageSize=${pageSize}&userid=${userId}`, {
         headers: {
           'Content-Type': 'application/json'
         }

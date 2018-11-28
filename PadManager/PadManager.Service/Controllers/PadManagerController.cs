@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System;
 using Engine.Contract.Contracts;
- using Newtonsoft.Json;
+using Newtonsoft.Json;
 
 
 namespace PadManager.Service.Controllers
@@ -26,11 +26,11 @@ namespace PadManager.Service.Controllers
 
     [HttpPost("history")]
     [ProducesResponseType(201)]
-    public  async Task<IActionResult> CreateHistory([FromQuery]Guid userId, [FromBody]ExecutionResult result)
+    public async Task<IActionResult> CreateHistory([FromQuery]Guid userId, [FromBody]ExecutionResult result)
     {
       var model = new PadExecutionHistory()
       {
-        UserId= userId,
+        UserId = userId,
         PadIdentifier = result.PadIdentifier,
         ExecutionSummary = result.Summary,
         Status = result.Status,
@@ -40,6 +40,22 @@ namespace PadManager.Service.Controllers
       this.context.Add(model);
       this.context.SaveChanges();
       return await Task.FromResult(Ok());
+    }
+
+
+    [HttpGet("history")]
+    public async Task<IActionResult> GetHistory(Guid userId, int page, int pageSize)
+    {
+      var result = await this.context.PadExecutionHistory
+                   .Where(h => h.UserId == userId)
+                   .OrderBy(p => p.LastUpdatedDate)
+                    .Skip((page - 1) * pageSize)
+                    .Take(pageSize)
+                    .ToListAsync();
+      var count = await this.context.PadExecutionHistory.Where(p => p.UserId == userId).LongCountAsync();
+
+      return Ok(new { count = count, data = result });
+
     }
 
     [HttpPost]
@@ -117,14 +133,15 @@ namespace PadManager.Service.Controllers
 
     [HttpGet]
     [Route("")]
-    public async Task<IActionResult> GetPads(int page, int pageSize)
+    public async Task<IActionResult> GetPads(int page, int pageSize, Guid userId)
     {
       var pads = await this.context.Pads
+                     .Where(p => p.UserId == userId)
                      .OrderBy(p => p.LastUpdatedDate)
                      .Skip((page - 1) * pageSize)
                      .Take(pageSize)
                      .ToListAsync();
-      var count = await this.context.Pads.LongCountAsync();
+      var count = await this.context.Pads.Where(p => p.UserId == userId).LongCountAsync();
 
       return Ok(new { count = count, data = pads.Select(p => p.ToContract()) });
 
