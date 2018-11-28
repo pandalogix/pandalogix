@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import * as userManagementAction from '../actions/userMgrAction';
 import { applicationContext } from '../services/securitymgr';
 import PadNav from './PadNav'
+import logo from '../assets/panda.svg';
 
 const styles = {
   sidebar: {
@@ -31,7 +32,7 @@ class Layout extends Component {
       <div className={'container-fluid'}>
         <nav className={'navbar fixed-top flex-md-nowrap p-0 shadow'}>
           <a className={'navbar-brand col-sm-3 col-md-2 mr-0'}  href="#">
-            <img src="http://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg" width="30" height="30" style={{ 'paddingRight': '5px' }} className="d-inline-block align-top" alt="" />
+            <img src={logo} width="30" height="30" style={{ 'paddingRight': '5px' }} className="d-inline-block align-top" alt="" />
             PandaLogix</a>
           {/* <input className={'form-control form-control-dark w-100'} /> */}
           {`${user.firstName} ${user.lastName}`}
