@@ -22,8 +22,8 @@ namespace AccountManager
     public async Task<IActionResult> Create([FromBody] Models.Account account)
     {
       this.context.Add(account);
-      await this.context.SaveChangesAsync();
-      return Ok(account);
+       this.context.SaveChanges();
+      return await Task.FromResult(Ok(account));
     }
 
     [HttpDelete]

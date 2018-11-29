@@ -64,6 +64,7 @@ namespace PadManager.Service.Controllers
     public async Task<IActionResult> Create([FromBody] Engine.Contracts.PadContract pad, [FromQuery]Guid user)
     {
       var model = pad.ToModel();
+      model.UserId = user;
       this.context.Add(model);
 
       this.context.SaveChanges();

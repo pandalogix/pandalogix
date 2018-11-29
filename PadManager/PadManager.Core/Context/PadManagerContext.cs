@@ -29,8 +29,8 @@ namespace PadManager.Core
       builder.Entity<Node>().HasIndex(e => e.Identifier).IsUnique();
 
       builder.Entity<Models.AccountPad>().ToTable("AccountPad");
-      builder.Entity<Models.AccountPad>().HasIndex(e => e.UserId).IsUnique();
-      builder.Entity<Models.AccountPad>().HasIndex(e => e.PadId).IsUnique();
+      builder.Entity<Models.AccountPad>().HasIndex(e => e.UserId);
+      builder.Entity<Models.AccountPad>().HasIndex(e => e.PadId);
 
       builder.Entity<Models.PadExecutionHistory>().HasIndex(e => e.PadIdentifier);
       builder.Entity<Models.PadExecutionHistory>().HasIndex(e => e.UserId);

@@ -137,13 +137,24 @@ class PadSummary extends Component {
           </div>
           <div className='form-group'>
             <label htmlFor='HowTo'>How To</label>
-            <textarea type='text' id='HowTo' value={'http request'} className='form-control' readOnly={true} rows={10} />
+            <div>
+              {this.getExample(this.props.user.apiKey,pad.identifier)}
+            </div>
           </div>
         </div>
         <button className='btn btn-primary' onClick={this.onPadChanged.bind(this)}>Save</button>
       </Layout>
 
     );
+  }
+
+  getExample(apikey, identifier) {
+    return `curl -i -X POST \
+    -H "Content-Type:application/json" \
+    -H "APIKEY:${apikey}" \
+    -d \
+ '"{\"Email\":\"1@test.com\",\"Name\":\"Johe Doe\",\"Address\":{\"Line1\":\"Mobile AL\"},\"Age\":20,\"DateBrith\":\"1980-01-01T12:01:02-06:00\",\"LastLogin\":\"2018-11-25T23:06:20.559984-06:00\",\"Duration\":\"12:00:01\"}"' \
+  'http://localhost:3000/api/executor?padIdentifier=${identifier}'`
   }
 
 

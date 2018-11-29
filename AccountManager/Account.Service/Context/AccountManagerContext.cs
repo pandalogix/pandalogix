@@ -19,8 +19,8 @@ namespace AccountManager.Context
     {
       builder.Entity<Models.Account>().HasIndex(e => e.Identifier).IsUnique();
       builder.Entity<Models.AccountPad>().ToTable("AccountPad");
-      builder.Entity<Models.AccountPad>().HasIndex(e => e.UserId).IsUnique();
-      builder.Entity<Models.AccountPad>().HasIndex(e => e.PadId).IsUnique();
+      builder.Entity<Models.AccountPad>().HasIndex(e => e.UserId);
+      builder.Entity<Models.AccountPad>().HasIndex(e => e.PadId);
     }
 
 
@@ -34,13 +34,13 @@ namespace AccountManager.Context
           continue;
         if (entry.State == EntityState.Modified)
         {
-          entry.Property("UpdatedBy").CurrentValue = Thread.CurrentPrincipal.Identity.Name;
+          entry.Property("UpdatedBy").CurrentValue = Thread.CurrentPrincipal?.Identity?.Name ?? "PadManager";
           entry.Property("LastUpdatedDate").CurrentValue = DateTimeOffset.Now;
 
         }
         if (entry.State == EntityState.Added)
         {
-          entry.Property("CreatedBy").CurrentValue = Thread.CurrentPrincipal.Identity.Name;
+          entry.Property("CreatedBy").CurrentValue = Thread.CurrentPrincipal?.Identity?.Name ?? "PadManager";
           entry.Property("CreatedDate").CurrentValue = DateTimeOffset.Now;
           entry.Property("Identifier").CurrentValue = Guid.NewGuid();
         }

@@ -45,7 +45,11 @@ class PadList extends Component {
                   this.state.pads.data.map((p) => {
                     return (
                       <tr>
-                        <td>{p.identifier}</td>
+                        <td>
+                          <a href={`/pad/${p.id}/summary`}>
+                            {p.identifier}
+                          </a>
+                        </td>
                         <td>{p.name}</td>
                         <td>{p.description}</td>
                       </tr>

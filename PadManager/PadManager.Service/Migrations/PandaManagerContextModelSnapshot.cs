@@ -31,11 +31,9 @@ namespace PadManager.Service.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PadId")
-                        .IsUnique();
+                    b.HasIndex("PadId");
 
-                    b.HasIndex("UserId")
-                        .IsUnique();
+                    b.HasIndex("UserId");
 
                     b.ToTable("AccountPad");
                 });
@@ -173,7 +171,7 @@ namespace PadManager.Service.Migrations
 
                     b.Property<DateTimeOffset>("LastUpdatedDate");
 
-                    b.Property<Guid>("PadIdentifer");
+                    b.Property<Guid>("PadIdentifier");
 
                     b.Property<string>("Result");
 
@@ -187,7 +185,7 @@ namespace PadManager.Service.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PadIdentifer");
+                    b.HasIndex("PadIdentifier");
 
                     b.HasIndex("UserId");
 
