@@ -47,7 +47,7 @@ class PadList extends Component {
                       <tr>
                         <td>
                           <a href={`/pad/${p.id}/summary`}>
-                            {p.identifier}
+                            {p.id}
                           </a>
                         </td>
                         <td>{p.name}</td>

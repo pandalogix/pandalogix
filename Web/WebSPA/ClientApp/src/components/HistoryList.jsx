@@ -51,7 +51,7 @@ class HistoryList extends Component {
                         <td>{h.padIdentifier}</td>
                         <td>{h.status}</td>
                         <td>{h.executionSummary}</td>
-                        <td>{h.createdDate}</td>
+                        <td>{new Date(h.createdDate).toLocaleDateString()}</td>
                       </tr>
                     )
                   })
