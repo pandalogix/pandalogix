@@ -5,12 +5,14 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
       - ASPNETCORE_URLS=http://+:80
-    # ports:
+      - ConnectionString=Server=tcp:${PANDALOGIX_DATABASE};Database=panda;User Id=sa;Password=yourStrong!Password;
+      # ports:
     #   - "7794:80"
   engine.service:
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
       - ASPNETCORE_URLS=http://+:80
+      - ConnectionString=Server=tcp:${PANDALOGIX_DATABASE};Database=panda;User Id=sa;Password=yourStrong!Password;
     # ports:
     #   - "29308:80"
 
@@ -18,12 +20,13 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
       - ASPNETCORE_URLS=http://+:80
+      - ConnectionString=Server=tcp:${PANDALOGIX_DATABASE};Database=panda;User Id=sa;Password=yourStrong!Password;
   webspa:
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
-      - ServiceEndPoints__AccountService=http://pandalogix_account.service_1/api/account/
-      - ServiceEndPoints__PadManagerService=http://pandalogix_padmanager.service_1/api/pad/
-      - ServiceEndPoints__EngineService=http://pandalogix_engine.service_1/api/engine/
+      - ServiceEndPoints__AccountService=http://${PANDALOGIX_ACCOUNTSERVICE}/api/account/
+      - ServiceEndPoints__PadManagerService=http://${PANDALOGIX_PADMANGERSERVICE}/api/pad/
+      - ServiceEndPoints__EngineService=http://${PANDALOGIX_ENGINESERVICE}/api/engine/
     ports:
       - "3000:80"
 
