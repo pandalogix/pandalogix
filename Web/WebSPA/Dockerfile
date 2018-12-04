@@ -18,6 +18,9 @@ COPY Web/WebSPA/WebSPA.csproj Web/WebSPA/
 RUN dotnet restore Web/WebSPA/WebSPA.csproj
 COPY . .
 WORKDIR /src/Web/WebSPA
+#update npmrc file
+RUN echo "@fortawesome:registry=https://npm.fontawesome.com/" > ClientApp\.npmrc \
+          && echo "//npm.fontawesome.com/:_authToken=${NPMAUTHTOKEN}">> ClientApp\.npmrc
 RUN dotnet build WebSPA.csproj -c Release -o /app
 
 FROM build AS publish
