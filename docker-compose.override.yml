@@ -28,5 +28,5 @@ services:
       - ServiceEndPoints__PadManagerService=http://${PANDALOGIX_PADMANGERSERVICE}/api/pad/
       - ServiceEndPoints__EngineService=http://${PANDALOGIX_ENGINESERVICE}/api/engine/
     ports:
-      - "3000:80"
+      - "80:80"
 
