@@ -1,5 +1,5 @@
 FROM microsoft/mssql-server-linux
-COPY ./create-db.sql  ./create-account.sql ./create-pad.sql  ./setup.sh ./entrypoint.sh ./
+COPY ./create-db.sql  ./create-account.sql ./create-pad.sql ./
 RUN chmod +x ./setup.sh
 RUN chmod +x ./entrypoint.sh
 EXPOSE 1433
