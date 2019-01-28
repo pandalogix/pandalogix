@@ -1,7 +1,5 @@
 FROM microsoft/mssql-server-linux
 COPY ./create-db.sql  ./create-account.sql ./create-pad.sql ./
-RUN chmod +x ./setup.sh
-RUN chmod +x ./entrypoint.sh
 EXPOSE 1433
 ENV SA_PASSWORD=yourStrong!Password
 ENV ACCEPT_EULA=Y
