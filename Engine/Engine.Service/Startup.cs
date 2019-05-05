@@ -57,7 +57,7 @@ namespace Engine.Service
         });
       });
 
-      services.AddMediatR();
+      services.AddMediatR(typeof(ExecuteCommandHandler));
 
       services.AddScoped(typeof(PadExecutionHandler), typeof(PadExecutionHandler));
       services.AddSingleton<IEventBusSubscriptionsManager, InMemoryEventBusSubscriptionsManager>();
