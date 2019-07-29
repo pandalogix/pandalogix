@@ -23,7 +23,7 @@ namespace Engine.Contracts
       };
       await node.Init(context);
       await node.Execute(context);
-      Assert.False(node.Context.Result.ToString().Contains("{"));
+      Assert.DoesNotContain("{", node.Context.Result.ToString());
     }
 
 
@@ -64,7 +64,7 @@ namespace Engine.Contracts
       };
       await node.Init(context);
       await node.Execute(context);
-      Assert.False(node.Context.Result.ToString().Contains("{"));
+      Assert.DoesNotContain("{", node.Context.Result.ToString());
     }
   }
 }

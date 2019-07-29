@@ -1,14 +1,12 @@
-using Engine;
 using Engine.Contracts;
-using Engine.Enums;
-using Newtonsoft.Json;
 using Engine.Core;
-using Engine.Core.Nodes;
 using Engine.Core.Nodes.General;
 using Engine.Core.Nodes.Math;
+using Engine.Enums;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using Xunit;
-using System;
 
 namespace Engine.CoreTest
 {
@@ -17,13 +15,13 @@ namespace Engine.CoreTest
     [Fact]
     public async void AddNodeConstantNumberTest()
     {
-      var padContract = new Engine.Contracts.PadContract()
+      var padContract = new PadContract()
       {
         Id = 1,
         Name = "test"
       };
 
-      var constant1 = new Engine.Contracts.NodeBaseContract()
+      var constant1 = new NodeBaseContract()
       {
         Id = 1,
         NodeId = 1,
@@ -48,7 +46,7 @@ namespace Engine.CoreTest
         }
       };
 
-      var constant2 = new Engine.Contracts.NodeBaseContract()
+      var constant2 = new NodeBaseContract()
       {
         Id = 2,
         NodeId = 2,
@@ -73,7 +71,7 @@ namespace Engine.CoreTest
         }
       };
 
-      var add = new Engine.Contracts.NodeBaseContract()
+      var add = new NodeBaseContract()
       {
         Id = 3,
         NodeId = 3,
@@ -101,7 +99,7 @@ namespace Engine.CoreTest
         }
       };
 
-      padContract.Nodes = new List<Engine.Contracts.NodeBaseContract>()
+      padContract.Nodes = new List<NodeBaseContract>()
       {
         constant1,constant2,add
       };
