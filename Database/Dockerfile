@@ -1,4 +1,4 @@
-FROM microsoft/mssql-server-linux
+FROM mcr.microsoft.com/mssql/server:2017-latest-ubuntu
 COPY ./create-db.sql  ./create-account.sql ./create-pad.sql ./
 EXPOSE 1433
 ENV SA_PASSWORD=yourStrong!Password
