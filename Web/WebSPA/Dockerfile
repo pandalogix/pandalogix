@@ -20,6 +20,8 @@ RUN curl -SL "https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-lin
 COPY Web/WebSPA/WebSPA.csproj Web/WebSPA/
 RUN dotnet restore Web/WebSPA/WebSPA.csproj
 COPY . .
+WORKDIR /src/Web/WebSPA/ClientApp
+RUN  npm install && npm run build
 WORKDIR /src/Web/WebSPA
 #update npmrc file
 
