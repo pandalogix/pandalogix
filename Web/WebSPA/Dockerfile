@@ -7,7 +7,7 @@ FROM mcr.microsoft.com/dotnet/core/sdk:2.2 AS build
 WORKDIR /src
 #setup node
 ENV NODE_VERSION 10.16.0
-ENV NODE_DOWNLOAD_SHA 21fb4690e349f82d708ae766def01d7fec1b085ce1f5ab30d9bda8ee126ca8fc
+ENV NODE_DOWNLOAD_SHA 2e2cddf805112bd0b5769290bf2d1bc4bdd55ee44327e826fa94c459835a9d9a
 ARG NPMAUTHTOKEN=''
 ENV FONTAWESOME_NPM_AUTH_TOKEN=${NPMAUTHTOKEN}
 
@@ -20,8 +20,8 @@ RUN curl -SL "https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-lin
 COPY Web/WebSPA/WebSPA.csproj Web/WebSPA/
 RUN dotnet restore Web/WebSPA/WebSPA.csproj
 COPY . .
-WORKDIR /src/Web/WebSPA/ClientApp
-RUN  npm install && npm run build
+# WORKDIR /src/Web/WebSPA/ClientApp
+# RUN  npm install && npm run build
 WORKDIR /src/Web/WebSPA
 #update npmrc file
 
