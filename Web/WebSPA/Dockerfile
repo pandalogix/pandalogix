@@ -26,7 +26,7 @@ WORKDIR /src/Web/WebSPA
 RUN dotnet build WebSPA.csproj -c Release -o /app
 
 FROM build AS publish
-RUN dotnet publish WebSPA.csproj -c Release --self-contained -r linux-x64 -o /app
+RUN dotnet publish WebSPA.csproj -c Release -o /app
 
 FROM base AS final
 WORKDIR /app
