@@ -1,8 +1,8 @@
-FROM mcr.microsoft.com/dotnet/core/runtime:2.2 AS base
+FROM mcr.microsoft.com/dotnet/core/aspnet:2.2-alpine3.9 AS base
 WORKDIR /app
 EXPOSE 80
 
-FROM mcr.microsoft.com/dotnet/core/sdk:2.2 AS build
+FROM mcr.microsoft.com/dotnet/core/sdk:2.2-alpine3.9 AS build
 WORKDIR /src
 COPY PadManager/PadManager.Service/PadManager.Service.csproj PadManager/PadManager.Service/
 COPY PadManager/PadManager.Core/PadManager.csproj PadManager/PadManager.Core/
