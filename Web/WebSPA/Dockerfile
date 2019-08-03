@@ -1,9 +1,9 @@
-FROM mcr.microsoft.com/dotnet/core/aspnet:2.2 AS base
+FROM mcr.microsoft.com/dotnet/core/aspnet:2.2-alpine3.9 AS base
 WORKDIR /app
 EXPOSE 80
 
 
-FROM mcr.microsoft.com/dotnet/core/sdk:2.2 AS build
+FROM mcr.microsoft.com/dotnet/core/sdk:2.2-alpine3.9 AS build
 WORKDIR /src
 #setup node
 ENV NODE_VERSION 10.16.0
@@ -11,11 +11,8 @@ ENV NODE_DOWNLOAD_SHA 2e2cddf805112bd0b5769290bf2d1bc4bdd55ee44327e826fa94c45983
 ARG NPMAUTHTOKEN=''
 ENV FONTAWESOME_NPM_AUTH_TOKEN=${NPMAUTHTOKEN}
 
-RUN curl -SL "https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-x64.tar.gz" --output nodejs.tar.gz \
-    && echo "$NODE_DOWNLOAD_SHA nodejs.tar.gz" | sha256sum -c - \
-    && tar -xzf "nodejs.tar.gz" -C /usr/local --strip-components=1 \
-    && rm nodejs.tar.gz \
-    && ln -s /usr/local/bin/node /usr/local/bin/nodejs
+RUN apk --no-cache add nodejs npm
+
 
 COPY Web/WebSPA/WebSPA.csproj Web/WebSPA/
 RUN dotnet restore Web/WebSPA/WebSPA.csproj
