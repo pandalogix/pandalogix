@@ -24,13 +24,8 @@ namespace WebSPA
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
-      services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+      services.AddMvc();
 
-      // In production, the React files will be served from this directory
-      services.AddSpaStaticFiles(configuration =>
-      {
-        configuration.RootPath = "ClientApp/build";
-      });
       // When working with hierarchical keys in environment variables, a colon separator (:) may not work on all platforms. A double underscore (__) is supported by all platforms and is replaced by a colon.
       services.AddHttpClient("accountMgr", configureClient =>
       {
@@ -77,8 +72,9 @@ namespace WebSPA
       }
 
       // app.UseHttpsRedirection();
+
+      app.UseDefaultFiles();
       app.UseStaticFiles();
-      app.UseSpaStaticFiles();
       app.UseProxy(new Middleware.ProxyOptions()
       {
         Mappings = new System.Collections.Generic.Dictionary<Microsoft.AspNetCore.Http.PathString, string> {
@@ -100,17 +96,6 @@ namespace WebSPA
       app.UseSwaggerUI(c =>
       {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "PandaLogix V1");
-      });
-      app.UseSpa(spa =>
-      {
-        spa.Options.SourcePath = "ClientApp";
-
-        if (env.IsDevelopment())
-        {
-          spa.UseReactDevelopmentServer(npmScript: "start");
-        }
-
-
       });
     }
   }
