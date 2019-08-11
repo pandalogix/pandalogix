@@ -1,0 +1,17 @@
+#padDiagram{
+  height: 100%;
+  width: 100%;
+}
+
+.diagram-main {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+}
+.diagram-container{
+  height: 500px;
+  overflow: auto;
+}
+.palette-container {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
