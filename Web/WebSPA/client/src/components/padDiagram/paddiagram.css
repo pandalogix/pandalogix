@@ -8,7 +8,7 @@
   grid-template-columns: 3fr 1fr;
 }
 .diagram-container {
-  height: 500px;
+  height: 600px;
   overflow: auto;
 }
 .palette-container {
@@ -42,6 +42,7 @@
 
 #palette_container {
   display: flex;
+  margin-bottom: 10px;
 }
 
 .e-acrdn-item:nth-child(even){

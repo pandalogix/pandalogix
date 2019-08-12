@@ -2,7 +2,7 @@ import React from "react";
 import PadDiagram from "../../components/padDiagram/PadDiagram";
 export default () => (
   <>
-    Pads
+    <div className="header">Pads</div>
     <PadDiagram></PadDiagram>
   </>
 );

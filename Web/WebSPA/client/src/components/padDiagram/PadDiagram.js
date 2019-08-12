@@ -65,10 +65,16 @@ const onCollectionChanged = arg => {
 
 const onMouseenter = arg => {
   if (arg.actualObject) {
-    console.log(arg.actualObject);
     diagramInstance.tool = DiagramTools.DrawOnce;
   }
 };
+
+const onClick=arg=>{
+  console.log(arg)
+  diagramInstance.select(arg.element);
+  diagramInstance.tool = DiagramTools.Default;
+
+}
 let data = FetchData();
 
 const onMouserLeave = arg => {
@@ -85,11 +91,14 @@ export default () => {
 
   return (
     <div className="diagram-main">
+      <div className="palette-container">
+        <Palette />
+      </div>
       <div className="diagram-container">
         <DiagramComponent
           id="padDiagram"
           ref={d => (diagramInstance = d)}
-          height="500px"
+          height="800px"
           snapSettings={{ constraints: SnapConstraints.ShowLines }}
           selectedItems={{
             constraints:
@@ -106,7 +115,7 @@ export default () => {
             DiagramTools.MultipleSelect |
             DiagramTools.SingleSelect |
             DiagramTools.ZoomPan
-          }
+            }
           drawingObject={{
             id: "connector",
             type: "Bezier",
@@ -118,14 +127,13 @@ export default () => {
           collectionChange={onCollectionChanged}
           mouseEnter={onMouseenter}
           mouseLeave={onMouserLeave}
+          click={onClick}
         />
       </div>
       <div className="property-container">
         <Property />
       </div>
-      <div className="palette-container">
-        <Palette />
-      </div>
+
       <button
         onClick={() => {
           console.log(diagramInstance.nodes);
