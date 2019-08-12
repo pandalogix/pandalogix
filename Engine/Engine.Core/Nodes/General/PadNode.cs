@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Engine.Core.Nodes.General
 {
-  [NodeMetaData(Category = "General", NodeClass = typeof(PadNode), Name = nameof(PadNode))]
+  [NodeMetaData(Category = "General", NodeClass = typeof(PadNode), Name = "Pad",NodeIcon="fal fa-clipboard")]
   public class PadNode : NodeBase
   {
     [FieldMetaData(Name = "PadContract", ValueType = typeof(PadContract))]

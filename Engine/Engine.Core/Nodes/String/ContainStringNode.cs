@@ -4,7 +4,7 @@ using Engine.Interfaces;
 
 namespace Engine.Core
 {
-  [NodeMetaData(NodeClass = typeof(ContainStringNode), Category = "String", Name = nameof(ContainStringNode))]
+  [NodeMetaData(NodeClass = typeof(ContainStringNode), Category = "String", Name="Contains", NodeIcon="")]
 
   public class ContainStringNode : NodeBase
   {

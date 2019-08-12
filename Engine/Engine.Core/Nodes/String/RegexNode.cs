@@ -7,7 +7,7 @@ using Engine.Interfaces;
 
 namespace Engine.Core
 {
-  [NodeMetaData(NodeClass = typeof(RegexNode), Category = "String", Name = nameof(RegexNode))]
+  [NodeMetaData(NodeClass = typeof(RegexNode), Category = "String", Name="Regex", NodeIcon="")]
 
   public class RegexNode : NodeBase
   {

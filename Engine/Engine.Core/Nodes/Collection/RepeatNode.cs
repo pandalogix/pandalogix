@@ -5,7 +5,7 @@ using Engine.Interfaces;
 
 namespace Engine.Core
 {
-  [NodeMetaData(NodeClass = typeof(RepeatNode), Category = "Collection", Name = nameof(RepeatNode))]
+  [NodeMetaData(NodeClass = typeof(RepeatNode), Category = "Collection", Name = "Repeat", NodeIcon="fal fa-repeat-1-alt")]
 
   public class RepeatNode : NodeBase
   {

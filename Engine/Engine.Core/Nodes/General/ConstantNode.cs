@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Engine.Core.Nodes.General
 {
-  [NodeMetaData(NodeClass = typeof(ConstantNode), Category = "General", Name = nameof(ConstantNode))]
+  [NodeMetaData(NodeClass = typeof(ConstantNode), Category = "General", Name = "Constant", NodeIcon="fal fa-dot-circle")]
   public class ConstantNode : NodeBase
   {
     [FieldMetaData(Name = nameof(Value), ValueType = typeof(object))]

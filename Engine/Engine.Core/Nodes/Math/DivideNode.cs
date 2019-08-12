@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Engine.Core.Nodes.Math
 {
-  [NodeMetaData(NodeClass = typeof(DivideNode), Category = "Math", Name = nameof(DivideNode))]
+  [NodeMetaData(NodeClass = typeof(DivideNode), Category = "Math", Name="Divide", NodeIcon="fal fa-divide")]
   public class DivideNode : DualInputBaseNode
   {
     protected override async Task InternalExecute(IContext context)

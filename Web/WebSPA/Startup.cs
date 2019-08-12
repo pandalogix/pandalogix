@@ -79,7 +79,8 @@ namespace WebSPA
       {
         Mappings = new System.Collections.Generic.Dictionary<Microsoft.AspNetCore.Http.PathString, string> {
           { new PathString("/api/account"), "accountMgr"},
-          {new PathString("/api/pad"),"padMgr"}
+          {new PathString("/api/pad"),"padMgr"},
+           {new PathString("/api/metadata"),"engineMgr"}
         }
       });
       app.UseMvc(routes =>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Engine.Core.Nodes.Logic
 {
-  [NodeMetaData(NodeClass = typeof(OrNode), Category = "Logic", Name = nameof(OrNode))]
+  [NodeMetaData(NodeClass = typeof(OrNode), Category = "Logic", Name="Or", NodeIcon="")]
   public class OrNode : NodeBase
   {
 

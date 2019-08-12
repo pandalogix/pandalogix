@@ -10,7 +10,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Engine.Core
 {
-  [NodeMetaData(NodeClass = typeof(StringFormatNode), Category = "String", Name = nameof(StringFormatNode))]
+  [NodeMetaData(NodeClass = typeof(StringFormatNode), Category = "String", Name="Format", NodeIcon="fal fa-text")]
 
   public class StringFormatNode : NodeBase
   {

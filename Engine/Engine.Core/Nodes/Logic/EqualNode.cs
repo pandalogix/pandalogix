@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Engine.Core.Nodes.Logic
 {
-  [NodeMetaData(NodeClass = typeof(EqualNode), Category = "Logic", Name = nameof(EqualNode))]
+  [NodeMetaData(NodeClass = typeof(EqualNode), Category = "Logic", Name = "Equal", NodeIcon="fal fa-equals")]
   public class EqualNode : DualInputBaseNode
   {
     protected override async Task InternalExecute(IContext context)

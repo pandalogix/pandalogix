@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Engine.Core.Nodes.Math
 {
-  [NodeMetaData(NodeClass = typeof(MultiplyNode), Category = "Math", Name = nameof(MultiplyNode))]
+  [NodeMetaData(NodeClass = typeof(MultiplyNode), Category = "Math",Name="Multiple", NodeIcon="fal fa-times")]
   public class MultiplyNode : DualInputBaseNode
   {
     protected override async Task InternalExecute(IContext context)

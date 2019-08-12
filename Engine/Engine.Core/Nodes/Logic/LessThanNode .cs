@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Engine.Core.Nodes.Logic
 {
-  [NodeMetaData(NodeClass = typeof(LessThanNode), Category = "Logic", Name = nameof(LessThanNode))]
+  [NodeMetaData(NodeClass = typeof(LessThanNode), Category = "Logic", Name="Less Than", NodeIcon="fal fa-less-than")]
 
   public class LessThanNode : DualInputBaseNode
   {

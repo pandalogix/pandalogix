@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Engine.Core.Nodes.Logic
 {
-  [NodeMetaData(NodeClass = typeof(GreaterThanOrEqualNode), Category = "Logic", Name = nameof(GreaterThanOrEqualNode))]
+  [NodeMetaData(NodeClass = typeof(GreaterThanOrEqualNode), Category = "Logic", Name="Greater Than or Equal", NodeIcon="fal fa-greater-than-equal")]
 
   public class GreaterThanOrEqualNode : DualInputBaseNode
   {

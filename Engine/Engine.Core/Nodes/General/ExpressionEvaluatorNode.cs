@@ -7,7 +7,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Engine.Core
 {
-  [NodeMetaData(NodeClass = typeof(ExpressionEvaluatorNode), Category = "General", Name = nameof(ExpressionEvaluatorNode))]
+  [NodeMetaData(NodeClass = typeof(ExpressionEvaluatorNode), Category = "General", Name ="Expression Evaluator", NodeIcon="fal fa-function")]
 
   public class ExpressionEvaluatorNode : NodeBase
   {

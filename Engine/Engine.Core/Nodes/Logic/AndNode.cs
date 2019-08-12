@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Engine.Core.Nodes.Logic
 {
-  [NodeMetaData(NodeClass = typeof(AndNode), Category = "Logic", Name = nameof(AndNode))]
+  [NodeMetaData(NodeClass = typeof(AndNode), Category = "Logic", Name = "And", NodeIcon="")]
   public class AndNode : NodeBase
   {
     protected override async Task InternalExecute(IContext context)

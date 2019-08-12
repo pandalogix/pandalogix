@@ -5,7 +5,7 @@ using Engine.Interfaces;
 
 namespace Engine.Core
 {
-  [NodeMetaData(NodeClass = typeof(CollectionFilterNode), Category = "Collection", Name = nameof(CollectionFilterNode))]
+  [NodeMetaData(NodeClass = typeof(CollectionFilterNode), Category = "Collection", Name = "Collection Filter", NodeIcon="fal fa-sort-amount-down")]
   public class CollectionFilterNode : NodeBase
   {
     [FieldMetaData(Name = nameof(Data), ValueType = typeof(DataTable))]

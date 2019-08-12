@@ -7,7 +7,7 @@ using Engine.Interfaces;
 
 namespace Engine.Core.Nodes.General
 {
-  [NodeMetaData(Category = "General", NodeClass = typeof(RestNode), Name = nameof(RestNode))]
+  [NodeMetaData(Category = "General", NodeClass = typeof(RestNode), Name = "HTTP", NodeIcon="fal fa-paper-plane" )]
 
   public class RestNode : NodeBase
   {

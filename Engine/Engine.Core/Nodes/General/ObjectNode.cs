@@ -9,7 +9,7 @@ using Engine.Enums;
 
 namespace Engine.Core.Nodes.General
 {
-  [NodeMetaData(NodeClass = typeof(ObjectNode), Category = "General", Name = nameof(ObjectNode))]
+  [NodeMetaData(NodeClass = typeof(ObjectNode), Category = "General", Name = "Object", NodeIcon="fal fa-brackets-curly")]
 
   public class ObjectNode : NodeBase
   {

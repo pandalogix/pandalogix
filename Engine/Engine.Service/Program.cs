@@ -19,6 +19,9 @@ namespace Engine.Service
 
     public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
         WebHost.CreateDefaultBuilder(args)
+                .UseKestrel(options=>{
+              options.Listen(System.Net.IPAddress.Loopback,3003);
+            })
             .UseStartup<Startup>()
             .UseContentRoot(Directory.GetCurrentDirectory())
             .ConfigureLogging((hostingContext, builder) =>
