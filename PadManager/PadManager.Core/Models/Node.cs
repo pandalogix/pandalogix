@@ -53,6 +53,8 @@ namespace PadManager.Core.Models
     public string NodeType { get; set; }
 
     public string Location { get; set; }
+
+    public string NodeIdentifier { get; set; }
   }
 
   public static class NodeExtension

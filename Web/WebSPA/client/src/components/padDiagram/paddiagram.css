@@ -10,10 +10,18 @@
 .diagram-container {
   height: 600px;
   overflow: auto;
+  margin: 5px 0;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 3px;
 }
 .palette-container {
   grid-column-start: 1;
   grid-column-end: 3;
+}
+
+.property-container{
+  max-width: 250px;
+  margin: 5px;
 }
 
 .nodeWrapper {

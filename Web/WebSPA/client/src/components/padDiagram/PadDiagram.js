@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import {
   DiagramComponent,
@@ -6,7 +6,6 @@ import {
   SelectorConstraints,
   PortVisibility,
   DiagramTools,
-  ConnectorConstraints,
   NodeConstraints
 } from "@syncfusion/ej2-react-diagrams";
 import Property from "../property/Property";
@@ -16,7 +15,7 @@ import Palette from "../palette/Palette";
 import { FetchData } from "../padDataSource/PadDataSource";
 
 let diagramInstance;
-const setNodeDefault = node => {
+const setNodeDefault = (node, id) => {
   node.constraints = NodeConstraints.Default | NodeConstraints.Shadow;
   node.ports = [
     {
@@ -32,6 +31,7 @@ const setNodeDefault = node => {
       shape: "Circle"
     }
   ];
+  node.data.nodeId = id;
 };
 
 const setConnectorDefault = connector => {
@@ -47,7 +47,6 @@ const setConnectorDefault = connector => {
 };
 
 const onCollectionChanged = arg => {
-  console.log(arg);
   if (arg.state === "Changed") {
     if (
       arg.element &&
@@ -69,25 +68,18 @@ const onMouseenter = arg => {
   }
 };
 
-const onClick=arg=>{
-  console.log(arg)
+const onClick = arg => {
   diagramInstance.select(arg.element);
   diagramInstance.tool = DiagramTools.Default;
+};
 
-}
 let data = FetchData();
 
 const onMouserLeave = arg => {
   diagramInstance.tool = DiagramTools.Default;
 };
 export default () => {
-  //const [data, setData] = userState({});
-
-  //setData(d);
-  // useEffect(() => {
-  //   const d = FetchData();
-  //   setData(d);
-  // }, [setData]);
+  const [selectedNode, setSelectNode] = useState(null);
 
   return (
     <div className="diagram-main">
@@ -98,7 +90,7 @@ export default () => {
         <DiagramComponent
           id="padDiagram"
           ref={d => (diagramInstance = d)}
-          height="800px"
+          height="590px"
           snapSettings={{ constraints: SnapConstraints.ShowLines }}
           selectedItems={{
             constraints:
@@ -109,29 +101,37 @@ export default () => {
           }}
           nodes={data.nodes}
           connectors={data.connectors}
-          getNodeDefaults={setNodeDefault}
+          getNodeDefaults={node => {
+            if (new Error().stack.indexOf("intDragStop") !== -1) {
+              data.currentMaxSequenceId++;
+            }
+            setNodeDefault(node, data.currentMaxSequenceId);
+          }}
           getConnectorDefaults={setConnectorDefault}
           tool={
             DiagramTools.MultipleSelect |
             DiagramTools.SingleSelect |
             DiagramTools.ZoomPan
-            }
+          }
           drawingObject={{
             id: "connector",
-            type: "Bezier",
-            constraints:
-              ConnectorConstraints.Select |
-              ConnectorConstraints.Delete |
-              ConnectorConstraints.Interaction
+            type: "Bezier"
+            // constraints:
+            //   ConnectorConstraints.Select |
+            //   ConnectorConstraints.Delete |
+            //   ConnectorConstraints.Interaction
           }}
           collectionChange={onCollectionChanged}
           mouseEnter={onMouseenter}
           mouseLeave={onMouserLeave}
           click={onClick}
+          selectionChange={arg => {
+            setSelectNode(arg.newValue);
+          }}
         />
       </div>
       <div className="property-container">
-        <Property />
+        <Property node={selectedNode} />
       </div>
 
       <button

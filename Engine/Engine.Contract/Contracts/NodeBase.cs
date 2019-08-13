@@ -25,5 +25,6 @@ namespace Engine.Contracts
     public int NodeId { get; set; }
     [DataMember]
     public string Location { get; set; }
+
   }
 }
