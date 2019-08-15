@@ -3,7 +3,7 @@ import {
   SymbolPaletteComponent,
   NodeConstraints
 } from "@syncfusion/ej2-react-diagrams";
-import {dom} from '@fortawesome/fontawesome-svg-core'
+import { dom } from "@fortawesome/fontawesome-svg-core";
 import axios from "axios";
 
 dom.watch();
@@ -12,8 +12,8 @@ const getSymboalContent = nodemetadata => {
   let iconortext = nodemetadata.name;
   if (nodemetadata.nodeIcon) {
     iconortext = `<i class="${nodemetadata.nodeIcon} fa-2x nodeicon"></i>`;
-  }else{
-    iconortext =`<span>${nodemetadata.name}</span>`
+  } else {
+    iconortext = `<span>${nodemetadata.name}</span>`;
   }
 
   return `<div class="nodeWrapper">
@@ -28,7 +28,7 @@ const getPalleteSymbols = metadata => {
       const element = metadata[attr];
       symbols.push({
         id: attr,
-        title:attr.toLocaleUpperCase(),
+        title: attr.toLocaleUpperCase(),
         expanded: true,
         symbols: element.map(n => {
           return {
@@ -38,10 +38,9 @@ const getPalleteSymbols = metadata => {
               type: "HTML",
               content: getSymboalContent(n.nodeData)
             },
-            style:{
-              width:'80px'
+            style: {
+              width: "80px"
             }
-
           };
         })
       });
@@ -76,9 +75,14 @@ export default () => {
         return { fit: true };
       }}
       getNodeDefaults={node => {
-        node.width = 100;
-        node.height = 100;
+        node.width = 150;
+        node.height = 70;
         node.constraints = NodeConstraints.AllowDrop | NodeConstraints.Default;
+        node.shadow = {
+          angle: 50,
+          opacity: 0.8,
+          distance: 6
+        };
       }}
     />
   );

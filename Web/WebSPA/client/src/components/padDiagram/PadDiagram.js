@@ -6,7 +6,8 @@ import {
   SelectorConstraints,
   PortVisibility,
   DiagramTools,
-  NodeConstraints
+  NodeConstraints,
+  Node
 } from "@syncfusion/ej2-react-diagrams";
 import Property from "../property/Property";
 
@@ -46,7 +47,7 @@ const setConnectorDefault = connector => {
   };
 };
 
-const onCollectionChanged = arg => {
+const onCollectionChanged = (arg, diagram) => {
   if (arg.state === "Changed") {
     if (
       arg.element &&
@@ -58,6 +59,22 @@ const onCollectionChanged = arg => {
       setTimeout(() => {
         diagramInstance.remove(arg.element);
       }, 100);
+    }
+    //check circular
+    if (
+      arg.element &&
+      arg.element.type === "Bezier" &&
+      (arg.element.sourcePortID &&
+        arg.element.targetPortID &&
+        arg.element.sourceID !== arg.element.targetID)
+    ) {
+      try {
+        getProNode(diagram, diagram.getObject(arg.element.targetID));
+      } catch (error) {
+        setTimeout(() => {
+          diagramInstance.remove(arg.element);
+        }, 100);
+      }
     }
   }
 };
@@ -78,6 +95,52 @@ let data = FetchData();
 const onMouserLeave = arg => {
   diagramInstance.tool = DiagramTools.Default;
 };
+
+const getProNode = (diagram, node) => {
+  if (!diagram || !node || !(node instanceof Node)) return null;
+  let nodeIds = [];
+  getProNodeRecusive(
+    diagram,
+    node,
+    nodeIds,
+    id => nodeIds.findIndex(n => n === node.id) !== -1
+  );
+  if (nodeIds) {
+    return nodeIds;
+  } else return null;
+};
+
+const getProNodeRecusive = (diagram, node, nodes, circularCheck) => {
+  for (let i = 0; i < diagram.connectors.length; i++) {
+    let c = diagram.connectors[i];
+    if (c.targetID === node.id && c.sourceID) {
+      if (circularCheck(c.sourceID)) {
+        throw new Error("Circular connections");
+      }
+      if (nodes.findIndex(b => b === c.sourceID) === -1) {
+        nodes.push(c.sourceID);
+        let parentNodes = getProNode(
+          diagram,
+          diagram.getObject(c.sourceID),
+          nodes,
+          circularCheck
+        );
+        if (parentNodes) {
+          parentNodes.forEach(element => {
+            if (nodes.findIndex(b => b === element) === -1) {
+              nodes.push(element);
+            } else {
+              console.error("duplicate node - " + element);
+            }
+          });
+        }
+      }
+    }
+  }
+
+  return nodes;
+};
+
 export default () => {
   const [selectedNode, setSelectNode] = useState(null);
 
@@ -121,7 +184,7 @@ export default () => {
             //   ConnectorConstraints.Delete |
             //   ConnectorConstraints.Interaction
           }}
-          collectionChange={onCollectionChanged}
+          collectionChange={arg => onCollectionChanged(arg, diagramInstance)}
           mouseEnter={onMouseenter}
           mouseLeave={onMouserLeave}
           click={onClick}
@@ -131,7 +194,11 @@ export default () => {
         />
       </div>
       <div className="property-container">
-        <Property node={selectedNode} />
+        <Property
+          node={selectedNode}
+          preNodes={getProNode(diagramInstance, selectedNode)}
+          diagram={diagramInstance}
+        />
       </div>
 
       <button

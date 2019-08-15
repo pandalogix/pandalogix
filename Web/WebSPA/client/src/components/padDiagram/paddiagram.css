@@ -19,20 +19,22 @@
   grid-column-end: 3;
 }
 
-.property-container{
+.property-container {
   max-width: 250px;
   margin: 5px;
 }
 
 .nodeWrapper {
   overflow-wrap: break-word;
-  /* border: 1px solid; */
   width: 100%;
   height: 100%;
   border-radius: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.diagram-container .nodeWrapper{
+  background: #6BA5D7;
 }
 
 .nodeicon {
@@ -47,18 +49,17 @@
   white-space: nowrap;
   text-transform: uppercase;
 }
-
 #palette_container {
   display: flex;
   margin-bottom: 10px;
 }
 
-.e-acrdn-item:nth-child(even){
+.e-acrdn-item:nth-child(even) {
   background: greenyellow;
   border-radius: 5px;
 }
 
-.e-acrdn-item:nth-child(odd){
+.e-acrdn-item:nth-child(odd) {
   background: lightblue;
   border-radius: 5px;
 }

@@ -1,0 +1,13 @@
+
+.form-group .btn-sm {
+  font-size: 0.5rem;
+  margin-bottom: 3px;
+}
+
+.property-name {
+  font-weight: bold;
+}
+
+.field-source{
+  float: right;
+}

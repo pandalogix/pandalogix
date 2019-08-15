@@ -30,7 +30,11 @@ namespace Engine.Service
       services.AddMvc(options =>
       {
 
-      });
+      }).AddJsonOptions(options =>
+    {
+      options.SerializerSettings.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter());
+      options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
+    });
       services.AddHttpClient("padMgr", configureClient =>
       {
         configureClient.BaseAddress = new System.Uri(Configuration.GetValue<string>("ServiceEndPoints:PadManagerService"));

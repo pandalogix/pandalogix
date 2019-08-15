@@ -1,8 +1,11 @@
 import React from "react";
 import { Node } from "@syncfusion/ej2-diagrams";
+import FieldEditor from "../fieldEditor/FieldEditor";
 import "./property.css";
 export default props => {
-  const { node } = props;
+  const { node, preNodes, diagram } = props;
+  let nodes = [];
+  if (preNodes) nodes = preNodes.map(m => diagram.getObject(m));
   if (node instanceof Node) {
     return (
       <div className="card">
@@ -10,19 +13,12 @@ export default props => {
         <form className="property-content card-body">
           {node.data.fieldsMetaData &&
             node.data.fieldsMetaData.map(p => {
-              return (
-                <div className="form-group">
-                  <label for={p.name}>{p.name}</label>
-                  <input type="text" class="form-control" id={p.name} />
-                </div>
-              );
+              return <FieldEditor key={p} field={p} preNodes={nodes} />;
             })}
         </form>
-        <div>
-          {/* {node && (
-            <pre>{JSON.stringify(node.data.fieldsMetaData, null, 2)}</pre>
-          )} */}
-        </div>
+        {/* <div>
+          {JSON.stringify(preNodes,null,2)}
+        </div> */}
       </div>
     );
   } else {
