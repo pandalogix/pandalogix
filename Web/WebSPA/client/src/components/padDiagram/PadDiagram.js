@@ -13,9 +13,11 @@ import Property from "../property/Property";
 
 import "./paddiagram.css";
 import Palette from "../palette/Palette";
-import { FetchData } from "../padDataSource/PadDataSource";
+import { FetchData, PersistData } from "../padDataSource/PadDataSource";
 
 let diagramInstance;
+let data = FetchData();
+
 const setNodeDefault = (node, id) => {
   node.constraints = NodeConstraints.Default | NodeConstraints.Shadow;
   node.ports = [
@@ -90,8 +92,6 @@ const onClick = arg => {
   diagramInstance.tool = DiagramTools.Default;
 };
 
-let data = FetchData();
-
 const onMouserLeave = arg => {
   diagramInstance.tool = DiagramTools.Default;
 };
@@ -113,6 +113,7 @@ const getProNode = (diagram, node) => {
 const getProNodeRecusive = (diagram, node, nodes, circularCheck) => {
   for (let i = 0; i < diagram.connectors.length; i++) {
     let c = diagram.connectors[i];
+
     if (c.targetID === node.id && c.sourceID) {
       if (circularCheck(c.sourceID)) {
         throw new Error("Circular connections");
@@ -139,6 +140,52 @@ const getProNodeRecusive = (diagram, node, nodes, circularCheck) => {
   }
 
   return nodes;
+};
+
+const saveDiagram = diagramInstance => {
+  console.log(diagramInstance.nodes);
+  console.log(diagramInstance.connectors);
+
+  let pad = {
+    name: "test pad",
+    description: "this is save template",
+    nodes: [],
+    id: 0,
+    triggerData: "",
+    currentMaxSequenceId: data.currentMaxSequenceId
+  };
+
+  diagramInstance.nodes.forEach((n, index) => {
+    const data = n.data;
+    let node = {
+      type: "Output",
+      metadata: {
+        nodeData: data.nodeData,
+        fieldsMetaData: data.fieldsMetaData
+      },
+      id: 0,
+      nodeId: data.nodeId,
+      location: `${n.offsetX},${n.offsetY}`,
+      inNodes: [],
+      outNodes: []
+    };
+    if (data.isInput) {
+      node.type = "Input";
+    }
+    diagramInstance.connectors.forEach(c => {
+      if (c.sourceID === n.id) {
+        node.outNodes.push(diagramInstance.getObject(c.targetID).data.nodeId);
+      }
+      if (c.targetID === n.id) {
+        node.inNodes.push(diagramInstance.getObject(c.sourceID).data.nodeId);
+      }
+    });
+
+    pad.nodes.push(node);
+  });
+
+  console.log(pad);
+  PersistData(pad);
 };
 
 export default () => {
@@ -203,8 +250,7 @@ export default () => {
 
       <button
         onClick={() => {
-          console.log(diagramInstance.nodes);
-          console.log(diagramInstance.connectors);
+          saveDiagram(diagramInstance);
         }}
       >
         SAVE

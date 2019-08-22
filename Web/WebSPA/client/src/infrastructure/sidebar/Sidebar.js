@@ -38,7 +38,7 @@ export default () => {
         </div>
         {open && <span>History</span>}
       </NavLink>
-      <NavLink className="nav-item toggle" onClick={() => setOpen(!open)}>
+      <NavLink className="nav-item toggle" onClick={() => setOpen(!open)} to="">
         {open && (
           <FontAwesomeIcon icon={["fal", "angle-double-left"]} size="2x" fixedWidth/>
         )}

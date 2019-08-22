@@ -5,3 +5,8 @@
 .card{
   height: 100%;
 }
+
+.property-container .card-title p{
+  text-transform: initial;
+  font-size: .8rem;
+}
