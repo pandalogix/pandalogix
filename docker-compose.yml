@@ -7,6 +7,8 @@ services:
     build:
       context: .
       dockerfile: AccountManager/Account.Service/Dockerfile
+    environment:
+      - ConnectionString=""
     depends_on:
       - db
   engine.service:
@@ -15,6 +17,8 @@ services:
     build:
       context: .
       dockerfile: Engine/Engine.Service/Dockerfile
+    environment:
+      - ServiceEndPoints:PadManagerService=""
     depends_on:
       - db
   padmanager.service:
@@ -23,6 +27,8 @@ services:
     build:
       context: .
       dockerfile: PadManager/PadManager.Service/Dockerfile
+    environment:
+      - ConnectionString=""
     depends_on:
       - db
 
@@ -31,6 +37,12 @@ services:
     build:
       context: .
       dockerfile: Web/WebSPA/Dockerfile
+    environment:
+      - ServiceEndPoints:AccountService=""
+      - ServiceEndPoints:PadManagerService=""
+      - ServiceEndPoints:EngineService=""
+    ports:
+      - 8080:5000
     depends_on:
       - account.service
       - engine.service

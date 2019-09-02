@@ -1,2 +1,2 @@
 import React from 'react';
-export default ()=>(<>History</>)
+export default ()=>(<div>History</div>)

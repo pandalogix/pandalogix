@@ -21,7 +21,7 @@ namespace Engine.Service
         WebHost.CreateDefaultBuilder(args)
                 .UseKestrel(options =>
                 {
-                  options.Listen(System.Net.IPAddress.Loopback, 3003);
+                  options.Listen(System.Net.IPAddress.Any, 3003);
                 })
             .UseStartup<Startup>()
             .UseContentRoot(Directory.GetCurrentDirectory())

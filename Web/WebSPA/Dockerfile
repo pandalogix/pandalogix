@@ -1,6 +1,6 @@
 FROM mcr.microsoft.com/dotnet/core/aspnet:2.2-alpine3.9 AS base
 WORKDIR /app
-EXPOSE 80
+EXPOSE 5000
 
 
 FROM mcr.microsoft.com/dotnet/core/sdk:2.2-alpine3.9 AS build
@@ -12,12 +12,12 @@ ARG NPMAUTHTOKEN=''
 ENV FONTAWESOME_NPM_AUTH_TOKEN=${NPMAUTHTOKEN}
 
 RUN apk --no-cache add nodejs npm
-
+RUN echo $FONTAWESOME_NPM_AUTH_TOKEN
 
 COPY Web/WebSPA/WebSPA.csproj Web/WebSPA/
 RUN dotnet restore Web/WebSPA/WebSPA.csproj
 COPY . .
-# WORKDIR /src/Web/WebSPA/ClientApp
+# WORKDIR /src/Web/WebSPA/client
 # RUN  npm install && npm run build
 WORKDIR /src/Web/WebSPA
 #update npmrc file

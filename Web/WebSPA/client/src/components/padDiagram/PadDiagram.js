@@ -97,7 +97,7 @@ const onMouserLeave = arg => {
 };
 
 const getProNode = (diagram, node) => {
-  if (!diagram || !node || !(node instanceof Node)) return null;
+  if (!diagram || !node) return null;
   let nodeIds = [];
   getProNodeRecusive(
     diagram,
@@ -250,7 +250,7 @@ export default () => {
 
       <button
         onClick={() => {
-          saveDiagram(diagramInstance);
+          // saveDiagram(diagramInstance);
         }}
       >
         SAVE
