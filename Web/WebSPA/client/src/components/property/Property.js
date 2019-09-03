@@ -8,7 +8,10 @@ export default props => {
   const { node, preNodes, diagram } = props;
   let nodes = [];
   if (preNodes) nodes = preNodes.map(m => diagram.getObject(m));
+
   if (node instanceof Node) {
+    console.log(node);
+
     let noTrigger = diagram.nodes.reduce((acc, current) => {
       if (!acc) return false;
       if (current.data.isTrigger) return !current.data.isTrigger;

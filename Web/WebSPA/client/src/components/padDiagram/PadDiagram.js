@@ -6,8 +6,7 @@ import {
   SelectorConstraints,
   PortVisibility,
   DiagramTools,
-  NodeConstraints,
-  Node
+  NodeConstraints
 } from "@syncfusion/ej2-react-diagrams";
 import Property from "../property/Property";
 
@@ -87,10 +86,11 @@ const onMouseenter = arg => {
   }
 };
 
-const onClick = arg => {
-  diagramInstance.select(arg.element);
-  diagramInstance.tool = DiagramTools.Default;
-};
+// const onClick = arg => {
+//   console.log(arg)
+//   //diagramInstance.select(arg.element);
+
+// };
 
 const onMouserLeave = arg => {
   diagramInstance.tool = DiagramTools.Default;
@@ -234,8 +234,12 @@ export default () => {
           collectionChange={arg => onCollectionChanged(arg, diagramInstance)}
           mouseEnter={onMouseenter}
           mouseLeave={onMouserLeave}
-          click={onClick}
+          click={arg=>{
+            setSelectNode(arg.element);
+            diagramInstance.tool = DiagramTools.Default;
+          }}
           selectionChange={arg => {
+            console.log(arg.newValue)
             setSelectNode(arg.newValue);
           }}
         />
@@ -250,7 +254,7 @@ export default () => {
 
       <button
         onClick={() => {
-          // saveDiagram(diagramInstance);
+          saveDiagram(diagramInstance);
         }}
       >
         SAVE
