@@ -11,7 +11,14 @@ ENV NODE_DOWNLOAD_SHA 2e2cddf805112bd0b5769290bf2d1bc4bdd55ee44327e826fa94c45983
 ARG NPMAUTHTOKEN=''
 ENV FONTAWESOME_NPM_AUTH_TOKEN=${NPMAUTHTOKEN}
 
-RUN apk --no-cache add nodejs npm
+RUN apk update && apk upgrade && \
+    apk add --no-cache fftw-dev gcc g++ make libc6-compat && \
+    apk add --no-cache python && \
+    apk add --update --no-cache --repository http://dl-3.alpinelinux.org/alpine/edge/community --repository http://dl-3.alpinelinux.org/alpine/edge/main vips-dev &&\
+    apk add --no-cache nodejs npm bash git yarn openssh &&\
+    npm install --global gatsby --no-optional gatsby-cli &&\
+    rm -rf /var/cache/apk/*
+
 RUN echo $FONTAWESOME_NPM_AUTH_TOKEN
 
 COPY Web/WebSPA/WebSPA.csproj Web/WebSPA/

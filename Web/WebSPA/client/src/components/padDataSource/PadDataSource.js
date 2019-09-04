@@ -10,7 +10,7 @@ const FetchData = () => {
 
 const PersistData = data => {
   axio
-    .post("http://localhost:5000/api/pad", data)
+    .post("/api/pad", data)
     .then(() => {
       console.log("success");
     })

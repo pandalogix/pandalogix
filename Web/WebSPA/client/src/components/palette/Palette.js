@@ -55,7 +55,7 @@ export default () => {
   useEffect(() => {
     const fetchMetadata = async () => {
       const result = await axios.get(
-        "http://localhost:5000/api/metadata/nodes"
+        "/api/metadata/nodes"
       );
       const symbols = getPalleteSymbols(result.data);
       setMetadata(symbols);
