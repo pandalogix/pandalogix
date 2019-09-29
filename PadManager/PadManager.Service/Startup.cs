@@ -37,8 +37,8 @@ namespace PadManager.Service
 
       services.AddMvc().AddJsonOptions(options =>
         {
-          options.SerializerSettings.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter());
-          options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
+          // options.SerializerSettings.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter());
+          // options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
         });
       services.AddCors(options =>
         {

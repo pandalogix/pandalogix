@@ -32,8 +32,9 @@ namespace Engine.Service
 
       }).AddJsonOptions(options =>
     {
-      options.SerializerSettings.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter());
-      options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
+
+      // options.SerializerSettings.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter());
+      // options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
     });
       services.AddHttpClient("padMgr", configureClient =>
       {
@@ -69,12 +70,12 @@ namespace Engine.Service
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-    public void Configure(IApplicationBuilder app, IHostingEnvironment env, IEventBus evtBus)
+    public void Configure(IApplicationBuilder app, IEventBus evtBus)
     {
-      if (env.IsDevelopment())
-      {
-        app.UseDeveloperExceptionPage();
-      }
+      // if (env.IsDevelopment())
+      // {
+      //   app.UseDeveloperExceptionPage();
+      // }
 
       app.UseCors("CorsPolicy");
 
