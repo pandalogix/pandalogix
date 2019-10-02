@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.OpenApi.Models;
+using Microsoft.Extensions.Hosting;
 
 namespace WebSPA
 {
@@ -23,7 +25,8 @@ namespace WebSPA
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
-      services.AddMvc();
+
+      services.AddMvc(option => option.EnableEndpointRouting = false);
 
       // When working with hierarchical keys in environment variables, a colon separator (:) may not work on all platforms. A double underscore (__) is supported by all platforms and is replaced by a colon.
       services.AddHttpClient("accountMgr", configureClient =>
@@ -53,12 +56,12 @@ namespace WebSPA
       // );
       services.AddSwaggerGen(c =>
                 {
-                  c.SwaggerDoc("v1", new Info { Title = "PandaLogix Manager", Version = "v1" });
+                  c.SwaggerDoc("v1", new OpenApiInfo { Title = "PandaLogix Manager", Version = "v1" });
                 });
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-    public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
       if (env.IsDevelopment())
       {
