@@ -9,6 +9,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.OpenApi.Models;
+using Microsoft.Extensions.Hosting;
+
 namespace PadManager.Service
 {
   public class Startup
@@ -35,10 +38,12 @@ namespace PadManager.Service
                                  });
       });
 
-      services.AddMvc().AddJsonOptions(options =>
+      services.AddMvc( option=>
+        option.EnableEndpointRouting = false
+      ).AddJsonOptions(options =>
         {
-          options.SerializerSettings.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter());
-          options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
+          // options.SerializerSettings.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter());
+          // options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
         });
       services.AddCors(options =>
         {
@@ -46,16 +51,16 @@ namespace PadManager.Service
               builder => builder.AllowAnyOrigin()
               .AllowAnyMethod()
               .AllowAnyHeader()
-              .AllowCredentials());
+              );
         });
       services.AddSwaggerGen(c =>
           {
-            c.SwaggerDoc("v1", new Info { Title = "Pad Manager", Version = "v1" });
+            c.SwaggerDoc("v1", new OpenApiInfo { Title = "Pad Manager", Version = "v1" });
           });
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-    public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
       if (env.IsDevelopment())
       {
