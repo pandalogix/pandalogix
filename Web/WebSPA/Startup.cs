@@ -56,7 +56,7 @@ namespace WebSPA
       // );
       services.AddSwaggerGen(c =>
                 {
-                  c.SwaggerDoc("v1", new OpenApiInfo { Title = "PandaLogix Manager", Version = "v1" });
+                  c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebSpa", Version = "v1" });
                 });
     }
 
