@@ -33,17 +33,17 @@ namespace Engine.Service
             {
                 options.EnableEndpointRouting = false;
 
-            }).AddJsonOptions(options =>
+            }).AddNewtonsoftJson(options =>
           {
 
-        // options.SerializerSettings.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter());
-        // options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
-    });
+              options.SerializerSettings.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter());
+              options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
+          });
             services.AddHttpClient("padMgr", configureClient =>
             {
                 configureClient.BaseAddress = new System.Uri(Configuration.GetValue<string>("ServiceEndPoints:PadManagerService"));
-          // configureClient.DefaultRequestHeaders.Add("Content-Type", "application/json");
-          configureClient.DefaultRequestHeaders.Add("X-Request-Source", Environment.MachineName);
+                // configureClient.DefaultRequestHeaders.Add("Content-Type", "application/json");
+                configureClient.DefaultRequestHeaders.Add("X-Request-Source", Environment.MachineName);
             });
             services.AddCors(options =>
             {

@@ -26,7 +26,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ServiceEndPoints__AccountService=http://${PANDALOGIX_ACCOUNTSERVICE}/api/account/
       - ServiceEndPoints__PadManagerService=http://${PANDALOGIX_PADMANGERSERVICE}/api/pad/
-      - ServiceEndPoints__EngineService=http://${PANDALOGIX_ENGINESERVICE}/api/engine/
+      - ServiceEndPoints__EngineService=http://${PANDALOGIX_ENGINESERVICE}/api/
     ports:
       - 80
 

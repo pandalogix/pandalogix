@@ -70,9 +70,9 @@ services:
       context: .
       dockerfile: Web/WebSPA/Dockerfile
     environment:
-      - ServiceEndPoints:AccountService=""
-      - ServiceEndPoints:PadManagerService=""
-      - ServiceEndPoints:EngineService=""
+      - ServiceEndPoints__AccountService=""
+      - ServiceEndPoint__:PadManagerService=""
+      - ServiceEndPoints__EngineService=""
     depends_on:
       - account.service
       - engine.service

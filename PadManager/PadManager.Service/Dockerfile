@@ -1,6 +1,6 @@
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.0-alpine3.9 AS base
 WORKDIR /app
-EXPOSE 3002
+EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.0-alpine3.9 AS build
 WORKDIR /src

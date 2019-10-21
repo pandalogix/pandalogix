@@ -20,7 +20,7 @@ namespace PadManager.Service
     public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
         WebHost.CreateDefaultBuilder(args).UseKestrel(options =>
             {
-              options.Listen(System.Net.IPAddress.Any, 3002);
+              options.Listen(System.Net.IPAddress.Any, 80);
             })
             .UseStartup<Startup>();
   }

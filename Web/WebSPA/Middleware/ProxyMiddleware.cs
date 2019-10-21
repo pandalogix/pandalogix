@@ -99,6 +99,7 @@ public class ProxyMiddleware
     {
       if (request.Path.StartsWithSegments(kv.Key, StringComparison.InvariantCultureIgnoreCase))
       {
+        Console.WriteLine($"client {kv.Value}");
         return kv.Value;
       }
     }
