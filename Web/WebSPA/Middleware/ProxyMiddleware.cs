@@ -31,6 +31,7 @@ public class ProxyMiddleware
 
   public async Task Invoke(HttpContext context)
   {
+    System.Diagnostics.Debugger.Break();
     if (context == null)
     {
       throw new ArgumentNullException(nameof(context));
