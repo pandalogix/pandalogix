@@ -6,4 +6,3 @@ jobs:
     steps:
       - checkout
       - run: docker-compose build --build-arg NPMAUTHTOKEN=$NPMAUTHTOKEN
-      - run: docker-compose push
