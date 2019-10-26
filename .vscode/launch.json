@@ -5,20 +5,21 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Attach to Web (Docker)",
+            "name": "Attach to Web(Docker)",
             "type": "coreclr",
             "request": "attach",
+            "justMyCode":false,
             "sourceFileMap": {
-                "/app": "${workspaceRoot}"
+                "/src": "${workspaceRoot}"
             },
-            "processId": "${command:pickRemoteProcess}",
+            "processId": "1",
             "pipeTransport": {
-                "debuggerPath": "/vsdbg/vsdbg",
+                "debuggerPath": "/vsdbg/vsdbg/vsdbg",
                 "pipeProgram": "docker",
                 "pipeCwd": "${workspaceRoot}",
                 "quoteArgs": false,
                 "pipeArgs": [
-                    "exec -i pandalogix_account.service_1"
+                    "exec -i pandalogix_webspa_1"
                 ]
             }
         },

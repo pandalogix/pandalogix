@@ -31,6 +31,7 @@ public class ProxyMiddleware
 
   public async Task Invoke(HttpContext context)
   {
+    System.Diagnostics.Debugger.Break();
     if (context == null)
     {
       throw new ArgumentNullException(nameof(context));
@@ -99,6 +100,7 @@ public class ProxyMiddleware
     {
       if (request.Path.StartsWithSegments(kv.Key, StringComparison.InvariantCultureIgnoreCase))
       {
+        Console.WriteLine($"client {kv.Value}");
         return kv.Value;
       }
     }

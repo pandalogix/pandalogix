@@ -13,6 +13,7 @@ namespace Engine.Service.Controllers
     public async Task<IActionResult> GetNodesMetaData()
     {
       var result= MetadataHelpers.GetMetadata();
+      var s = Newtonsoft.Json.JsonConvert.SerializeObject(result);
       return await Task.FromResult(Ok(result));
     }
   }
