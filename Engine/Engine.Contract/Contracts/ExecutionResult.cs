@@ -1,7 +1,7 @@
 using System;
 using Engine.Enums;
 
-namespace Engine.Contract.Contracts
+namespace Engine.Contracts
 {
   public class ExecutionResult
   {

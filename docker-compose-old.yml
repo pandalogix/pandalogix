@@ -1,0 +1,85 @@
+version: '3.4'
+
+services:
+  reverse-proxy:
+    image: traefik:v2.0.2
+    command: --api.insecure=true --providers.docker --log.level=DEBUG --entrypoints.web.address=:80
+    ports:
+      - 8000:80
+      - 8080:8080
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+  whoami:
+    image: containous/whoami
+    labels:
+     - "traefik.enable=true"
+     - "traefik.http.routers.whoami.entrypoints=web"
+     - "traefik.http.routers.whoami.rule=Host(`whoami.docker.localhost`)"
+  account.service:
+    image: ${DOCKER_REGISTRY}accountservice
+    container_name: ${PANDALOGIX_ACCOUNTSERVICE}
+    labels:
+     - "traefik.enable=true"
+     - "traefik.http.routers.account.entrypoints=web"
+     - "traefik.http.routers.account.rule=Host(`account.docker.localhost`)"
+    build:
+      context: .
+      dockerfile: AccountManager/Account.Service/Dockerfile
+    environment:
+      - ConnectionString=""
+    depends_on:
+      - db
+  engine.executor:
+    image: ${DOCKER_REGISTRY}engineexecutor
+    # container_name: ${PANDALOGIX_ENGINESERVICE}
+    # labels:
+    #  - "traefik.enable=true"
+    #  - "traefik.http.routers.engine.entrypoints=web"
+    #  - "traefik.http.routers.engine.rule=Host(`engine.docker.localhost`)"
+
+    build:
+      context: .
+      dockerfile: Engine/Engine.Executor/Dockerfile
+    # environment:
+    #   - ServiceEndPoints:PadManagerService=""
+    # depends_on:
+    #   - db
+  padmanager.service:
+    image: ${DOCKER_REGISTRY}padservice
+    container_name: ${PANDALOGIX_PADMANGERSERVICE}
+    labels:
+     - "traefik.enable=true"
+     - "traefik.http.routers.padmanager.entrypoints=web"
+     - "traefik.http.routers.padmanager.rule=Host(`padmanager.docker.localhost`)"
+
+    build:
+      context: .
+      dockerfile: PadManager/PadManager.Service/Dockerfile
+    environment:
+      - ConnectionString=""
+    depends_on:
+      - db
+
+  webspa:
+    image: ${DOCKER_REGISTRY}webspa
+    labels:
+     - "traefik.enable=true"
+     - "traefik.http.routers.webspa.entrypoints=web"
+     - "traefik.http.routers.webspa.rule=Host(`webspa.docker.localhost`)"
+    build:
+      context: .
+      dockerfile: Web/WebSPA/Dockerfile
+    environment:
+      - ServiceEndPoints__AccountService=""
+      - ServiceEndPoint__:PadManagerService=""
+      - ServiceEndPoints__EngineService=""
+    depends_on:
+      - account.service
+      # - engine.service
+
+  db:
+    image: ${DOCKER_REGISTRY}datbase
+    container_name: ${PANDALOGIX_DATABASE}
+    build:
+      context: ./Database
+      dockerfile: Dockerfile

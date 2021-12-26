@@ -1,6 +1,7 @@
 using Engine.Enums;
 using System;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 namespace Engine
 {
@@ -29,6 +30,7 @@ namespace Engine
         }
       }
     }
+    [JsonIgnore]
     public Type ValueType
     {
       get => _valueType; set

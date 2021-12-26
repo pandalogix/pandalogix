@@ -1,0 +1,11 @@
+services:
+  engine.executor:
+    image: engine.executor
+    build:
+      context: .
+      dockerfile: Engine/Engine.Executor/Dockerfile
+  engine.manager:
+    image: engine.manager
+    build:
+      context: .
+      dockerfile: Engine/Engine.Manager/Dockerfile
