@@ -15,7 +15,9 @@ namespace Engine.Core.Nodes
     public NodeMetaData MetaDate { get; set; }
     public InstanceMapping NodeMapping { get; set; }
     protected IContext _context = null;
-    public IContext Context { get { return _context; } }
+    public IContext Context { get { return _context; }
+      set { _context = value; }
+    }
     public IEnumerable<INode> InPorts { get; set; }
     public IEnumerable<INode> OutPorts { get; set; }
     public bool LogicPath { get; set; }
@@ -35,6 +37,8 @@ namespace Engine.Core.Nodes
 
     public async Task Execute(IContext context)
     {
+      if(context.Status== ExecutionStatus.Failed || context.Status== ExecutionStatus.Success)
+       return;
       context.Status = ExecutionStatus.Executing;
 
       try
@@ -89,6 +93,15 @@ namespace Engine.Core.Nodes
         ExecutionSummary = string.Empty,
         Status = ExecutionStatus.Pending
       };
+      if(parent is PadExecutionContext){
+        var padcontext = parent as PadExecutionContext;
+        if(padcontext.NodeExecutionContext.ContainsKey(this.Id)){
+          var c = padcontext.NodeExecutionContext[this.Id];
+          this.Context.Result = c.Result;
+          this.Context.Status = c.Status;
+          this.Context.ExecutionSummary= c.ExecutionSummary;
+        }
+      }
 
       this.SetupNodes(_context);
 
@@ -97,9 +110,6 @@ namespace Engine.Core.Nodes
 
     private void SetupNodes(IContext context)
     {
-      var nodes = context.Pad.Nodes;
-
-
     }
 
     public object GetFieldValue(string fieldName, long nodeId)

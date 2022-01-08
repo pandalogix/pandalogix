@@ -5,8 +5,28 @@ namespace Engine.Manager.Controllers;
 public class EngineController : ControllerBase
 {
   private ILogger<EngineController> _logger;
-  public EngineController(ILogger<EngineController> logger)
+  private readonly IHttpClientFactory _httpClientFactory;
+
+  public EngineController(ILogger<EngineController> logger, IHttpClientFactory httpClientFactory)
   {
-      _logger=logger;
+    _logger = logger;
+    _httpClientFactory = httpClientFactory;
   }
+
+  [HttpPost()]
+  public async Task ExecutePad(Guid padid, [FromBody] Instances instance)
+  {
+    var httpClient = _httpClientFactory.CreateClient();
+    //get pad contract
+
+    //send the exectuion request
+
+    //update state management
+  }
+
+   [HttpPost()]
+   public async Task UpdatePadSataus([FromBody] ExecutionResult result){
+
+   }
+
 }

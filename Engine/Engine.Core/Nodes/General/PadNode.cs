@@ -24,7 +24,7 @@ namespace Engine.Core.Nodes.General
     protected override async Task InternalExecute(IContext context)
     {
       var pad = PadFactory.CreateInstance(this.PadContract, this.PadMode, this.Instance);
-      await pad.Init();
+      await pad.Init(context);
       await pad.Execute(pad.Context, Instance);
       this.Context.Result = pad.Context.Result;
       this.Context.ExecutionSummary = pad.Context.ExecutionSummary;

@@ -9,7 +9,7 @@ namespace Engine.Core
 {
   public class Pad : IPad
   {
-    private PadExecutionContext _context;
+    private IContext _context;
     private ExecutionMode _mode;
 
     public Pad(ExecutionMode mode)
@@ -18,7 +18,11 @@ namespace Engine.Core
     }
 
 
-    public IContext Context => _context;
+    public IContext Context
+    {
+      get { return _context; }
+      set { _context = value; }
+    }
 
     public IEnumerable<INode> Nodes { get; set; }
 
@@ -26,7 +30,7 @@ namespace Engine.Core
     {
       try
       {
-        await this.Init();
+        this.Context=context;
         this.Context.Instance = instance;
         var inputs = (from o in Nodes
                       where o.Type == NodeType.Input
@@ -69,16 +73,21 @@ namespace Engine.Core
     }
 
 
-    public Task<IContext> Init()
+    public Task<IContext> Init(IContext context=null)
     {
+        var c = context as PadExecutionContext;
+
       _context = new PadExecutionContext
       {
         Pad = this,
         Mode = _mode,
         Instance = null,
-        ExecutionSummary = string.Empty,
-        Status = ExecutionStatus.Pending
+        ExecutionSummary = c?.ExecutionSummary?? string.Empty,
+        Status = c?.Status??ExecutionStatus.Pending,
+        Result =c?.Result,
+        NodeExecutionContext =c?.NodeExecutionContext??new Dictionary<long, NodeExecutionContext>()
       };
+
       return Task.FromResult<IContext>(_context);
     }
   }

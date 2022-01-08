@@ -133,6 +133,7 @@ namespace Engine.CoreTest
       await pad.Init();
       await pad.Execute(pad.Context, instance);
 
+      Assert.NotNull(pad.Context);
       Assert.Equal(ExecutionStatus.Success, pad.Context.Status);
       Assert.Equal(2.0, pad.Context.Result);
     }
@@ -258,6 +259,7 @@ namespace Engine.CoreTest
       await pad.Init();
       await pad.Execute(pad.Context, instance);
 
+      Assert.NotNull(pad.Context);
       Assert.Equal(ExecutionStatus.Success, pad.Context.Status);
       Assert.Equal(now.AddHours(1).ToString(), pad.Context.Result.ToString());
     }

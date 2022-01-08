@@ -5,7 +5,7 @@ namespace Engine.Interfaces
 {
   public interface IPad
   {
-    Task<IContext> Init();
+    Task<IContext> Init(IContext context);
     Task Execute(IContext context, IInstance instance);
 
     IContext Context { get; }
