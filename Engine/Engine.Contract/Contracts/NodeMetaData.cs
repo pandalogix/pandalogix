@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 
 namespace Engine.Contracts
@@ -10,6 +10,6 @@ namespace Engine.Contracts
     public NodeMetaDataAttribute NodeData { get; set; }
 
     [DataMember]
-    public IEnumerable<FieldMetaDataAttribute> FieldsMetaData { get; set; }
+    public List<FieldMetaDataAttribute> FieldsMetaData { get; set; }
   }
 }

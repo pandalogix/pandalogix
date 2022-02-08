@@ -6,7 +6,6 @@
     <ImplicitUsings>enable</ImplicitUsings>
 
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
@@ -17,7 +16,4 @@
     <ProjectReference Include="..\Engine.Core\Engine.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Remove="Newtonsoft.Json" />
-  </ItemGroup>
 </Project>

@@ -5,12 +5,12 @@ namespace Engine.Manager.Controllers
   [Route("[controller]")]
   public class MetadataController : Controller
   {
-    [HttpGet]
+    [HttpGet()]
     [Route("nodes")]
     public async Task<string> GetNodesMetaData()
     {
       var result= MetadataHelpers.GetMetadata();
-      Console.WriteLine(result);
+      System.Diagnostics.Debug.WriteLine(result);
       var s = Newtonsoft.Json.JsonConvert.SerializeObject(result);
 
       return await Task.FromResult(s);

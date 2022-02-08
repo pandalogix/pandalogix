@@ -18,7 +18,7 @@ namespace Engine.Core.Helpers
         var meta = new NodeMetaData()
         {
           NodeData = t.GetCustomAttribute<NodeMetaDataAttribute>(),
-          FieldsMetaData = t.GetProperties().Where(p => p.GetCustomAttribute(typeof(FieldMetaDataAttribute)) != null).Select(p => p.GetCustomAttribute<FieldMetaDataAttribute>())
+          FieldsMetaData = t.GetProperties().Where(p => p.GetCustomAttribute(typeof(FieldMetaDataAttribute)) != null).Select(p => p.GetCustomAttribute<FieldMetaDataAttribute>()).ToList(),
         };
         if (data.ContainsKey(meta.NodeData.Category))
         {
